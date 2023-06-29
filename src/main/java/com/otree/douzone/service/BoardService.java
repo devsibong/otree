@@ -65,17 +65,22 @@ public class BoardService {
 	
 	//(R) boardTitle로 게시물 검색
 		public List<Board> getBoardListByBoardTitle(String boardTitle){
+			System.out.println("1111111111111111");
+			System.out.println("2222222222222222");
 		List<Board> listBoard = null;
+		System.out.println("3333333333333333");
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			listBoard = boardDao.searchBoardByBoardTitle(boardTitle);
-			
+			System.out.println("4444444444444444");
+			listBoard = boardDao.getBoardByBoardTitle(boardTitle);
+			System.out.println("5555555555555555");
 		} catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println("");
+			System.out.println(e.getMessage());
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();		
+			System.out.println(e1.getMessage());
 		}
-		return null;
+		return listBoard;
 		}
 	
 	
@@ -128,7 +133,7 @@ public class BoardService {
 	
 	//(C) 글쓰기 할때 파일 리스트 파라미터 입력받고 파일 삽입.
 	// 여기서 파일첨부 갖고 놀아야됨.
-	public boolean insertFile(List<BoardFile> list) {
+	public boolean createFile(List<BoardFile> list) {
 		boolean result = false;
 		try {
 			BoardFileDao boardFileDao = sqlsession.getMapper(BoardFileDao.class);
@@ -159,7 +164,7 @@ public class BoardService {
 	
 	//(U)
 	// 글쓴 유저가 본인 글  게시판 상세보기 누른 후 첨부파일 업데이트(수정)
-	public boolean updateFile(BoardFile boardfile)  {
+	public boolean modifyFile(BoardFile boardfile)  {
 		boolean result = false;
 		List<BoardFile> listBoardFile = null;
 		try {
@@ -176,7 +181,7 @@ public class BoardService {
 	
 	//(D)
 	// 글쓴 유저가 본인 글 게시판 상세보기 누른 후 글 삭제
-	public boolean deleteFile(int fileId)  {
+	public boolean removeFile(int fileId)  {
 		boolean result = false;
 		try {
 			BoardFileDao boardFileDao = sqlsession.getMapper(BoardFileDao.class);
@@ -193,7 +198,7 @@ public class BoardService {
 	//BoardComment 기능
 	//C
 	// 게시글 상세조회 후 댓글 작성시 
-	public boolean insertComment(BoardComment boardcomment) {
+	public boolean createComment(BoardComment boardcomment) {
 		boolean result = false;
 		try {
 			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
@@ -224,7 +229,7 @@ public class BoardService {
 	
 	//U
 	//게시글 상세조회 후 기존에 있던 댓글 수정
-	public boolean updateComment(String boardComment, int commentId) {
+	public boolean modifyComment(String boardComment, int commentId) {
 		boolean result = false;
 		try {
 			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
@@ -241,7 +246,7 @@ public class BoardService {
 	
 	//D
 	//게시글 상세조회 후 기존 댓글 삭제
-	public boolean deleteComment(int boardId) {
+	public boolean removeComment(int boardId) {
 		boolean result = false;
 		try {
 			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
