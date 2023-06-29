@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  
+	Member getMember(String uid) throws ClassNotFoundException, SQLException;
+    int insert(Member member) throws ClassNotFoundException, SQLException; 
+-->
+<mapper namespace="com.otree.douzone.dao.WorkspaceDao" >
+	<!-- otree user의 전체 워크스페이스 리스트 -->
+	<select id="selectWorkspaceList" resultType="com.otree.douzone.dto.Workspace">
+		SELECT workspaceId, workspaceName, createdAt, description FROM WORKSPACE
+	</select>
+	
+	<!-- 워크스페이스 한개 -->
+	<select id="selectWorkspaceById" resultType="int">
+		SELECT ROUND(AVG(SAL),0) FROM EMP
+	</select>
+	
+	<!-- 워크스페이스 등록 -->
+	<insert id="insertWorkspace">
+		INSERT INTO WORKSPACE(workspaceId, workspaceName, createdAt, description) VALUES(workspaceid_seq.NEXTVAL,#{workspaceName},SYSDATE,#{description})
+	</insert>
+	
+	<!-- 워크스페이스 수정 -->
+	<update id="updateWorkspace">
+	</update>
+	
+	<!-- 워크스페이스 삭제 -->
+	<delete id="deleteWorkspace">
+	
+	</delete>	
+
+
+</mapper>
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.otree.douzone.dao.BoardDao">
+	
+	
+	<!-- 게시글 개수 가져오기 페이징에 필요한 듯 -->
+	<select id="getBoardCount" resultType="int">
+	SELECT COUNT(*) CNT FROM board WHERE ${param1} LIKE '%${param2}%'
+	</select>
+	
+	
+	<!-- 페이징 처리 후 전체 게시글 가져오기. -->
+		<select id="getBoardListForPaging" resultType="com.otree.douzone.dto.Board" >
+		SELECT * FROMg
+			         (   SELECT ROWNUM NUM, N.*
+			             FROM (
+			             		SELECT * 
+			             		FROM NOTICES 
+			             		WHERE ${param2} LIKE '%${param3}%' ORDER BY REGDATE DESC
+			             	  ) N
+		             ) 	WHERE NUM BETWEEN 1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
+	</select>
+	
+	
+	<!--선행쿼리 -->
+	<insert id="insertBoard" parameterType="com.otree.douzone.dto.Board">
+		<selectKey keyProperty="boardId" resultType="int" order="BEFORE">
+			SELECT boardId_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO board (boardId, userId, workspaceId, boardTitle, boardContent, createdAt)
+		VALUES (#{boardId}, #{userId}, #{workspaceId}, #{boardTitle}, #{boardContent}, #{createdAt})
+	</insert>
+
+	<!-- 그냥 전체 가져오기 -->
+	<select id ="getBoardList" resultType="com.otree.douzone.dto.Board">
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt FROM board
+	</select>
+
+	<!-- 게시판 제목으로 검색 -->
+	<select id ="searchBoardByBoardTitle" parameterType="String" resultType="com.otree.douzone.dto.Board">
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	FROM board 
+	WHERE boardTitle LIKE '%' || #{boardTitle} || '%'
+	</select>
+
+	<!-- 상세 조회 -->
+	<select id ="getBoardByBoardId" parameterType="int" resultType="com.otree.douzone.dto.Board">
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	FROM board
+	WHERE boardId = #{boardId}
+	</select>
+
+	
+	
+	<!-- 제목과 컨텐츠 업데이트가능. -->
+	<update id="updateEmp" parameterType="com.otree.douzone.dto.Board">
+	UPDATE board
+	SET boardTitle = #{boardTitle}, boardContent = #{boardContent}
+	WHERE boardId = #{boardId}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+	DELETE FROM board
+	WHERE boardId = #{boardId}
+	</delete>
+	
+
+</mapper>

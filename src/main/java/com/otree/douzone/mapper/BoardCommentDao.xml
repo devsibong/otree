@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.otree.douzone.dao.BoardCommentDao">
+
+	<select id="getComment" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
+	SELECT commentId, boardComment, boardId ,userId 
+	FROM boardcommend
+	WHERE boardId = #{boardId}
+	</select> 
+	
+
+	<insert id ="insertComment" parameterType="com.otree.douzone.dto.BoardComment">
+	INSERT INTO boardcomment(commentId,boardComment,boardId,userId) 
+	VALUES (sequence_name.nextval,#{boardComment},#{boardId},#{userId}) 
+	</insert>
+	
+	<!-- sequence_name.nextval -->
+	
+	<update id ="updateComment" >
+	UPDATE boardcomment
+	SET boardComment = ${param1}
+	WHERE commentId = ${param2}
+	</update>
+	
+	
+	<delete id="deleteComment" parameterType="int">
+	DELETE FROM boardcomment
+	WHERE boardId = #{boardId}
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
