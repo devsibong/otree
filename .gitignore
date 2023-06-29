@@ -9,6 +9,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
+.git
 local.properties
 .settings/
 .loadpath
