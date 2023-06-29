@@ -18,7 +18,7 @@ public class WorkspaceService {
 		this.sqlsession = sqlsession;
 	}
 	
-	// ¿öÅ©½ºÆäÀÌ½º »ı¼º
+	// ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ìƒì„±
 	public void createWorkspace (Workspace workspace) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
@@ -28,7 +28,7 @@ public class WorkspaceService {
 		}
 	}
 	
-	// À¯ÀúÀÇ ÀüÃ¼ ¿öÅ©½ºÆäÀÌ½º ¸ñ·Ï Á¶È¸ 
+	// ìœ ì €ì˜ ì „ì²´ ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ëª©ë¡ ì¡°íšŒ 
 	public List<Workspace> getWorkspaceList(int userId) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
@@ -39,7 +39,7 @@ public class WorkspaceService {
 		return null;
 	}
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º Á¤º¸ Á¶È¸ 
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ì •ë³´ ì¡°íšŒ 
 	public Workspace getWorkspaceById(int workspaceId) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
@@ -50,7 +50,7 @@ public class WorkspaceService {
 		return null;
 	}
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º Á¤º¸ ¼öÁ¤
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ì •ë³´ ìˆ˜ì •
 	public void modifyWorkspace (Workspace workspace) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
@@ -60,7 +60,7 @@ public class WorkspaceService {
 		}
 	}
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º »èÁ¦ 
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ì‚­ì œ 
 	public void removeWorkspace (int workspaceId) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
@@ -70,17 +70,17 @@ public class WorkspaceService {
 		}
 	}
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º À¯ÀúÇÑ¸í Ãß°¡
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ìœ ì €í•œëª… ì¶”ê°€
 	
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º ÀüÃ¼ À¯Àú ¸ñ·Ï Á¶È¸
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ ì „ì²´ ìœ ì € ëª©ë¡ ì¡°íšŒ
 	
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º Æ¯Á¤ À¯Àú Á¤º¸ Á¶È¸
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ íŠ¹ì • ìœ ì € ì •ë³´ ì¡°íšŒ
 	
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º Æ¯Á¤ À¯Àú Á¤º¸ ¼öÁ¤
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ íŠ¹ì • ìœ ì € ì •ë³´ ìˆ˜ì •
 	
 	
-	// Æ¯Á¤ ¿öÅ©½ºÆäÀÌ½º Æ¯Á¤ À¯Àú Á¤º¸ »èÁ¦
+	// íŠ¹ì • ì›Œí¬ìŠ¤í˜ì´ìŠ¤ íŠ¹ì • ìœ ì € ì •ë³´ ì‚­ì œ
 }
