@@ -7,30 +7,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     int insert(Member member) throws ClassNotFoundException, SQLException; 
 -->
 <mapper namespace="com.otree.douzone.dao.WorkspaceDao" >
-	<!-- otree user의 전체 워크스페이스 리스트 -->
-	<select id="selectWorkspaceList" resultType="com.otree.douzone.dto.Workspace">
-		SELECT workspaceId, workspaceName, createdAt, description FROM WORKSPACE
-	</select>
 	
-	<!-- 워크스페이스 한개 -->
-	<select id="selectWorkspaceById" resultType="int">
-		SELECT ROUND(AVG(SAL),0) FROM EMP
-	</select>
-	
-	<!-- 워크스페이스 등록 -->
+	<!-- 워크스페이스 생성 -->
 	<insert id="insertWorkspace">
-		INSERT INTO WORKSPACE(workspaceId, workspaceName, createdAt, description) VALUES(workspaceid_seq.NEXTVAL,#{workspaceName},SYSDATE,#{description})
+		INSERT INTO WORKSPACE(workspaceId, workspaceName, createdAt, description) VALUES(workspaceid_seq.NEXTVAL, #{workspaceName}, SYSDATE, #{description})
 	</insert>
+
+	<!-- 유저의 전체 워크스페이스 목록 조회 -->
+	<select id="selectWorkspaceList" resultType="com.otree.douzone.dto.Workspace">
+		SELECT w.workspaceId, w.workspaceName, w.createdAt, w.description 
+		FROM OTREEUSER_WORKSPACE ow JOIN WORKSPACE w
+		ON ow.workspaceId = w.workspaceId
+		WHERE ow.userId = #{userId}
+	</select>
 	
-	<!-- 워크스페이스 수정 -->
-	<update id="updateWorkspace">
+	<!-- 특정 워크스페이스 정보 조회 -->
+	<select id="selectWorkspaceById" resultType="com.otree.douzone.dto.Workspace">
+		SELECT workspaceId, workspaceName, createdAt, description FROM WORKSPACE WHERE workspaceId = #{workspaceId}
+	</select>
+	
+	<!-- 특정 워크스페이스 정보 수정 -->
+	<update id="updateWorkspace" >
+		UPDATE WORKSPACE
+		SET workspaceName = #{param2.workspaceName}, description = #{param2.description}
+		WHERE workspaceId = #{param1}
 	</update>
 	
-	<!-- 워크스페이스 삭제 -->
+	<!-- 특정 워크스페이스 삭제 -->
 	<delete id="deleteWorkspace">
-	
+		DELETE FROM WORKSPACE
+		WHERE workspaceId = #{workspaceId}
 	</delete>	
+
+	<!-- 특정 워크스페이스 유저한명 추가 -->
+	
+	<!-- 특정 워크스페이스 전체 유저 목록 조회 -->
+	
+	<!-- 특정 워크스페이스 특정 유저 정보 조회 -->
+	
+	<!-- 특정 워크스페이스 특정 유저 정보 수정 -->
+
+	<!-- 특정 워크스페이스 특정 유저 정보 삭제 -->
 
 
 </mapper>
-
