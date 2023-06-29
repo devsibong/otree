@@ -30,31 +30,33 @@ public class WorkspaceService {
 	
 	// 유저의 전체 워크스페이스 목록 조회 
 	public List<Workspace> getWorkspaceList(int userId) {
+		List<Workspace> workspaceList = null;
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.selectWorkspaceList(userId);
+			workspaceList = workspaceDao.selectWorkspaceList(userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return workspaceList;
 	}
 	
 	// 특정 워크스페이스 정보 조회 
 	public Workspace getWorkspaceById(int workspaceId) {
+		Workspace workspace = null;
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.selectWorkspaceById(workspaceId);
+			workspace = workspaceDao.selectWorkspaceById(workspaceId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return workspace;
 	}
 	
 	// 특정 워크스페이스 정보 수정
-	public void modifyWorkspace (Workspace workspace) {
+	public void modifyWorkspace (int workspaceId, Workspace workspace) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.updateWorkspace(workspace);
+			workspaceDao.updateWorkspace(workspaceId, workspace);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
