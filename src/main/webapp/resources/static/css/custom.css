@@ -21950,6 +21950,471 @@ textarea.form-control-lg {
   border-color: rgba(var(--bs-white-rgb), var(--bs-border-opacity)) !important;
 }
 
+.border-blue-100 {
+  --bs-border-opacity: 1;
+  border-color: #cfe2ff !important;
+}
+
+.border-blue-200 {
+  --bs-border-opacity: 1;
+  border-color: #9ec5fe !important;
+}
+
+.border-blue-300 {
+  --bs-border-opacity: 1;
+  border-color: #6ea8fe !important;
+}
+
+.border-blue-400 {
+  --bs-border-opacity: 1;
+  border-color: #3d8bfd !important;
+}
+
+.border-blue-500 {
+  --bs-border-opacity: 1;
+  border-color: #0d6efd !important;
+}
+
+.border-blue-600 {
+  --bs-border-opacity: 1;
+  border-color: #0a58ca !important;
+}
+
+.border-blue-700 {
+  --bs-border-opacity: 1;
+  border-color: #084298 !important;
+}
+
+.border-blue-800 {
+  --bs-border-opacity: 1;
+  border-color: #052c65 !important;
+}
+
+.border-blue-900 {
+  --bs-border-opacity: 1;
+  border-color: #031633 !important;
+}
+
+.border-indigo-100 {
+  --bs-border-opacity: 1;
+  border-color: #e0cffc !important;
+}
+
+.border-indigo-200 {
+  --bs-border-opacity: 1;
+  border-color: #c29ffa !important;
+}
+
+.border-indigo-300 {
+  --bs-border-opacity: 1;
+  border-color: #a370f7 !important;
+}
+
+.border-indigo-400 {
+  --bs-border-opacity: 1;
+  border-color: #8540f5 !important;
+}
+
+.border-indigo-500 {
+  --bs-border-opacity: 1;
+  border-color: #6610f2 !important;
+}
+
+.border-indigo-600 {
+  --bs-border-opacity: 1;
+  border-color: #520dc2 !important;
+}
+
+.border-indigo-700 {
+  --bs-border-opacity: 1;
+  border-color: #3d0a91 !important;
+}
+
+.border-indigo-800 {
+  --bs-border-opacity: 1;
+  border-color: #290661 !important;
+}
+
+.border-indigo-900 {
+  --bs-border-opacity: 1;
+  border-color: #140330 !important;
+}
+
+.border-purple-100 {
+  --bs-border-opacity: 1;
+  border-color: #e2d9f3 !important;
+}
+
+.border-purple-200 {
+  --bs-border-opacity: 1;
+  border-color: #c5b3e6 !important;
+}
+
+.border-purple-300 {
+  --bs-border-opacity: 1;
+  border-color: #a98eda !important;
+}
+
+.border-purple-400 {
+  --bs-border-opacity: 1;
+  border-color: #8c68cd !important;
+}
+
+.border-purple-500 {
+  --bs-border-opacity: 1;
+  border-color: #6f42c1 !important;
+}
+
+.border-purple-600 {
+  --bs-border-opacity: 1;
+  border-color: #59359a !important;
+}
+
+.border-purple-700 {
+  --bs-border-opacity: 1;
+  border-color: #432874 !important;
+}
+
+.border-purple-800 {
+  --bs-border-opacity: 1;
+  border-color: #2c1a4d !important;
+}
+
+.border-purple-900 {
+  --bs-border-opacity: 1;
+  border-color: #160d27 !important;
+}
+
+.border-pink-100 {
+  --bs-border-opacity: 1;
+  border-color: #f7d6e6 !important;
+}
+
+.border-pink-200 {
+  --bs-border-opacity: 1;
+  border-color: #efadce !important;
+}
+
+.border-pink-300 {
+  --bs-border-opacity: 1;
+  border-color: #e685b5 !important;
+}
+
+.border-pink-400 {
+  --bs-border-opacity: 1;
+  border-color: #de5c9d !important;
+}
+
+.border-pink-500 {
+  --bs-border-opacity: 1;
+  border-color: #d63384 !important;
+}
+
+.border-pink-600 {
+  --bs-border-opacity: 1;
+  border-color: #ab296a !important;
+}
+
+.border-pink-700 {
+  --bs-border-opacity: 1;
+  border-color: #801f4f !important;
+}
+
+.border-pink-800 {
+  --bs-border-opacity: 1;
+  border-color: #561435 !important;
+}
+
+.border-pink-900 {
+  --bs-border-opacity: 1;
+  border-color: #2b0a1a !important;
+}
+
+.border-red-100 {
+  --bs-border-opacity: 1;
+  border-color: #f8d7da !important;
+}
+
+.border-red-200 {
+  --bs-border-opacity: 1;
+  border-color: #f1aeb5 !important;
+}
+
+.border-red-300 {
+  --bs-border-opacity: 1;
+  border-color: #ea868f !important;
+}
+
+.border-red-400 {
+  --bs-border-opacity: 1;
+  border-color: #e35d6a !important;
+}
+
+.border-red-500 {
+  --bs-border-opacity: 1;
+  border-color: #dc3545 !important;
+}
+
+.border-red-600 {
+  --bs-border-opacity: 1;
+  border-color: #b02a37 !important;
+}
+
+.border-red-700 {
+  --bs-border-opacity: 1;
+  border-color: #842029 !important;
+}
+
+.border-red-800 {
+  --bs-border-opacity: 1;
+  border-color: #58151c !important;
+}
+
+.border-red-900 {
+  --bs-border-opacity: 1;
+  border-color: #2c0b0e !important;
+}
+
+.border-orange-100 {
+  --bs-border-opacity: 1;
+  border-color: #ffe5d0 !important;
+}
+
+.border-orange-200 {
+  --bs-border-opacity: 1;
+  border-color: #fecba1 !important;
+}
+
+.border-orange-300 {
+  --bs-border-opacity: 1;
+  border-color: #feb272 !important;
+}
+
+.border-orange-400 {
+  --bs-border-opacity: 1;
+  border-color: #fd9843 !important;
+}
+
+.border-orange-500 {
+  --bs-border-opacity: 1;
+  border-color: #fd7e14 !important;
+}
+
+.border-orange-600 {
+  --bs-border-opacity: 1;
+  border-color: #ca6510 !important;
+}
+
+.border-orange-700 {
+  --bs-border-opacity: 1;
+  border-color: #984c0c !important;
+}
+
+.border-orange-800 {
+  --bs-border-opacity: 1;
+  border-color: #653208 !important;
+}
+
+.border-orange-900 {
+  --bs-border-opacity: 1;
+  border-color: #331904 !important;
+}
+
+.border-yellow-100 {
+  --bs-border-opacity: 1;
+  border-color: #fff3cd !important;
+}
+
+.border-yellow-200 {
+  --bs-border-opacity: 1;
+  border-color: #ffe69c !important;
+}
+
+.border-yellow-300 {
+  --bs-border-opacity: 1;
+  border-color: #ffda6a !important;
+}
+
+.border-yellow-400 {
+  --bs-border-opacity: 1;
+  border-color: #ffcd39 !important;
+}
+
+.border-yellow-500 {
+  --bs-border-opacity: 1;
+  border-color: #ffc107 !important;
+}
+
+.border-yellow-600 {
+  --bs-border-opacity: 1;
+  border-color: #cc9a06 !important;
+}
+
+.border-yellow-700 {
+  --bs-border-opacity: 1;
+  border-color: #997404 !important;
+}
+
+.border-yellow-800 {
+  --bs-border-opacity: 1;
+  border-color: #664d03 !important;
+}
+
+.border-yellow-900 {
+  --bs-border-opacity: 1;
+  border-color: #332701 !important;
+}
+
+.border-green-100 {
+  --bs-border-opacity: 1;
+  border-color: #d1e7dd !important;
+}
+
+.border-green-200 {
+  --bs-border-opacity: 1;
+  border-color: #a3cfbb !important;
+}
+
+.border-green-300 {
+  --bs-border-opacity: 1;
+  border-color: #75b798 !important;
+}
+
+.border-green-400 {
+  --bs-border-opacity: 1;
+  border-color: #479f76 !important;
+}
+
+.border-green-500 {
+  --bs-border-opacity: 1;
+  border-color: #198754 !important;
+}
+
+.border-green-600 {
+  --bs-border-opacity: 1;
+  border-color: #146c43 !important;
+}
+
+.border-green-700 {
+  --bs-border-opacity: 1;
+  border-color: #0f5132 !important;
+}
+
+.border-green-800 {
+  --bs-border-opacity: 1;
+  border-color: #0a3622 !important;
+}
+
+.border-green-900 {
+  --bs-border-opacity: 1;
+  border-color: #051b11 !important;
+}
+
+.border-teal-100 {
+  --bs-border-opacity: 1;
+  border-color: #d2f4ea !important;
+}
+
+.border-teal-200 {
+  --bs-border-opacity: 1;
+  border-color: #a6e9d5 !important;
+}
+
+.border-teal-300 {
+  --bs-border-opacity: 1;
+  border-color: #79dfc1 !important;
+}
+
+.border-teal-400 {
+  --bs-border-opacity: 1;
+  border-color: #4dd4ac !important;
+}
+
+.border-teal-500 {
+  --bs-border-opacity: 1;
+  border-color: #20c997 !important;
+}
+
+.border-teal-600 {
+  --bs-border-opacity: 1;
+  border-color: #1aa179 !important;
+}
+
+.border-teal-700 {
+  --bs-border-opacity: 1;
+  border-color: #13795b !important;
+}
+
+.border-teal-800 {
+  --bs-border-opacity: 1;
+  border-color: #0d503c !important;
+}
+
+.border-teal-900 {
+  --bs-border-opacity: 1;
+  border-color: #06281e !important;
+}
+
+.border-cyan-100 {
+  --bs-border-opacity: 1;
+  border-color: #cff4fc !important;
+}
+
+.border-cyan-200 {
+  --bs-border-opacity: 1;
+  border-color: #9eeaf9 !important;
+}
+
+.border-cyan-300 {
+  --bs-border-opacity: 1;
+  border-color: #6edff6 !important;
+}
+
+.border-cyan-400 {
+  --bs-border-opacity: 1;
+  border-color: #3dd5f3 !important;
+}
+
+.border-cyan-500 {
+  --bs-border-opacity: 1;
+  border-color: #0dcaf0 !important;
+}
+
+.border-cyan-600 {
+  --bs-border-opacity: 1;
+  border-color: #0aa2c0 !important;
+}
+
+.border-cyan-700 {
+  --bs-border-opacity: 1;
+  border-color: #087990 !important;
+}
+
+.border-cyan-800 {
+  --bs-border-opacity: 1;
+  border-color: #055160 !important;
+}
+
+.border-cyan-900 {
+  --bs-border-opacity: 1;
+  border-color: #032830 !important;
+}
+
+.border-brand_1 {
+  --bs-border-opacity: 1;
+  border-color: #027333 !important;
+}
+
+.border-brand_2 {
+  --bs-border-opacity: 1;
+  border-color: #12A652 !important;
+}
+
+.border-brand_3 {
+  --bs-border-opacity: 1;
+  border-color: #16F275 !important;
+}
+
 .border-1 {
   --bs-border-width: 1px;
 }
