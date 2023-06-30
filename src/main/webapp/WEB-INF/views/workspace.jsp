@@ -8,56 +8,14 @@
 	href="${pageContext.request.contextPath}/resources/static/css/custom.css">
 </head>
 <body>
-	<!-- navigation bar -->
-	<header class="navbar bg-white position-fixed flex-nowrap top-0 w-100 p-0 border-bottom border-green-100">
-		<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Logo</a>
-		<input class="form-control form-control-sm w-50 rounded-5 border-0 bg-green-100 text-white mt-3 mb-3"
-			type="text" placeholder="Search" aria-label="Search">
-		<div class="navbar-nav">
-			<div class="nav-item text-nowrap">
-				<a class="nav-link px-3" href="#">Mypage</a>
-			</div>
-		</div>
-	</header>
-	<!-- sidebar -->
+	<!-- navbar -->
+	<jsp:include page="./includes/navbar.jsp" />
 	<section class="container-fluid">
 		<div class="row">
-			<div class="otree-sidebar-1 d-flex flex-column flex-shrink-0 bg-light vh-100">
-				<ul class="nav nav-pills flex-column mb-auto mt-5">
-					<li class="nav-item"> <a class="nav-link"></a></li>
-					<li class="nav-item"> <a class="nav-link active">WO1</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-					<li class="nav-item"> <a class="nav-link">WO2</a></li>
-				</ul>
-
+			<jsp:include page="./includes/sidebar.jsp" />			
 			
-			</div>
-			<div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 bg-green-100 vh-100"">
-				<div class="mt-5">
-					<h2 class="mt-5">WORKSPACE</h2>
-					<p class="text-end">owner : hong</p>
-				</div>
-				<ul class="nav nav-pills flex-column mb-auto">
-					<li class="nav-item"> <a class="nav-link active">대시보드</a></li>
-					<li class="nav-item"> <a class="nav-link">보드</a></li>
-					<li class="nav-item"> <a class="nav-link">나의 할일</a></li>
-					<li class="nav-item"> <a class="nav-link">게시판</a></li>
-				</ul>
-			</div>
+			<!-- main -->
 			<main class="col">
-			
 				<!-- 여백 -->
 				<div class="p-4"></div>
 				<div class="container mt-5">
