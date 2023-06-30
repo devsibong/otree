@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.otree.douzone.dto.*;
 import com.otree.douzone.service.BoardService;
 
-@RestController
-@RequestMapping("/board")
+
+@RestController 
+@RequestMapping("/BoardRest/")
 public class BoardRestController {
 
 	private BoardService boardService;
@@ -29,37 +30,18 @@ public class BoardRestController {
 	}
 	
 	
-	@PostMapping
-	public ResponseEntity<String> createBoard(@RequestBody Board board) {
-		try {
-			System.out.println("insert 실행");
-			boardService.createBoard(board);
-			return new ResponseEntity<String>("create success", HttpStatus.OK);
-	} catch (Exception e) {
-		return new ResponseEntity<String>("create fail", HttpStatus.BAD_REQUEST);
-	}
-	}
-	
-	// 그냥전체가져오기
+	// [1][2][3][4][5]이거 눌렀을때 페이징 처리한거 가져오기.
 	@GetMapping
-	public ResponseEntity<List<Board>> getBoardList() {
+	public ResponseEntity<List<Board>> getBoardListForPaging(int page, String field, String query) {
 		List<Board> boardList = null;
 		try {
-			boardList = boardService.getBoardList();
+			boardList = boardService.getBoardListForPaging(page, field, query);
 			return new ResponseEntity<List<Board>>(boardList,HttpStatus.OK);
 	} catch (Exception e) {
 		return new ResponseEntity<List<Board>>(boardList,HttpStatus.BAD_REQUEST);
 	}
 	}
 	
-//	// 페이징 처리한거 가져오기.
-//	@GetMapping
-//	public ResponseEntity<List<Emp>> getBoardListForPaging() {
-//		List<Emp> empList = empService.getEmpList();
-//		System.out.println(empList);
-//		return ResponseEntity.status(HttpStatus.OK).body(empList);
-//	}
-//	
 	//boardTitle로 검색하기
 	@GetMapping("/{boardTitle}")
 	public ResponseEntity<List<Board>> getBoardListByBoardTitle(@PathVariable("boardTitle") String boardTitle) {
@@ -73,28 +55,7 @@ public class BoardRestController {
 		return new ResponseEntity<List<Board>>(boardList,HttpStatus.BAD_REQUEST);
 	}
 	}
-	
-	
-	@PutMapping
-	public ResponseEntity<String> modifyBoard(@RequestBody Board board) {
-		try {
-			boardService.modifyBoard(board);
-			return new ResponseEntity<String>("modify success", HttpStatus.OK);
-	} catch (Exception e) {
-		return new ResponseEntity<String>("modify fail", HttpStatus.BAD_REQUEST);
-	}
-	}
-	
-	
-	@DeleteMapping
-	public ResponseEntity<String> deleteBoard(@PathVariable("boardId") int boardId) {
-		try {
-			boardService.removeBoard(boardId);
-			return new ResponseEntity<String>("delete success", HttpStatus.OK);
-	} catch (Exception e) {
-		return new ResponseEntity<String>("delete fail", HttpStatus.BAD_REQUEST);
-	}
-}
+
 	
 	
 	
