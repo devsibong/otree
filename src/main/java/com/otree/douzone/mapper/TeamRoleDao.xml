@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.otree.douzone.dao.TeamRoleDao" >
+	
+	<!-- OTREEUSER_WORKSPACE 테이블에 워크스페이스 소속멤버 로우 생성 -->
+	<insert id="insertTeamRole">
+		INSERT INTO OTREEUSER_WORKSPACE(userId, workspaceId, roleId) VALUES(#{userId}, #{workspaceId},#{roleId})
+	</insert>
+
+
+
+</mapper>
