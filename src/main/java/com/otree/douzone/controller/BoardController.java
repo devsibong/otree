@@ -2,6 +2,7 @@ package com.otree.douzone.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -31,15 +32,14 @@ public class BoardController {
 	}
 		
 	//왼쪽의 게시판 배너 클릭했을때
-	// 최초는 1번 페이지를 표시해야겠지만 . 그 이후 목록을 누르거나 글쓰기를 완료했거나 삭제를 완료했을때 혹은 취소를 눌렀을때 페이지 정보를 갖고가야한다.
+	// 최초로 오는 보드리스트.
 	@GetMapping("/getBoardList")
 	public String getBoardList(Model model) {
+		List<Board> listBoard = null;
+		listBoard = boardService.getBoardList();
+			
 		
-//		int page = boardService.getBoardCount(field, query);
-//		boardService.getBoardListForPaging(page, field, query);
-//		model.addAllAttributes(null);
-		
-		return "login"; //boardlist
+		return "boardlist"; 
 	}
 	
 	//게시글 눌렀을때
