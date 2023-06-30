@@ -13,6 +13,7 @@
 	<jsp:include page="./includes/navbar.jsp" />
 	<section class="container-fluid">
 		<div class="row">
+			<!-- sidebar -->
 			<jsp:include page="./includes/sidebar.jsp" />	
 			<!-- main -->
 			<main class="col">
@@ -21,121 +22,112 @@
 				<div class="container mt-5">
 					<!-- 개요 -->
 					<div class="mt-5">
-						<h2>보드</h2>
+						<h2>게시판</h2>
 					</div>
-					<div class="mt-5 row">
-						<!-- 생성됨 영역 -->
-						<div class="col-3">
-							<p>생성됨</p>
-							<div class="card border-green-200 vh-70 p-3 pt-0">
+					
+					<div class="mt-5 row border-top border-bottom border-green-500 border-2 vh-60">
+						<table class="table text-center" style="table-layout: fixed" >
+							<thead>
+								<tr>
+									<th class="col-1">No</th>
+									<th class="col-6">제목</th>
+									<th class="col-2">작성자</th>
+									<th class="col-2">날짜</th>
+									<th class="col-1">조회</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
+								<tr class="vh-5">
+									<th scope="row">1</th>
+									<td class="text-start">안녕하세요....</td>
+									<td>홍길동</td>
+									<td>2023.06.27</td>
+									<td>10</td>
+								</tr>
 								
-								<!-- 업무 카드 -->
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-3">
-							<p>진행중</p>
-							<div class="card bg-green-100 border-white vh-70 p-3 pt-0">
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-3">
-							<p>완료됨</p>
-							<div class="card border-green-200 vh-70 p-3 pt-0">
-								<div class="card border-green-500 mt-3">
-									<div class="card-body">
-										<div class="fs-6 fw-bold">기획서 초안 작성</div>
-										<div class="row mt-3 align-items-end">
-											<div class="col-9 text-start fs-8 text-secondary">6월 24일~6월 26일</div>
-											<div class="col-3 d-flex justify-content-end align-items-end">
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-												<p class="pe-1 mb-0 text-secondary"><i class="bi bi-person-circle"></i></p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
+
+
+
+								<!-- 테이블 높이 조절을 위한 행 -->
+								<tr class="border-white">
+									<th scope="row"></th>
+									<td class="text-start"></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</main>
