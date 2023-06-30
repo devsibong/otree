@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!--삽입 -->
 	<insert id="insertBoard" parameterType="com.otree.douzone.dto.Board">
-		<selectKey keyProperty="boardId" resultType="int" order="BEFORE">
+		<!-- <selectKey keyProperty="boardId" resultType="int" order="BEFORE">
 			SELECT boardId_seq.nextval FROM dual
-		</selectKey>
+		</selectKey> -->
 		INSERT INTO board (boardId, userId, workspaceId, boardTitle, boardContent, createdAt)
-		VALUES (#{boardId}, #{userId}, #{workspaceId}, #{boardTitle}, #{boardContent}, #{createdAt})
+		VALUES (boardId_seq.nextval, #{userId}, #{workspaceId}, #{boardTitle}, #{boardContent}, SYSDATE)
 	</insert>
 	
 	<!-- 게시글 개수 가져오기 페이징에 필요한 듯 -->

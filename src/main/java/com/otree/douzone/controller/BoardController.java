@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ import com.otree.douzone.service.BoardFileService;
 import com.otree.douzone.service.BoardService;
 
 @Controller
-@RequestMapping("/Board/")
+@RequestMapping("/Board")
 public class BoardController {
 	
 	private BoardService boardService;
@@ -37,8 +38,8 @@ public class BoardController {
 	public String getBoardList(Model model) {
 		List<Board> listBoard = null;
 		listBoard = boardService.getBoardList();
-			
-		
+		model.addAttribute("listBoard", listBoard);
+		System.out.println(listBoard);
 		return "boardlist"; 
 	}
 	
@@ -65,13 +66,15 @@ public class BoardController {
 		return "login"; //boardregisterform
 	}
 		
-//	// 글양식, 파일첨부 후 등록 버튼 눌렀을때 
-//	//form action="" method =post
-//	@PostMapping("/createBoard")
-//	public String createBoard2(Board board) {
-//		boolean result = false;
-//		String pathResult = null;
-//		result = boardService.createBoard(board);
+	// 글양식, 파일첨부 후 등록 버튼 눌렀을때 
+	//form action="" method =post
+	@PostMapping("/createBoard")
+	public String createBoard2(@RequestBody Board board) {
+		System.out.println("controller : "+board);
+		//boolean result = false;
+		//String pathResult = null;
+		boardService.createBoard(board);
+		//System.out.println("?? : "+result);
 //	
 //		if (result==true) {
 //			pathResult = "login"; //성공시 redirect : /BoardList/getBoardList
@@ -79,10 +82,10 @@ public class BoardController {
 //		else {
 //			pathResult = "login"; //실패시 boardregisterform
 //		}
-//		
-//		return pathResult; // 
-//		
-//	}
+		
+		return "boardlist"; //pathResult 페이지로 수정하기
+		
+	}
 	
 	//board detial 에서 update 버튼 눌렀을때
 	@GetMapping("/updateBoard")
