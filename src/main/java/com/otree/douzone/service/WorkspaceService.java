@@ -64,12 +64,14 @@ public class WorkspaceService {
 	
 	// 특정 워크스페이스 삭제 
 	public void removeWorkspace (int workspaceId) {
+		int result = 0;
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.deleteWorkspace(workspaceId);
+			result = workspaceDao.deleteWorkspace(workspaceId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("service result : "+ result);
 	}
 	
 	// 특정 워크스페이스 유저한명 추가
