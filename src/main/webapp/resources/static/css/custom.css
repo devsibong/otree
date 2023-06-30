@@ -11,6 +11,12 @@
   height: 10px !important;
 }
 
+.custom-modal.modal.position-fixed {
+  top: 5%;
+  left: 76%;
+  max-width: 400px;
+}
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
