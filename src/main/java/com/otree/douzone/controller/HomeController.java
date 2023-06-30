@@ -42,4 +42,9 @@ public class HomeController {
 		return "sendemail";
 	}
 	
+	@RequestMapping(value = "/workspace", method = RequestMethod.GET)
+	public String workspace(Locale locale, Model model) {
+		return "workspace";
+	}
+	
 }

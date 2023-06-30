@@ -10,5 +10,5 @@ public interface WorkspaceDao {
 	public List<Workspace> selectWorkspaceList(int userId) throws SQLException;
 	public Workspace selectWorkspaceById(int workspaceId) throws SQLException;
 	public void updateWorkspace(int workspaceId, Workspace workspace) throws SQLException;
-	public void deleteWorkspace(int workspaceId) throws SQLException;
+	public int deleteWorkspace(int workspaceId) throws SQLException;
 }

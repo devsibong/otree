@@ -30,13 +30,15 @@ public class WorkspaceRestController {
 	}
 	
 	// 워크스페이스 생성
-	@PostMapping
-	public ResponseEntity<String> createWorkspace(@RequestBody Workspace workspace) {
-		System.out.println("workspace : " + workspace);
-		workspaceService.createWorkspace(workspace);
-		System.out.println("insert성공");
-		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
-	}
+//	@PostMapping
+//	public ResponseEntity<String> createWorkspace2(@RequestBody Workspace workspace) {
+//		System.out.println("workspace : " + workspace);
+//		// 워크스페이스 추가
+//		workspaceService.createWorkspace(workspace);
+//		System.out.println("insert성공");
+//		// userid, workspaceid, role:owner insert
+//		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
+//	}
 	
 	// 유저의 전체 워크스페이스 목록 조회 
 	@GetMapping("/list/{userId}")
