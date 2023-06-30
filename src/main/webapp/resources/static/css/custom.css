@@ -7,6 +7,16 @@
   width: 15rem !important;
 }
 
+.otree-ws-board {
+  height: 10px !important;
+}
+
+.custom-modal.modal.position-fixed {
+  top: 5%;
+  left: 76%;
+  max-width: 400px;
+}
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -23133,6 +23143,22 @@ textarea.form-control-lg {
   font-size: 1rem !important;
 }
 
+.fs-7 {
+  font-size: 0.9rem !important;
+}
+
+.fs-8 {
+  font-size: 0.85rem !important;
+}
+
+.fs-9 {
+  font-size: 0.8rem !important;
+}
+
+.fs-10 {
+  font-size: 0.75rem !important;
+}
+
 .fst-italic {
   font-style: italic !important;
 }
@@ -26946,6 +26972,81 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+.vh-5 {
+  height: 5vh !important;
+}
+
+.vh-10 {
+  height: 10vh !important;
+}
+
+.vh-15 {
+  height: 15vh !important;
+}
+
+.vh-20 {
+  height: 20vh !important;
+}
+
+.vh-25 {
+  height: 25vh !important;
+}
+
+.vh-30 {
+  height: 30vh !important;
+}
+
+.vh-35 {
+  height: 35vh !important;
+}
+
+.vh-40 {
+  height: 40vh !important;
+}
+
+.vh-45 {
+  height: 45vh !important;
+}
+
+.vh-50 {
+  height: 50vh !important;
+}
+
+.vh-55 {
+  height: 55vh !important;
+}
+
+.vh-60 {
+  height: 60vh !important;
+}
+
+.vh-65 {
+  height: 65vh !important;
+}
+
+.vh-70 {
+  height: 70vh !important;
+}
+
+.vh-75 {
+  height: 75vh !important;
+}
+
+.vh-80 {
+  height: 80vh !important;
+}
+
+.vh-85 {
+  height: 85vh !important;
+}
+
+.vh-90 {
+  height: 90vh !important;
+}
+
+.vh-95 {
+  height: 95vh !important;
 }
 
 /*# sourceMappingURL=custom.css.map */

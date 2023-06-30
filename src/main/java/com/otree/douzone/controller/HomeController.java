@@ -1,7 +1,5 @@
 package com.otree.douzone.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -16,20 +14,8 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {		
 		return "login";
 	}
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -45,6 +31,16 @@ public class HomeController {
 	@RequestMapping(value = "/workspace", method = RequestMethod.GET)
 	public String workspace(Locale locale, Model model) {
 		return "workspace";
+	}
+	
+	@RequestMapping(value = "/kanbanboardgo", method = RequestMethod.GET)
+	public String kanbanboard(Locale locale, Model model) {
+		return "kanban";
+	}
+	
+	@RequestMapping(value = "/boardgo", method = RequestMethod.GET)
+	public String boardgo(Locale locale, Model model) {
+		return "board";
 	}
 	
 }
