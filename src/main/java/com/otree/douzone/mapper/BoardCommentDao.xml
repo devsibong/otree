@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id ="insertComment" parameterType="com.otree.douzone.dto.BoardComment">
 	INSERT INTO boardcomment(commentId,boardComment,boardId,userId) 
-	VALUES (sequence_name.nextval,#{boardComment},#{boardId},#{userId}) 
+	VALUES (commentid_seq.NEXTVAL,#{boardComment},#{boardId},#{userId}) 
 	</insert>
 	
 	<!-- sequence_name.nextval -->

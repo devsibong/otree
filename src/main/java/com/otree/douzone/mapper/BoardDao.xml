@@ -38,16 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt FROM board
 	</select>
 
-	<!-- 게시판 제목으로 검색 
-	<select id ="getBoardByBoardTitle" parameterType="String" resultType="com.otree.douzone.dto.Board">
-	<![CDATA[
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
-	FROM board 
-	WHERE boardTitle LIKE UPPER('%', #{boardTitle}, '%')
-    OR boardTitle LIKE LOWER('%', #{boardTitle}, '%')
-	]]>
-	</select>
-	-->
+
 	<select id ="getBoardByBoardTitle" parameterType="String" resultType="com.otree.douzone.dto.Board">
 	
 	 <![CDATA[
