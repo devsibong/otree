@@ -26,12 +26,14 @@ public class BoardService {
 		this.sqlsession = sqlsession;
 	}
 	
-	//(C)게시글 생성, 파일도 생성해야함
+	//(C)게시글 생성
 	public boolean createBoard(Board board) {
+		System.out.println("BoardService: "+board);
 		boolean result = false;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
 			boardDao.insertBoard(board);
+			System.out.println("확인 : "+board);
 			result = true;
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -41,7 +43,7 @@ public class BoardService {
 		return result;
 	}
 	
-	//(R) 페이징 처리 조회에 필요한 method 전체개시글 개수
+	//(R) 페이징 처리 조회에 필요한 method 
 	public int getBoardCount(String field, String query) {
 		int result = 0;
 		try {
@@ -72,7 +74,7 @@ public class BoardService {
 	}
 	
 	
-	//(R) 페이징 없이 전체 조회
+	//(R) 첫화면 가져오기
 	public List<Board> getBoardList() {
 		List<Board> boardList = null;
 		try {
@@ -133,16 +135,12 @@ public class BoardService {
 			return result;
 		}
 	
-	//(D) 게시글 삭제 , 파일과 댓글도 같이 삭제 되는거겠지?
+	//(D) 게시글 삭제 
 	public boolean removeBoard(int boardId) {
 		boolean result = false;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			BoardFileDao boardFileDao = sqlsession.getMapper(BoardFileDao.class);
-			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
 			boardDao.deleteBoard(boardId);
-			boardFileDao.deleteFile(boardId);
-			boardCommentDao.deleteComment(boardId);
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -154,69 +152,6 @@ public class BoardService {
 	
 	
 	
-	//BoardComment 기능
-	//C
-	// 게시글 상세조회 후 댓글 작성시 
-	public boolean createComment(BoardComment boardcomment) {
-		boolean result = false;
-		try {
-			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-			boardCommentDao.insertComment(boardcomment);
-			result = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return result;
-	}
-		
-	//R
-	// 게시글 상세조회시 DB에 들어있던 댓글정보 가져오기
-	public List<BoardComment> getComment(int boardId) {
-		List<BoardComment> listBoardComment = null;
-		try {
-			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-			listBoardComment  = boardCommentDao.getCommentList(boardId);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return listBoardComment;
-	}
 	
-	//U
-	//게시글 상세조회 후 기존에 있던 댓글 수정
-	public boolean modifyComment(String boardComment, int commentId) {
-		boolean result = false;
-		try {
-			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-			boardCommentDao.updateComment(boardComment,commentId);
-			result = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return result;
-	}
-	
-	
-	//D
-	//게시글 상세조회 후 기존 댓글 삭제
-	public boolean removeComment(int boardId) {
-		boolean result = false;
-		try {
-			BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-			boardCommentDao.deleteComment(boardId);
-			result = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return result;
-	}
 	
 }
