@@ -34,9 +34,9 @@ public class BoardService {
 			boardDao.insertBoard(board);
 			result = true;
 		} catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();		
+			System.out.println(e1.getMessage());
 		}
 		return result;
 	}

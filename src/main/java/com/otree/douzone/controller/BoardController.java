@@ -74,10 +74,10 @@ public class BoardController {
 		
 	// 글양식, 파일첨부 후 등록 버튼 눌렀을때 
 	@PostMapping("/createBoard")
-	public String createBoard2( Board board, BoardFile boardfile) {
+	public String createBoard2( Board board /*BoardFile boardfile*/) {
 		boolean result = false;
 		String pathResult = null;
-		boardService.createBoard(board);
+		result = boardService.createBoard(board);
 //		boardFileService.createFile(boardfile);
 		if (result==true) {
 			pathResult = "redirect:getBoardList";
@@ -91,22 +91,25 @@ public class BoardController {
 	
 	//board detial 에서 update 버튼 눌렀을때
 	@GetMapping("/updateBoard")
-	public String modifyBoard() {
-		return "login"; // boardupdateform
+	public String modifyBoard(Model model,@RequestParam("boardId") int boardId) {
+		Board board = boardService.getBoardByBoardId(boardId);
+		model.addAttribute("board", board);
+		return "boardupdateform"; 
 	}
 	
 	//update form에서 수정완료 눌렀을때 
-	@PostMapping("/updateBoard")
+	@PostMapping("/updateBoardOk")
 	public String modifyBoard2(Board board,Model model) {
+		String param = Integer.toString(board.getBoardId());
 		boolean result = false;
 		String pathResult = null;
 		result = boardService.modifyBoard(board);
 		if (result==true) {
-			pathResult = "login"; //성공시 redirect : /Board/getBoardDetail
+			pathResult = "redirect:getBoardDetail?boardId="+param; //성공시 redirect:boarddetail
 			model.addAttribute("modifyBoard",boardService.getBoardByBoardId(board.getBoardId()));   
 		}
 		else {
-			pathResult = "login"; //실패시 boardupdateform 
+			pathResult = "boardupdateform"; //실패시
 		}
 		return pathResult;
 	}
@@ -114,21 +117,18 @@ public class BoardController {
 	//board detail에서 delete 버튼 눌렀을때
 	@GetMapping("/deleteBoard")
 	public String removeBoard(@RequestParam("boardId") int boardId) {
+		String param = Integer.toString(boardId); 
 		boolean result = false;
 		String pathResult = null;
 		result = boardService.removeBoard(boardId);
 		if(result==true) {
-			pathResult = "login"; //성공시redirect:/Board/getBoardList
+			pathResult = "redirect:getBoardList"; //성공시
 		}
 		else {
-			pathResult = "login"; //실패시 boardupdateform
+			pathResult = "redirect:getBoardDetail?boardId="+param; //실패시 
 		}
-		
-		return "pathResult"; 
-		
-		
+		return pathResult; 
 	}
-	
 }
 
 
