@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getComment" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
 	SELECT commentId, boardComment, boardId ,userId 
-	FROM boardcommend
+	FROM boardcomment
 	WHERE boardId = #{boardId}
 	</select> 
 	

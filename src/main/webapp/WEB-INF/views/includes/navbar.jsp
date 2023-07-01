@@ -14,22 +14,23 @@
 <!-- Modal -->
 <div class="modal fade custom-modal position-fixed" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog custom-size">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <div class="fs-4">홍길동</div>
-        <div class="fs-7">aaaa@gmail.com</div>
-        <div class="justify-content-center d-flex">
-        	<div>프로필 편집</div>
-        	<div>|</div>
-        	<div>비밀번호 변경</div>
-        </div>
-      </div>
-      <div class= "d-grid gap-2 m-2">
-      		<button type="button" class="btn btn-primary ">로그아웃</button>
-      	</div>
-    </div>
-  </div>
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+					aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-center">
+				<div class="fs-4">홍길동</div>
+				<div class="fs-7">aaaa@gmail.com</div>
+				<div class="justify-content-center d-flex">
+					<div>프로필 편집</div>
+					<div>|</div>
+					<div>비밀번호 변경</div>
+				</div>
+			</div>
+			<div class="d-grid gap-2 m-2">
+				<button type="button" class="btn btn-primary" id="logout">로그아웃</button>
+			</div>
+		</div>
+	</div>
 </div>

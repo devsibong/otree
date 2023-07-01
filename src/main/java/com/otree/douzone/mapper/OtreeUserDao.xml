@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.otree.douzone.dao.OtreeUserDao">
+	<select id="getOtreeUserList" resultType="com.otree.douzone.dto.OtreeUser">
+		SELECT userId, name, password, email, profileSrc FROM OTREEUSER
+	</select>
+	<insert id="insertOtreeUser" parameterType="com.otree.douzone.dto.OtreeUser">
+		<selectKey keyProperty="userId" resultType="int" order="BEFORE">
+			SELECT userid_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO OTREEUSER (userId, name, password, email, profileSrc)
+		VALUES (#{userId}, #{name}, #{password}, #{email}, #{profileSrc})
+	</insert>
+
+	<update id="updateOtreeUser" parameterType="com.otree.douzone.dto.OtreeUser">
+		UPDATE OTREEUSER
+		SET name = #{name}, password = #{password}, email = #{email},
+		profileSrc = #{profileSrc}
+		WHERE userId = #{userId}
+	</update>
+
+	<delete id="deleteOtreeUser" parameterType="int">
+		DELETE FROM OTREEUSER
+		WHERE userId = #{userId}
+	</delete>
+	
+	<select id="searchOtreeUserByName" parameterType="String" resultType="com.otree.douzone.dto.OtreeUser">
+	    SELECT userId, name, password, email, profileSrc
+	    FROM OTREEUSER
+	    WHERE name LIKE '%' || #{name} || '%'
+	</select>
+	
+	<select id="getOtreeUserByEmail" parameterType="String" resultType="com.otree.douzone.dto.OtreeUser">
+	    SELECT userId, name, password, email, profileSrc
+	    FROM OTREEUSER
+	    WHERE email = #{email}
+	</select>
+	
+	
+</mapper>

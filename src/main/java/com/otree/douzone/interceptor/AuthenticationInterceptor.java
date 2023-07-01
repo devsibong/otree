@@ -10,12 +10,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		boolean result = false;
-		if (request.getSession().getAttribute("userId") == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
-			System.out.println("go to login");
+		if (request.getSession().getAttribute("userEmail") == null) {
+			response.sendRedirect(request.getContextPath() + "/member/login");
 			result = false;
 		} else result = true;
-		System.out.println("hello");
 		return result;
 	}
 
