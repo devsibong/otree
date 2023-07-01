@@ -21,12 +21,18 @@
 						<td width="30%"><c:out value="${boardDetail.userId}" /></td>
 						<td width="20%" align ="center"><b>파일첨부</b></td>
 					
-					
+						<td width="30%">
+						
 					<c:forEach var="file" items="${boardFileList}">
-											
-						<td width="30%"><c:out value="${file.fileSrc}" /></td>
-					
+						
+						<p><c:out value="${file.fileSrc}" /></p>
+						
 					</c:forEach>
+						
+						</td>
+					
+											
+					
 					</tr>
 					
 					<tr>

@@ -57,7 +57,7 @@ public class BoardController {
 		model.addAttribute("boardFileList", boardFile);
 		model.addAttribute("boardCommentList",boardCommentList);
 		System.out.println(boardId);
-		return "board2"; 
+		return "boarddetail"; 
 	}
 	
 	//detail들어가서 목록 눌렀을때 
@@ -73,23 +73,19 @@ public class BoardController {
 	}
 		
 	// 글양식, 파일첨부 후 등록 버튼 눌렀을때 
-	//form action="" method =post
 	@PostMapping("/createBoard")
-	public String createBoard2(@RequestBody Board board) {
-		System.out.println("controller : "+board);
-		//boolean result = false;
-		//String pathResult = null;
+	public String createBoard2( Board board, BoardFile boardfile) {
+		boolean result = false;
+		String pathResult = null;
 		boardService.createBoard(board);
-		//System.out.println("?? : "+result);
-//	
-//		if (result==true) {
-//			pathResult = "login"; //성공시 redirect : /BoardList/getBoardList
-//		}
-//		else {
-//			pathResult = "login"; //실패시 boardregisterform
-//		}
-		
-		return "boardlist"; //pathResult 페이지로 수정하기
+//		boardFileService.createFile(boardfile);
+		if (result==true) {
+			pathResult = "redirect:getBoardList";
+		}
+		else {
+			pathResult = "boardregisterform";
+		}
+		return pathResult; 
 		
 	}
 	

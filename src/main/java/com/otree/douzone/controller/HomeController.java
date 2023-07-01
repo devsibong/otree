@@ -38,7 +38,7 @@ public class HomeController {
 		return "kanban";
 	}
 	
-	@RequestMapping(value = "/boardgo", method = RequestMethod.GET)
+	@RequestMapping(value = "boardgo", method = RequestMethod.GET)
 	public String boardgo(Locale locale, Model model) {
 		return "board";
 	}

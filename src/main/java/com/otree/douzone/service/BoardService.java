@@ -28,12 +28,10 @@ public class BoardService {
 	
 	//(C)게시글 생성
 	public boolean createBoard(Board board) {
-		System.out.println("BoardService: "+board);
 		boolean result = false;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
 			boardDao.insertBoard(board);
-			System.out.println("확인 : "+board);
 			result = true;
 		} catch(SQLException e) {
 			e.printStackTrace();
