@@ -4,28 +4,25 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.otree.douzone.dao.OtreeUserDao;
 import com.otree.douzone.dto.OtreeUser;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class MemberService {
-	private SqlSession sqlSession;
+	private final SqlSession sqlSession;
 	
-	@Autowired
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-	
-	public boolean login(String email, String password) {
-		boolean result = false;
+	public int login(String email, String password) {
+		int result = -1;
 		OtreeUser otreeUser = null;
 	    try {
 	        OtreeUserDao otreeUserDao = sqlSession.getMapper(OtreeUserDao.class);
 	        otreeUser = otreeUserDao.getOtreeUserByEmail(email);
-	        if(otreeUser.getPassword().equals(password)) result = true;
+	        if(otreeUser.getPassword().equals(password)) result = otreeUser.getUserId();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } catch (NullPointerException e) {

@@ -27,6 +27,16 @@
   border: 2px solid #027333;
 }
 
+.ws-rounded-circle-plus {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 40px;
+  text-align: center;
+  color: #027333;
+  border: 2px solid #027333;
+}
+
 .ws-rounded-circle-active {
   border-radius: 50% !important;
   width: 45px !important;
