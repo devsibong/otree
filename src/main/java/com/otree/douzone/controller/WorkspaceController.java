@@ -2,10 +2,14 @@ package com.otree.douzone.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,15 +43,15 @@ public class WorkspaceController {
 	}	
 	
 	// 워크스페이스 생성 요청
-	@PostMapping("/{userId}")
-	public String createWorkspace(@RequestBody Workspace workspace, @PathVariable("userId") int userId) {
-		int workspaceId = workspaceService.createWorkspace(workspace);
-		System.out.println("controller - createWorkspace");
-		System.out.println("workspaceId&userId : " + workspaceId+" & "+userId);
-		TeamRole teamRole = new TeamRole(userId, workspaceId,  3);
-		teamRoleService.createWorkspaceOwner(teamRole);
-		return "home"; //워크스페이스 대쉬보드 페이지로 변경하기
-	}
+//	@PostMapping("/{userId}")
+//	public String createWorkspace(@RequestBody Workspace workspace, @PathVariable("userId") int userId) {
+//		int workspaceId = workspaceService.createWorkspace(workspace);
+//		System.out.println("controller - createWorkspace");
+//		System.out.println("workspaceId&userId : " + workspaceId+" & "+userId);
+//		TeamRole teamRole = new TeamRole(userId, workspaceId,  3);
+//		teamRoleService.createWorkspaceOwner(teamRole);
+//		return "home"; //워크스페이스 대쉬보드 페이지로 변경하기
+//	}
 	
 	@GetMapping("/{workspaceId}/kanban")
 	public String workspaceKanban() {
@@ -57,6 +61,18 @@ public class WorkspaceController {
 	@GetMapping("/{workspaceId}/board")
 	public String workspaceBoard() {
 		return "home"; //워크스페이스 게시판 페이지로 변경하기
+	}
+	
+	
+	// 워크스페이스 생성 요청
+	@PostMapping("")
+	public String createWorkspace(@ModelAttribute Workspace workspace, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    int userId = (int) session.getAttribute("userId");
+		int workspaceId = workspaceService.createWorkspace(workspace);
+		TeamRole teamRole = new TeamRole(userId, workspaceId,  3);
+		teamRoleService.createWorkspaceOwner(teamRole);
+		return "redirect:/workspace";
 	}
 	
 	

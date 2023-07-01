@@ -2,7 +2,6 @@ package com.otree.douzone.controller;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.service.MemberService;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/member")
 public class MemberController {
-
-    @Autowired
-    private MemberService memberService;
-    
-    @Autowired
-    private HttpSession session;
+    private final MemberService memberService;
+    private final HttpSession session;
     
     @GetMapping("/login")
     public String login() {
