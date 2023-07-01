@@ -21,7 +21,7 @@ import com.otree.douzone.service.BoardService;
 
 // 게시판 댓글 처리를 위한 비동기 컨트롤러
 @RestController 
-@RequestMapping("/BoardCommentRest/")
+@RequestMapping("/BoardCommentRest")
 public class BoardCommentRestController {
 
 	private BoardCommentService boardCommentService;
@@ -46,17 +46,6 @@ public class BoardCommentRestController {
 	}
 	}
 	
-	// 상세페이지 눌렀을때 가장먼저 표시되는 list
-	@GetMapping("/{boardId}")
-	public ResponseEntity<List<BoardComment>> getBoardCommentList(@PathVariable int boardId) {
-		List<BoardComment> boardList = null;
-		try {
-			boardList = boardCommentService.getCommentList(boardId);
-			return new ResponseEntity<List<BoardComment>>(boardList,HttpStatus.OK);
-	} catch (Exception e) {
-		return new ResponseEntity<List<BoardComment>>(boardList,HttpStatus.BAD_REQUEST);
-	}
-	}
 	
 	
 	// 댓글 수정 후 성공시 수정된 list return
