@@ -17,9 +17,8 @@
 			<jsp:include page="./includes/sidebar.jsp" />			
 			
 			<!-- main -->
-			<main class="col">
+			<main class="col justify-content-start d-flex">
 				<!-- 여백 -->
-				<div class="p-4"></div>
 				<div class="container mt-5">
 				
 					<!-- 개요 -->
