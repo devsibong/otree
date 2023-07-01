@@ -18,36 +18,37 @@
 								<div class="mb-4">
 									<h2 class="fw-bold mb-5">Otree</h2>
 								</div>
-
-								<!-- 이메일 입력 -->
-								<div class="form-outline form-white mb-4">
-									<input type="email" id="typeEmailX"
-										class="form-control form-control-lg" placeholder="이메일" />
-								</div>
-
-								<!-- 비밀번호 입력 -->
-								<div class="form-outline form-white mb-2">
-									<input type="password" id="typePasswordX"
-										class="form-control form-control-lg" placeholder="비밀번호" />
-								</div>
-
-
-								<!-- 자동 로그인 -->
-								<div class="form-check text-start mb-4">
-									<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> 
-										<label class="form-check-label"for="flexCheckDefault"> 자동 로그인 </label>
-								</div>
-
-
-								<div class="d-grid gap-2 mb-4">
-									<button class="btn btn-primary btn-lg fw-bold" type="submit">로그인</button>
-								</div>
-								
-								<div>
-									<span>비밀번호 찾기</span>
-									<span>  | </span>
-									<span>회원가입</span>
-								</div>
+								<form action="${pageContext.request.contextPath}/member/login" method="post">
+									<!-- 이메일 입력 -->
+									<div class="form-outline form-white mb-4">
+										<input type="email" name="email"
+											class="form-control form-control-lg" placeholder="이메일" />
+									</div>
+	
+									<!-- 비밀번호 입력 -->
+									<div class="form-outline form-white mb-2">
+										<input type="password" name="password"
+											class="form-control form-control-lg" placeholder="비밀번호" />
+									</div>
+	
+	
+									<!-- 자동 로그인 -->
+									<div class="form-check text-start mb-4">
+										<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> 
+											<label class="form-check-label"for="flexCheckDefault"> 자동 로그인 </label>
+									</div>
+	
+	
+									<div class="d-grid gap-2 mb-4">
+										<button class="btn btn-primary btn-lg fw-bold" type="submit">로그인</button>
+									</div>
+									
+									<div>
+										<span>비밀번호 찾기</span>
+										<span>  | </span>
+										<span>회원가입</span>
+									</div>
+								</form>
 							</div>
 						</div>
 						

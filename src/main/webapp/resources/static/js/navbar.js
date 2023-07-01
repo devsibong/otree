@@ -6,4 +6,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		event.preventDefault();
 		myModal.toggle();
 	});
+	document.getElementById("logout").addEventListener("click", function (event) {
+		event.preventDefault();
+		window.location.href = `/douzone/member/logout`;
+	});
+
+
 });
