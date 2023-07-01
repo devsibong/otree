@@ -5,7 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/static/css/custom.css">
+	href="/douzone/resources/static/css/custom.css">
 </head>
 <body>
 	<section class="vh-100 bg-secondary">
