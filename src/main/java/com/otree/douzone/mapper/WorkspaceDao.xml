@@ -9,9 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.otree.douzone.dao.WorkspaceDao" >
 	
 	<!-- 워크스페이스 생성 -->
-	<insert id="insertWorkspace">
-		INSERT INTO WORKSPACE(workspaceId, workspaceName, createdAt, description) VALUES(workspaceid_seq.NEXTVAL, #{workspaceName}, SYSDATE, #{description})
-	</insert>
+ 	<insert id="insertWorkspace">
+		<selectKey keyProperty="workspaceId" resultType="int" order="BEFORE">
+			SELECT workspaceid_seq.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO WORKSPACE(workspaceId, workspaceName, createdAt, description) VALUES(#{workspaceId}, #{workspaceName}, SYSDATE, #{description})
+	</insert> 
 
 	<!-- 유저의 전체 워크스페이스 목록 조회 -->
 	<select id="selectWorkspaceList" resultType="com.otree.douzone.dto.Workspace">

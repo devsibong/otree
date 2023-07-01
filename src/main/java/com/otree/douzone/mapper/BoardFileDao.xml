@@ -14,16 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertFile" parameterType="java.util.ArrayList">
 		 INSERT INTO boardfile (fileId, boardId, fileSrc) VALUES
         <foreach item="insert" collection="list" separator=",">
-            (sequence_name.nextval, #{insert.boardId}), #{insert.fileSrc})
+            (fileid_seq.NEXTVAL, #{insert.boardId}), #{insert.fileSrc})
         </foreach>
 	</insert>
 	
-	<!-- sequence_name.nextval  -->
-	<!-- <selectKey keyProperty="boardId" resultType="int" order="BEFORE">
-			SELECT boardId_seq.nextval FROM dual
-		</selectKey> 
-	-->
-	<!--  INSERT INTO list (fileId, boardId, fileSrc) VALUES  -->
 	
 	<update id="updateFile" parameterType="com.otree.douzone.dto.BoardFile">
 	UPDATE boardfile

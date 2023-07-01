@@ -4,7 +4,7 @@
 }
 
 .otree-sidebar-2 {
-  width: 15rem !important;
+  width: 18rem !important;
 }
 
 .otree-ws-board {
@@ -15,6 +15,36 @@
   top: 5%;
   left: 76%;
   max-width: 400px;
+}
+
+.ws-rounded-circle {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 42px;
+  text-align: center;
+  color: #027333;
+  border: 2px solid #027333;
+}
+
+.ws-rounded-circle-plus {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  line-height: 40px;
+  text-align: center;
+  color: #027333;
+  border: 2px solid #027333;
+}
+
+.ws-rounded-circle-active {
+  border-radius: 50% !important;
+  width: 45px !important;
+  height: 45px !important;
+  line-height: 45px !important;
+  text-align: center !important;
+  background-color: #027333 !important;
+  color: #fff !important;
 }
 
 /*!

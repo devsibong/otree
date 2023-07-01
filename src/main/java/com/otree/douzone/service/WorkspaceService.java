@@ -19,19 +19,24 @@ public class WorkspaceService {
 	}
 	
 	// 워크스페이스 생성
-	public void createWorkspace (Workspace workspace) {
+	public int createWorkspace (Workspace workspace) {
+		int workspaceId = -1;
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceDao.insertWorkspace(workspace);
+			workspaceId = workspace.getWorkspaceId();
+			System.out.println("WorkspaceService:inserted-workspaceId "+workspaceId);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return workspaceId;
 	}
 	
 	// 유저의 전체 워크스페이스 목록 조회 
 	public List<Workspace> getWorkspaceList(int userId) {
 		List<Workspace> workspaceList = null;
 		try {
+			System.out.println("Workspace Service 진입");
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceList = workspaceDao.selectWorkspaceList(userId);
 		} catch (Exception e) {
@@ -64,12 +69,14 @@ public class WorkspaceService {
 	
 	// 특정 워크스페이스 삭제 
 	public void removeWorkspace (int workspaceId) {
+		int result = 0;
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.deleteWorkspace(workspaceId);
+			result = workspaceDao.deleteWorkspace(workspaceId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("service result : "+ result);
 	}
 	
 	// 특정 워크스페이스 유저한명 추가
