@@ -9,15 +9,9 @@
 </div>
 <div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 bg-green-100 vh-100">
 	<div class="mt-5 mx-3">
-		<h2 class="mt-5">WORKSPACE</h2>
-		<p class="text-end">owner : hong</p>
+		<h2 class="mt-5">반갑습니다!</h2>
+		<div id="todo"></div>
 	</div>
-	<ul class="nav nav-pills flex-column mb-auto mx-3">
-		<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/workspace">대시보드</a></li>
-		<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/kanbanboardgo">보드</a></li>
-		<li class="nav-item"> <a class="nav-link" href="#" id="todo">나의 할일</a></li>
-		<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/boardgo">게시판</a></li>
-	</ul>
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
