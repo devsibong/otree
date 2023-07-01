@@ -44,11 +44,11 @@ public class BoardService {
 	}
 	
 	//(R) 페이징 처리 조회에 필요한 method 
-	public int getBoardCount(String field, String query) {
+	public int getBoardCount() {
 		int result = 0;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			result = boardDao.getBoardCount(field, query);
+			result = boardDao.getBoardCount();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e1) {
@@ -74,7 +74,7 @@ public class BoardService {
 	}
 	
 	
-	//(R) 첫화면 가져오기
+	//(R) 페이징 안된거 가져오기
 	public List<Board> getBoardList() {
 		List<Board> boardList = null;
 		try {

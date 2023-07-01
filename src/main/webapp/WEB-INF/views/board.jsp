@@ -6,7 +6,8 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/static/css/custom.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
 	<!-- navbar -->
@@ -14,7 +15,7 @@
 	<section class="container-fluid">
 		<div class="row">
 			<!-- sidebar -->
-			<jsp:include page="./includes/sidebar.jsp" />	
+			<jsp:include page="./includes/sidebar.jsp" />
 			<!-- main -->
 			<main class="col">
 				<!-- 여백 -->
@@ -24,9 +25,10 @@
 					<div class="mt-5">
 						<h2>게시판</h2>
 					</div>
-					
-					<div class="mt-5 row border-top border-bottom border-green-500 border-2 vh-60">
-						<table class="table text-center" style="table-layout: fixed" >
+
+					<div
+						class="mt-5 row border-top border-bottom border-green-500 border-2 vh-60">
+						<table class="table text-center" style="table-layout: fixed">
 							<thead>
 								<tr>
 									<th class="col-1">No</th>
@@ -37,87 +39,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								<tr class="vh-5">
-									<th scope="row">1</th>
-									<td class="text-start">안녕하세요....</td>
-									<td>홍길동</td>
-									<td>2023.06.27</td>
-									<td>10</td>
-								</tr>
-								
-
-
-
+								<c:forEach var="board" items="${boardList}">
+									<tr class="vh-5">
+										<th scope="row"><c:out value="${board.boardId}" /></th>
+										<td class="text-start"><a href="/douzone/getBoardDetail?boardId=${board.boardId}"><c:out value="${board.boardTitle}"/></a></td>
+										<td>${board.userId}</td>
+										<td><c:out value="${board.createdAt}" /></td>
+										<td><c:out value="${board.createdAt}" /></td>
+									</tr>
+								</c:forEach>
 								<!-- 테이블 높이 조절을 위한 행 -->
 								<tr class="border-white">
 									<th scope="row"></th>
@@ -129,6 +59,7 @@
 							</tbody>
 						</table>
 					</div>
+					<button onclick="window.location.href='/douzone/createBoard'">글쓰기</button>
 				</div>
 			</main>
 		</div>
@@ -137,8 +68,10 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
 </body>
 </html>
 

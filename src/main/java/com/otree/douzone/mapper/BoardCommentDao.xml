@@ -4,9 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.otree.douzone.dao.BoardCommentDao">
 
-	<select id="getComment" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
+	<select id="getCommentList" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
 	SELECT commentId, boardComment, boardId ,userId 
-	FROM boardcommend
+	FROM boardcomment
 	WHERE boardId = #{boardId}
 	</select> 
 	

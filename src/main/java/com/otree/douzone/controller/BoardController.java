@@ -18,52 +18,58 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.otree.douzone.dto.Board;
+import com.otree.douzone.dto.BoardComment;
+import com.otree.douzone.dto.BoardFile;
+import com.otree.douzone.service.BoardCommentService;
 import com.otree.douzone.service.BoardFileService;
 import com.otree.douzone.service.BoardService;
 
 @Controller
-@RequestMapping("/Board")
 public class BoardController {
 	
+	@Autowired
 	private BoardService boardService;
 	
 	@Autowired
-	public BoardController(BoardService boardService) {
-		this.boardService = boardService;
-	}
-		
+	private BoardCommentService boardCommentService;
+	
+	@Autowired
+	private BoardFileService boardFileService;
+	
+	
 	//왼쪽의 게시판 배너 클릭했을때
-	// 최초로 오는 보드리스트.
 	@GetMapping("/getBoardList")
 	public String getBoardList(Model model) {
-		List<Board> listBoard = null;
-		listBoard = boardService.getBoardList();
-		model.addAttribute("listBoard", listBoard);
-		System.out.println(listBoard);
-		return "boardlist"; 
+		List<Board> boardList = null;
+		int boardCount = boardService.getBoardCount();
+		boardList = boardService.getBoardList();
+		model.addAttribute("boardList", boardList);
+		return "board"; 
 	}
 	
 	//게시글 눌렀을때
 	@GetMapping("/getBoardDetail")
 	public String getBoardDetail(@RequestParam("boardId") int boardId,Model model) {
 		Board board = boardService.getBoardByBoardId(boardId);
+		List<BoardComment> boardCommentList = boardCommentService.getCommentList(boardId);
+		List<BoardFile> boardFile = boardFileService.getFile(boardId);
 		model.addAttribute("boardDetail",board);
-		return "login"; // boarddetail
+		model.addAttribute("boardFileList", boardFile);
+		model.addAttribute("boardCommentList",boardCommentList);
+		System.out.println(boardId);
+		return "board2"; 
 	}
 	
-//	//detail들어가서 목록 눌렀을때 
-//	// 필요한 정보들 해당 페이지, 최초의 글개수?? 그럼 중간에 누가글쓰면 어떻게 되는거지?
-//	@GetMapping("/getBoardList2")
-//	public String getBoardList2() {
-//		
-//		return "login"; //boardlist
-//	}
+	//detail들어가서 목록 눌렀을때 
+	@GetMapping("/getBoardList2")
+	public String getBoardList2() {
+		return "redirect:getBoardList"; 
+	}
 	
-
 	//글쓰기 버튼 눌렀을때
 	@GetMapping("/createBoard")
 	public String createBoard() {
-		return "login"; //boardregisterform
+		return "boardregisterform"; 
 	}
 		
 	// 글양식, 파일첨부 후 등록 버튼 눌렀을때 
