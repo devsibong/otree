@@ -19,13 +19,13 @@ public class MemberService {
 		this.sqlSession = sqlSession;
 	}
 	
-	public boolean login(String email, String password) {
-		boolean result = false;
+	public int login(String email, String password) {
+		int result = -1;
 		OtreeUser otreeUser = null;
 	    try {
 	        OtreeUserDao otreeUserDao = sqlSession.getMapper(OtreeUserDao.class);
 	        otreeUser = otreeUserDao.getOtreeUserByEmail(email);
-	        if(otreeUser.getPassword().equals(password)) result = true;
+	        if(otreeUser.getPassword().equals(password)) result = otreeUser.getUserId();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } catch (NullPointerException e) {

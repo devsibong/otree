@@ -32,12 +32,12 @@ public class MemberController {
     public String login(@ModelAttribute OtreeUser otreeUser, Model model) {
     	String email = otreeUser.getEmail();
     	String password = otreeUser.getPassword();
-        boolean isUser = memberService.login(email, password);
-        if (isUser) {
-        	session.setAttribute("userEmail", otreeUser.getEmail());
+        int isUser = memberService.login(email, password);
+        if (isUser != -1) {
+        	session.setAttribute("userId", isUser);
             return "redirect:/workspace";
         } else {
-            model.addAttribute("errorMessage", "Invalid credentials");
+            model.addAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
             return "login";
         }
     }
