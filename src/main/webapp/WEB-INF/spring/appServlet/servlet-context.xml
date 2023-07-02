@@ -27,5 +27,5 @@
 	        <bean class="com.otree.douzone.interceptor.AuthenticationInterceptor"/>
 	    </mvc:interceptor>
 	</mvc:interceptors>
-    
+  
 </beans>

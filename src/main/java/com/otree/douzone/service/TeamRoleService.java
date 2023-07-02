@@ -1,6 +1,8 @@
 package com.otree.douzone.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.otree.douzone.dao.TeamRoleDao;
 import com.otree.douzone.dto.TeamRole;
+import com.otree.douzone.dto.WorkspaceTeamUser;
 
 @Service
 public class TeamRoleService {
@@ -28,5 +31,28 @@ public class TeamRoleService {
 			e.printStackTrace();
 		}
 	}
+	
+	// 워크스페이스 멤버 등록 : 닉네임으로
+	public void createTeamRoleByName (TeamRole teamRole) {
+		try {
+			TeamRoleDao teamRoleDao = sqlsession.getMapper(TeamRoleDao.class);
+			teamRoleDao.insertTeamRole(teamRole);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 워크스페이스 팀원 목록 조회 
+	public List<WorkspaceTeamUser> getWorkspaceTeamList(int workspaceId) {
+		List<WorkspaceTeamUser> workspaceTeamList = null;
+		try {
+			TeamRoleDao teamRoleDao = sqlsession.getMapper(TeamRoleDao.class);
+			workspaceTeamList = teamRoleDao.selectWorkspaceTeamList(workspaceId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return workspaceTeamList;
+	}
+	
 	
 }
