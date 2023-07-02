@@ -5,12 +5,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.otree.douzone.dto.Workspace;
 import com.otree.douzone.service.WorkspaceService;
 
+@Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
 	private WorkspaceService workspaceService;
 	
