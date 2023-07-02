@@ -56,6 +56,22 @@ public class BoardCommentService {
 			return listBoardComment;
 		}
 		
+		//R
+		//댓글 ID로 댓글가져오기
+		public BoardComment getComment(int commentId) {
+			BoardComment BoardComment = null;
+			try {
+				BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
+				BoardComment  = boardCommentDao.getComment(commentId);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			return BoardComment;
+		}
+		
+		
 		//U
 		//게시글 상세조회 후 기존에 있던 댓글 수정
 		public boolean modifyComment(String boardComment, int commentId) {

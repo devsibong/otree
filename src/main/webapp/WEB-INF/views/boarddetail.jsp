@@ -93,7 +93,7 @@
 				<tr>
 					<td align="center">
 						<input type="button" id="commentCreate" value="댓글 작성" />
-						<input type="button" id="commentCancel" value="댓글 취소" />
+						<input type="button" id="boardDetail" value="게시글 보러가기" />
 					</td>
 				</tr>				
 			
@@ -117,7 +117,6 @@ $("#commentCreate").click(function(){
 			}
 	
 	let data = JSON.stringify(commentCreate);
-	console.log(data);
 	
 	$.ajax({
 		type: "post",
@@ -128,13 +127,13 @@ $("#commentCreate").click(function(){
 		success: function(data){
 			$(".commentList").empty(); // class tag사용 
 			let html = "";
-			html += '<tr> <th colspan="3">댓글 목록</th> </tr>' 
+			html += '<tr> <th colspan="3">댓글 목록</th> </tr>'; 
 			$.each(data, function(){
 				html += '<tr>';
 				html += '<td align="left">작성자:' + this.userId + '</td>';
 				html += '<td align="left">댓글내용:' + this.boardComment + '</td>';
 				//html += '<td align="left">댓글아이디 :'+this.commentId+ '</td>';
-				html += '<tr>';
+				html += '</tr>';
 			});
 				
 				$(".commentList").append(html);
@@ -144,51 +143,100 @@ $("#commentCreate").click(function(){
 
 
 <!-- 첫 댓글리스트에서 수정, 비동기로 불러온 댓글 리스트 수정버튼 눌렀을때 -->
+<!-- 해당하는 commentId만 있으면 됨. -->
+
+<!--
 $(".updateCommentRest").click(function(){
-	let a = $(this).closest("tr").find("td:nth-child(2)").text();
-	let b = $(this).closest("tr").find("td:nth-child(3)").text();
-	console.log(a);
-	console.log(b);
+	let a = $(this).closest("tr").find("td:nth-child(3)").text();
+	console.log(a); 
 	
-	let commentUpdate = {
-				"commentId" : a,
-				"boardComment": b, 
-				"boardId": ${boardDetail.boardId},
-				"userId": ${boardDetail.userId},
-			}
-	let data = JSON.stringify(commentUpdate);
-	
+
 	$.ajax({
-		type: "post",
-		url: "BoardCommentRest/getCommentListByCommentId",
-		data: data,
+		type: "get",
+		url: "BoardCommentRest?param="+a,
 		dataType: "json",
 		contentType: "application/json; charset=utf-8",
 		success: function(data){
 			$(".commentList").empty(); // class tag사용 
 			let html = "";
-			html += '<tr> <th colspan="3">댓글 목록</th> </tr>' 
-			$.each(data, function(){
-				html += '<tr>';
-				html += '<td align="left">작성자:' + this.userId + '</td>';
-				html += '<td>댓글내용: <input type="text" value="'+this.boardComment+'"></td>';
-				//html += '<td align="left"> 수정완료: <input type='+this.commentId+ '</td>';
-				html += '<tr>';
-			});
-				
-				$(".commentList").append(html);
+			html += '<tr> <th colspan="3">댓글 목록</th> </tr>'; 
+			html += '<tr>';
+			html += '<input type ="hidden" id="hiddenCommentId" value="'+data.commentId+'">';
+			html += '<td align="left">작성자:' + data.userId + '</td>';
+			html += '<td>댓글내용: <input type="text" id="boardCommentClick" value="'+data.boardComment+'"></td>';
+			html += '<td align="left"><input type="button" id="updateOk" value="수정완료"></td>';
+			html += '</tr>';
+			$(".commentList").append(html);
+		}
+	});
+});
+-->
+
+
+$(document).on('click', '.updateCommentRest', function() {
+
+	let a = $(this).closest("tr").find("td:nth-child(3)").text();
+	console.log(a); <!-- commentId 가져오기 -->
+	
+
+	$.ajax({
+		type: "get",
+		url: "BoardCommentRest?param="+a,
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		success: function(data){
+			$(".commentList").empty(); // class tag사용 
+			let html = "";
+			html += '<tr> <th colspan="3">댓글 목록</th> </tr>'; 
+			html += '<tr>';
+			<!--hidden으로 commentId담아 놓기 -->
+			html += '<input type ="hidden" id="hiddenCommentId" value="'+data.commentId+'">';
+			html += '<td align="left">작성자:' + data.userId + '</td>';
+			html += '<td>댓글내용: <input type="text" id="boardCommentClick" value="'+data.boardComment+'"></td>';
+			html += '<td align="left"><input type="button" id="updateOk" value="수정완료"></td>';
+			html += '</tr>';
+			$(".commentList").append(html);
 		}
 	});
 });
 
 
 
+$(document).on('click', '#updateOk', function() {
+	  let commentUpdate = {
+	    "commentId": $("#hiddenCommentId").val(),
+	    "boardComment": $("#boardCommentClick").val(),
+	    "boardId": ${boardDetail.boardId},
+	    "userId": ${boardDetail.userId}
+	  };
+	  let data = JSON.stringify(commentUpdate);
+	  console.log(data);
+	  $.ajax({
+			type: "put",
+			url: "BoardCommentRest",
+			data: data,
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			success: function(data){
+				$(".commentList").empty(); // class tag사용 
+				let html = "";
+				html += '<tr> <th colspan="3">댓글 목록</th> </tr>' 
+					html += '<tr>';
+					html += '<td align="left">작성자:' + data.userId + '</td>';
+					html += '<td><input type="text" value="'+data.boardComment+'" readonly></td>';
+					html += '</tr>';					
+					$(".commentList").append(html);
+			}
+		});
+	  
+	});
 
 
-$(".deleteCommentRest").click(function(){
+<!-- 
+$("#updateOk").click(function(){
 	let commentCreate = {
-				
-				"boardComment": $("#comment").val(), 
+				"commentId" : $("#hiddenCommentId").val(),
+				"boardComment": $("#boardCommentClick").val(), 
 				"boardId": ${boardDetail.boardId},
 				"userId": ${boardDetail.userId},
 			}
@@ -196,7 +244,7 @@ $(".deleteCommentRest").click(function(){
 	console.log(data);
 	
 	$.ajax({
-		type: "delete",
+		type: "put",
 		url: "BoardCommentRest",
 		data: data,
 		dataType: "json",
@@ -218,9 +266,73 @@ $(".deleteCommentRest").click(function(){
 		}
 	});
 });
+-->
+
+$(document).on('click', '.deleteCommentRest', function() {
+		let a = $(this).closest("tr").find("td:nth-child(3)").text();
+		console.log(a); 
+		let b = ${boardDetail.boardId};
+		console.log(b);
+		
+		$.ajax({
+			type: "delete",
+			url: "BoardCommentRest?commentId="+a+"&boardId="+b,
+			dataType: "json",
+			contentType: "application/json; charset=utf-8",
+			success: function(data){
+				console.log(data);
+				$(".commentList").empty(); // class tag사용 
+				let html = "";
+				html += '<tr> <th colspan="5">댓글 목록</th> </tr>' 
+				$.each(data, function(){
+					html += '<tr>';
+					html += '<td align="left">작성자: '+this.userId+'</td>';
+					html += '<td align="middle">'+this.boardComment+'</td>';
+					html += '<td>'+this.commentId+'</td>';
+					html += '<td><input class ="updateCommentRest" type ="button" value="수정"></td>';
+					html += '<td><input class ="deleteCommentRest" type ="button" value="삭제"></td>';
+					html += '</tr>';
+				});
+					
+					$(".commentList").append(html);
+			}
+		});
+	});
+<!-- 위와 기능은 같지만 동적으로 생성된 것에 대해서는 이벤트바인딩이 안됨.
+$(".deleteCommentRest").click(function(){
+	let a = $(this).closest("tr").find("td:nth-child(3)").text();
+	console.log(a); 
+	let b = ${boardDetail.boardId};
+	console.log(b);
 	
+	$.ajax({
+		type: "delete",
+		url: "BoardCommentRest?commentId="+a+"&boardId="+b,
+		dataType: "json",
+		contentType: "application/json; charset=utf-8",
+		success: function(data){
+			console.log(data);
+			$(".commentList").empty(); // class tag사용 
+			let html = "";
+			html += '<tr> <th colspan="5">댓글 목록</th> </tr>' 
+			$.each(data, function(){
+				html += '<tr>';
+				html += '<td align="left">작성자: '+this.userId+'</td>';
+				html += '<td align="middle">'+this.boardComment+'</td>';
+				html += '<td>'+this.commentId+'</td>';
+				html += '<td><input class ="updateCommentRest" type ="button" value="수정"></td>';
+				html += '<td><input class ="deleteCommentRest" type ="button" value="삭제"></td>';
+				html += '</tr>';
+			});
+				
+				$(".commentList").append(html);
+		}
+	});
+});
+-->
+
 	<!-- 댓글 취소 눌렀을 경우 Client에서 페이지 이동 처리 data이동x -->
-	$("#commentCancel").click(function(){
+	$("#boardDetail").click(function(){
 	console.log(${boardDetail.boardId});
 	 const newPageURL = '/douzone/getBoardDetail?boardId='+${boardDetail.boardId};
 	 window.location.href = newPageURL;
@@ -229,6 +341,7 @@ $(".deleteCommentRest").click(function(){
 
 
 });
+
 
 
 
