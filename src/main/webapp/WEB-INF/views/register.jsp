@@ -16,7 +16,7 @@
 						<div class="card-body p-5 text-center">
 							<div class="mb-md-3 mt-md-4 ps-5 pe-5">
 								<div class="mb-4">
-									<h3 class="fw-bold mb-5">회원가입</h2>
+									<h3 class="fw-bold mb-5">회원가입</h3>
 								</div>
 
 								<!-- 이메일 입력 -->
