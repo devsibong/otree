@@ -1,18 +1,13 @@
 package com.otree.douzone.interceptor;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.otree.douzone.dto.Workspace;
 import com.otree.douzone.service.WorkspaceService;
 
-@Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
 	private WorkspaceService workspaceService;
 	
@@ -28,9 +23,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 			result = false;
 		} else  {
 			int userId = (int)request.getSession().getAttribute("userId");
-			List<Workspace> workspaceList = null;
-			workspaceList = workspaceService.getWorkspaceList(userId);
-			request.setAttribute("workspaceList", workspaceList);
+			request.setAttribute("workspaceList", workspaceService.getWorkspaceList(userId));
 			result = true;
 		}
 		return result;

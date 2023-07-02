@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.otree.douzone.dto.TeamRole;
@@ -21,7 +20,7 @@ import com.otree.douzone.service.TeamRoleService;
 import com.otree.douzone.service.WorkspaceService;
 
 @Controller
-@RequestMapping("/workspace2")
+@RequestMapping("/workspace")
 public class WorkspaceController {
 	
 	private WorkspaceService workspaceService;
@@ -33,6 +32,25 @@ public class WorkspaceController {
 		this.teamRoleService = teamRoleService;
 	}
 	
+	@GetMapping("/{workspaceId}")
+	public String workspaceDash() {
+		return "workspace";
+	}
+	
+	@GetMapping("/{workspaceId}/kanban")
+	public String workspaceKanban() {
+		return "home"; //워크스페이스 칸반 페이지로 변경하기
+	}
+	
+	@GetMapping("/{workspaceId}/board")
+	public String workspaceBoard() {
+		return "home"; //워크스페이스 게시판 페이지로 변경하기
+	}
+	
+	@GetMapping("/empty")
+	public String emptyWorkspace() {
+		return "empty";
+	}
 	// 로그인 후 워크스페이스 대시보드 페이지로 이동 
 	@GetMapping("/{userId}/main") // [수정하기] 유저아이디가 요청 주소창에 노출 되는 것이 맞나
 	public String workspaceEnter(@PathVariable("userId") int userId, Model model)  {
@@ -52,16 +70,5 @@ public class WorkspaceController {
 		teamRoleService.createWorkspaceOwner(teamRole);
 		return "redirect:/workspace";
 	}
-	
-	@GetMapping("/{workspaceId}/kanban")  
-	public String workspaceKanban() {
-		return "home"; //워크스페이스 칸반 페이지로 변경하기
-	}
-	
-	@GetMapping("/{workspaceId}/board")
-	public String workspaceBoard() {
-		return "home"; //워크스페이스 게시판 페이지로 변경하기
-	}
-	
 	
 }

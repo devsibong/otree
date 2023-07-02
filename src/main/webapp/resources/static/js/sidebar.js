@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
     const bsOffcanvas = new bootstrap.Offcanvas('#todoOffcanvas');
-	document.getElementById("todo").addEventListener("click", function (event) {
+	document.getElementById('todo').addEventListener('click', function (event) {
 		event.preventDefault();
         bsOffcanvas.toggle();
 	});
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const workspaceModal = new bootstrap.Modal(document.getElementById('createWorkspaceModal'), {
 		backdrop: false
 	});
-	document.getElementById("createWorkspace").addEventListener("click", function (event) {
+	document.getElementById('createWorkspace').addEventListener('click', function (event) {
 		event.preventDefault();
 		workspaceModal.toggle();
 	});
@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.querySelectorAll('div[name="workspaceIcon"]').forEach(icon => {
 		icon.addEventListener('mouseenter', handleMouseEnter);
 		icon.addEventListener('mouseleave', handleMouseLeave);
+		icon.addEventListener('click', function() {
+			let workspaceId = icon.id;
+   			window.location.href = `/douzone/workspace/${workspaceId}`;
+		});
 	  });
 });
 
