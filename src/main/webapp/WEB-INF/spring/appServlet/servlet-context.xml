@@ -17,7 +17,7 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<context:annotation-config />
 	<context:component-scan base-package="com.otree.douzone" />	
-<!--  
+
     <mvc:interceptors>
 	    <mvc:interceptor>
 	        <mvc:mapping path="/**"/>
@@ -27,5 +27,5 @@
 	        <bean class="com.otree.douzone.interceptor.AuthenticationInterceptor"/>
 	    </mvc:interceptor>
 	</mvc:interceptors>
-    -->
+  
 </beans>
