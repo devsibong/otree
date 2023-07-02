@@ -23,6 +23,22 @@
 		</repository>
 	</repositories>
 	<dependencies>
+		<!-- Spring Mail -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-context-support</artifactId>
+	        <version>5.3.10</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>javax.mail</groupId>
+	        <artifactId>javax.mail-api</artifactId>
+	        <version>1.6.2</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.sun.mail</groupId>
+	        <artifactId>javax.mail</artifactId>
+	        <version>1.6.2</version>
+	    </dependency>
 		<!-- 인터페이스 없이도 Transactional 사용 가능 -->
 		<dependency>
 			<groupId>cglib</groupId>

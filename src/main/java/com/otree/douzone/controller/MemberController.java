@@ -1,6 +1,7 @@
 package com.otree.douzone.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.dto.Workspace;
+import com.otree.douzone.service.EmailService;
 import com.otree.douzone.service.MemberService;
 import com.otree.douzone.service.WorkspaceService;
 
@@ -24,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
     private final MemberService memberService;
     private final WorkspaceService workspaceService;
+    private final EmailService emailService;
     private final HttpSession session;
     
     @GetMapping("/login")
@@ -54,4 +57,19 @@ public class MemberController {
     	session.invalidate();
         return "redirect:/login";
     }
+    
+    @GetMapping("/register")
+	public String register(Locale locale, Model model) {
+		return "register";
+	}
+    
+    @PostMapping("/register")
+	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
+    	System.out.println(otreeUser);
+    	String email = otreeUser.getEmail();
+    	String subject = "test";
+    	String text = "emailtest";
+    	emailService.sendEmail(email, subject, text);
+		return "register";
+	}
 }

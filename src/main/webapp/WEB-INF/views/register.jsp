@@ -18,35 +18,36 @@
 								<div class="mb-4">
 									<h3 class="fw-bold mb-5">회원가입</h3>
 								</div>
-
-								<!-- 이메일 입력 -->
-								<div class="form-outline form-white mb-4 text-start">
-									<label class="form-label" for="email">이메일</label>
-									<input type="email" id="email" class="form-control" placeholder="이메일" />									
-								</div>
-
-								<!-- 비밀번호 입력 -->
-								<div class="form-outline form-white mb-4 text-start">
-									<label class="form-label" for="password">비밀번호</label>
-									<input type="password" id="password" class="form-control" placeholder="8~20자 이내의 영문, 숫자, 특수문자" />
-								</div>
-								
-								<!-- 비밀번호 확인 -->
-								<div class="form-outline form-white mb-4 text-start">
-									<label class="form-label" for="passwordConfirm">비밀번호 확인</label>
-									<input type="password" id="passwordConfirm" class="form-control" placeholder="비밀번호" />
-								</div>
-								
-								<!-- 닉네임 입력 -->
-								<div class="form-outline form-white mb-5 text-start">
-									<label class="form-label" for="name">닉네임</label>
-									<input type="email" id="name" class="form-control" placeholder="1~5자 이내의 영문 또는 한글" />									
-								</div>
-								
-								<!-- 인증메일 보내기 -->
-								<div class="d-grid gap-2 mb-4">
-									<button class="btn btn-primary btn-lg fw-bold" type="submit">인증메일 보내기</button>
-								</div>
+								<form action="${pageContext.request.contextPath}/member/register" method="post">
+									<!-- 이메일 입력 -->
+									<div class="form-outline form-white mb-4 text-start">
+										<label class="form-label" for="email">이메일</label>
+										<input type="email" id="email" name="email" class="form-control" placeholder="이메일" />									
+									</div>
+	
+									<!-- 비밀번호 입력 -->
+									<div class="form-outline form-white mb-4 text-start">
+										<label class="form-label" for="password">비밀번호</label>
+										<input type="password" id="password" name="password" class="form-control" placeholder="8~20자 이내의 영문, 숫자, 특수문자" />
+									</div>
+									
+									<!-- 비밀번호 확인 -->
+									<div class="form-outline form-white mb-4 text-start">
+										<label class="form-label" for="passwordConfirm">비밀번호 확인</label>
+										<input type="password" id="passwordConfirm" class="form-control" placeholder="비밀번호" />
+									</div>
+									
+									<!-- 닉네임 입력 -->
+									<div class="form-outline form-white mb-5 text-start">
+										<label class="form-label" for="name">닉네임</label>
+										<input type="text" id="name" name="name" class="form-control" placeholder="1~5자 이내의 영문 또는 한글" />									
+									</div>
+									
+									<!-- 인증메일 보내기 -->
+									<div class="d-grid gap-2 mb-4">
+										<button class="btn btn-primary btn-lg fw-bold" type="submit">인증메일 보내기</button>
+									</div>
+								</form>
 							</div>
 						</div>
 						

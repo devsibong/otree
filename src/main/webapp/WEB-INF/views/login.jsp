@@ -44,9 +44,9 @@
 									</div>
 									
 									<div>
-										<span>비밀번호 찾기</span>
+										<a href="${pageContext.request.contextPath}/member/register"><span>비밀번호 찾기</span></a>
 										<span>  | </span>
-										<span>회원가입</span>
+										<a href="${pageContext.request.contextPath}/member/register"><span>회원가입</span></a>
 									</div>
 								</form>
 							</div>
