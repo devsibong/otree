@@ -37,7 +37,19 @@ public class BoardCommentRestController {
 	public ResponseEntity<List<BoardComment>> createBoardComment(@RequestBody BoardComment boardComment) {
 		List<BoardComment> boardCommentList = null;
 		try {
-			System.out.println("insert 실행");
+			boardCommentService.createComment(boardComment);  
+			boardCommentList = boardCommentService.getCommentList(boardComment.getBoardId()); // 성공시 boardCommentList return 
+			return new ResponseEntity<List<BoardComment>>(boardCommentList, HttpStatus.OK);
+	} catch (Exception e) {
+		return new ResponseEntity<List<BoardComment>>(boardCommentList, HttpStatus.BAD_REQUEST); // 실패시 null 기존 페이지에 list있을테니.
+	}
+	}
+	
+	//댓글 수정 누른 comment id를 통해 list 가져오기
+	@PostMapping("getCommentListByCommentId")
+	public ResponseEntity<List<BoardComment>> getBoardComment(@RequestBody BoardComment boardComment) {
+		List<BoardComment> boardCommentList = null;
+		try {
 			boardCommentService.createComment(boardComment);  
 			boardCommentList = boardCommentService.getCommentList(boardComment.getBoardId()); // 성공시 boardCommentList return 
 			return new ResponseEntity<List<BoardComment>>(boardCommentList, HttpStatus.OK);
