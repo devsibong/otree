@@ -28,19 +28,23 @@
 	        <bean class="com.otree.douzone.interceptor.AuthenticationInterceptor"/>
 	    </mvc:interceptor>
 	</mvc:interceptors>
-	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	    <property name="host" value="smtp.gmail.com" />
-	    <property name="port" value="587" />
-	    <property name="username" value="${email.name}" />
-	    <property name="password" value="${email.password}" />
-	    <property name="javaMailProperties">
-	        <props>
-	            <prop key="mail.smtp.auth">true</prop>
-	            <prop key="mail.smtp.starttls.enable">true</prop>
-	        </props>
-	    </property>
+
+	<!-- Jasypt 설정 -->
+	<bean id="encryptorConfig" class="org.jasypt.encryption.pbe.config.EnvironmentPBEConfig">
+		<property name="algorithm" value="PBEWithMD5AndDES" />
+		<property name="password" value="1004" />
 	</bean>
-	
-  
+
+	<bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
+		<property name="config" ref="encryptorConfig" />
+	</bean>
+
+	<bean class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg ref="encryptor" />
+		<property name="locations">
+			<list>
+				<value>classpath:application.properties</value>
+			</list>
+		</property>
+	</bean>
 </beans>

@@ -22,7 +22,7 @@
 			<url>http://maven.jahia.org/maven2</url>
 		</repository>
 	</repositories>
-	<dependencies>
+	<dependencies>		
 		<!-- Spring Mail -->
 	    <dependency>
 	        <groupId>org.springframework</groupId>
@@ -245,6 +245,18 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+		<dependency>
+		    <groupId>org.jasypt</groupId>
+		    <artifactId>jasypt</artifactId>
+		    <version>1.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring31</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
