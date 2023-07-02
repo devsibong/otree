@@ -32,7 +32,11 @@ function fetchUserInfo() {
   }
   
   function hideSpinner() {
-	const spinner = document.getElementById('spinner');
+	let spinner = document.getElementById('spinner');
 	spinner.style.display = 'none';
+  }
+  function showSpinner() {
+	let spinner = document.getElementById('spinner');
+	spinner.style.display = 'block';
   }
   

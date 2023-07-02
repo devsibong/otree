@@ -63,13 +63,12 @@ public class MemberController {
 		return "register";
 	}
     
-    @PostMapping("/register")
-	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
-    	System.out.println(otreeUser);
-    	String email = otreeUser.getEmail();
-    	String subject = "test";
-    	String text = "emailtest";
-    	emailService.sendEmail(email, subject, text);
-		return "register";
-	}
+//    @PostMapping("/register")
+//	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
+//    	String email = otreeUser.getEmail();
+//    	String subject = "test";
+//    	String text = "emailtest";
+//    	emailService.sendEmail(email);
+//		return "register";
+//	}
 }

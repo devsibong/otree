@@ -24,7 +24,7 @@
 	        <mvc:exclude-mapping path="/**/login"/>
 	        <mvc:exclude-mapping path="/**/css/**"/>
 	        <mvc:exclude-mapping path="/**/js/**"/>
-	        <mvc:exclude-mapping path="/**/register"/>
+	        <mvc:exclude-mapping path="/**/member/**"/>
 	        <bean class="com.otree.douzone.interceptor.AuthenticationInterceptor"/>
 	    </mvc:interceptor>
 	</mvc:interceptors>
