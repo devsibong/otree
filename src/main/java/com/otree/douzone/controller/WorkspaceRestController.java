@@ -59,17 +59,17 @@ public class WorkspaceRestController {
 	}
 	
 	// 특정 워크스페이스 정보 수정
-	@PutMapping("/{workspaceId}")
-	public ResponseEntity<String> updateEmpResponseBody(@PathVariable("workspaceId") int workspaceId, @RequestBody Workspace workspace) {
-		System.out.println("workspaceId : " + workspaceId);
-		workspaceService.modifyWorkspace(workspaceId, workspace);
+	@PutMapping
+	public ResponseEntity<String> updateWorkspace(@RequestBody Workspace workspace) {
+		System.out.println("workspaceId : " + workspace.getWorkspaceId());
+		workspaceService.modifyWorkspace(workspace);
 		System.out.println("update성공");
 		return ResponseEntity.status(HttpStatus.OK).body("update success");
 	}
 	
 	// 특정 워크스페이스 삭제 
 	@DeleteMapping("/{workspaceId}")
-	public ResponseEntity<String> deleteEmpResponseBody(@PathVariable("workspaceId") int workspaceId) {
+	public ResponseEntity<String> deleteWorkspace(@PathVariable("workspaceId") int workspaceId) {
 		System.out.println("workspaceId : " + workspaceId);
 		workspaceService.removeWorkspace(workspaceId);
 		System.out.println("delete성공");
