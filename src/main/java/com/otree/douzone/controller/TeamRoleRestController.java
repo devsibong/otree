@@ -29,23 +29,17 @@ public class TeamRoleRestController {
 	@Autowired
 	private MemberService memberService;
 
-	/*
-	// 워크스페이스 팀원 초대 : 닉네임으로
+	// 워크스페이스 팀원 초대 : 닉네임
 	@PostMapping
-	public ResponseEntity<String> createTeamRoleByName(@RequestBody String userName) {
-		System.out.println("userName: " + userName);
-		// 이름을 받으면 user 검색후 아이디 받아오기
-		OtreeUser otreeUser = memberService.getOtreeUserListByName(userName);
+	public ResponseEntity<String> createTeamRoleByName(@RequestBody OtreeUser otreeuser, @PathVariable("workspaceId") int workspaceId) {
+		// 사용자가 이름검색 > 클릭 > getUserListByName에서 클릭한 객체의 아이디 보내주기!
 		// 받아온 아이디와 워크스페이스 아이디로 insert
-		
-		teamRoleService.createTeamRoleByName(userName);
-		System.out.println("insert성공");
-		// userid, workspaceid, role:owner insert
+		TeamRole teamRole = new TeamRole(otreeuser.getUserId(), workspaceId,  2);
+		teamRoleService.createWorkspaceOwner(teamRole);
 		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
 	}
-	*/
 	
-	// 워크스페이스 팀원 초대 : 이메일로
+	// 워크스페이스 팀원 초대 : 이메일
 	@PostMapping("/{workspaceId}")
 	public ResponseEntity<String> createTeamRoleByEmail(@RequestBody OtreeUser otreeuser, @PathVariable("workspaceId") int workspaceId) {
 		// 이름을 받으면 user 검색후 아이디 받아오기
