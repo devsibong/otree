@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.dto.TeamRole;
 import com.otree.douzone.dto.Workspace;
+import com.otree.douzone.dto.WorkspaceTeamUser;
 import com.otree.douzone.service.MemberService;
 import com.otree.douzone.service.TeamRoleService;
 
@@ -50,6 +51,13 @@ public class TeamRoleRestController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
 	}
 	
-
+	// 워크스페이스 팀원 리스트 조회
+	@GetMapping("/{workspaceId}")
+	public ResponseEntity<List<WorkspaceTeamUser>> getWorkspaceTeamList (@PathVariable("workspaceId") int workspaceId) {
+		System.out.println("workspaceId : " + workspaceId);
+		List<WorkspaceTeamUser> workspaceTeamList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		System.out.println("select성공 : "+ workspaceTeamList);
+		return ResponseEntity.status(HttpStatus.OK).body(workspaceTeamList);
+	}
 	
 }
