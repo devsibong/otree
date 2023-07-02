@@ -41,6 +41,7 @@ public class WorkspaceController {
 	// 워크스페이스 생성 요청
 	@PostMapping("/{userId}")
 	public String createWorkspace(@RequestBody Workspace workspace, @PathVariable("userId") int userId) {
+		// 워크스페이스 생성
 		int workspaceId = workspaceService.createWorkspace(workspace);
 		System.out.println("controller - createWorkspace");
 		System.out.println("workspaceId&userId : " + workspaceId+" & "+userId);
@@ -49,7 +50,7 @@ public class WorkspaceController {
 		return "home"; //워크스페이스 대쉬보드 페이지로 변경하기
 	}
 	
-	@GetMapping("/{workspaceId}/kanban")
+	@GetMapping("/{workspaceId}/kanban")  
 	public String workspaceKanban() {
 		return "home"; //워크스페이스 칸반 페이지로 변경하기
 	}
