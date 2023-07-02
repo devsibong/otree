@@ -3,13 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- OTREEUSER - OTREEUSER_WORKSPACE - WORKSPACE 테이블에 조인이 일어나는 DAO 모음 -->
+
 <mapper namespace="com.otree.douzone.dao.TeamRoleDao" >
 	
-	<!-- OTREEUSER_WORKSPACE 테이블에 워크스페이스 소속멤버 로우 생성 -->
+	<!-- 특정 워크스페이스 유저한명 추가 -->
+	<!-- OTREEUSER_WORKSPACE 테이블에 워크스페이스 멤버 추가 -->
 	<insert id="insertTeamRole">
 		INSERT INTO OTREEUSER_WORKSPACE(userId, workspaceId, roleId) VALUES(#{userId}, #{workspaceId},#{roleId})
 	</insert>
 
+	<!-- 특정 워크스페이스 전체 유저 목록 조회 -->
 	<!-- 워크스페이스 멤버 리스트 가져오기 OTREEUSER_WORKSPACE & OTREEUSER & ROLE 조인 -->
 	<select id="selectWorkspaceTeamList" resultType="com.otree.douzone.dto.WorkspaceTeamUser">
 		SELECT owo.userid, owo.name, owo.email, owo.profilesrc, owo.workspaceid, owo.roleid, r.rolename
@@ -19,5 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ow.workspaceId = #{workspaceId}) owo JOIN ROLE r
         ON owo.roleid = r.roleid
 	</select>
+		
+	<!-- 특정 워크스페이스 특정 유저 정보 조회 -->
+	
+	<!-- 특정 워크스페이스 특정 유저 정보 수정 -->
+
+	<!-- 특정 워크스페이스 특정 유저 정보 삭제 -->
 
 </mapper>

@@ -58,10 +58,10 @@ public class WorkspaceService {
 	}
 	
 	// 특정 워크스페이스 정보 수정
-	public void modifyWorkspace (int workspaceId, Workspace workspace) {
+	public void modifyWorkspace (Workspace workspace) {
 		try {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
-			workspaceDao.updateWorkspace(workspaceId, workspace);
+			workspaceDao.updateWorkspace(workspace);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
