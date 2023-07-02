@@ -10,6 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO OTREEUSER_WORKSPACE(userId, workspaceId, roleId) VALUES(#{userId}, #{workspaceId},#{roleId})
 	</insert>
 
-
+	<!-- 워크스페이스 멤버 리스트 가져오기 OTREEUSER_WORKSPACE & OTREEUSER & ROLE 조인 -->
+	<select id="selectWorkspaceTeamList" resultType="com.otree.douzone.dto.WorkspaceTeamUser">
+		SELECT owo.userid, owo.name, owo.email, owo.profilesrc, owo.workspaceid, owo.roleid, r.rolename
+		FROM (SELECT o.userid userid , o.name name, o.email email, o.profilesrc profilesrc, ow.workspaceid workspaceid, ow.roleid roleid
+			FROM OTREEUSER_WORKSPACE ow JOIN OTREEUSER o
+			ON ow.userId = o.userId
+			WHERE ow.workspaceId = #{workspaceId}) owo JOIN ROLE r
+        ON owo.roleid = r.roleid
+	</select>
 
 </mapper>

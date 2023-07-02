@@ -43,28 +43,6 @@ public class WorkspaceController {
 	}	
 	
 	// 워크스페이스 생성 요청
-//	@PostMapping("/{userId}")
-//	public String createWorkspace(@RequestBody Workspace workspace, @PathVariable("userId") int userId) {
-//		int workspaceId = workspaceService.createWorkspace(workspace);
-//		System.out.println("controller - createWorkspace");
-//		System.out.println("workspaceId&userId : " + workspaceId+" & "+userId);
-//		TeamRole teamRole = new TeamRole(userId, workspaceId,  3);
-//		teamRoleService.createWorkspaceOwner(teamRole);
-//		return "home"; //워크스페이스 대쉬보드 페이지로 변경하기
-//	}
-	
-	@GetMapping("/{workspaceId}/kanban")
-	public String workspaceKanban() {
-		return "home"; //워크스페이스 칸반 페이지로 변경하기
-	}
-	
-	@GetMapping("/{workspaceId}/board")
-	public String workspaceBoard() {
-		return "home"; //워크스페이스 게시판 페이지로 변경하기
-	}
-	
-	
-	// 워크스페이스 생성 요청
 	@PostMapping("")
 	public String createWorkspace(@ModelAttribute Workspace workspace, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -73,6 +51,16 @@ public class WorkspaceController {
 		TeamRole teamRole = new TeamRole(userId, workspaceId,  3);
 		teamRoleService.createWorkspaceOwner(teamRole);
 		return "redirect:/workspace";
+	}
+	
+	@GetMapping("/{workspaceId}/kanban")  
+	public String workspaceKanban() {
+		return "home"; //워크스페이스 칸반 페이지로 변경하기
+	}
+	
+	@GetMapping("/{workspaceId}/board")
+	public String workspaceBoard() {
+		return "home"; //워크스페이스 게시판 페이지로 변경하기
 	}
 	
 	
