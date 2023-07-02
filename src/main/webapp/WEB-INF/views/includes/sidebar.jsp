@@ -5,12 +5,15 @@
 	<c:forEach var="workspace" items="${workspaceList}">
         <div class="ws-rounded-circle mt-3 mb-3 fs-7 fw-bold" id="${workspace.workspaceId}" name="workspaceIcon">${workspace.workspaceName.substring(0, 2)}</div>
     </c:forEach>
-    <div class="ws-rounded-circle-plus mt-3 mb-3 fs-4 fw-bold border-green-300" name="workspaceIcon" id="createWorkspace">+</div>
+    <div class="ws-rounded-circle-plus mt-3 mb-3 fs-4 fw-bold border-green-300" id="createWorkspace">+</div>
 </div>
 <div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 bg-green-100 vh-100">
 	<div class="mt-5 mx-3">
-		<h2 class="mt-5">WORKSPACE</h2>
-		<p class="text-end">owner : hong</p>
+		<h2 class="mt-5">${selectedWorkspace.workspaceName}</h2>
+		<p class="text-end">
+			<span>owner : </span>
+			<span>${selectedWorkspace.workspaceName}</span>
+		</p>
 	</div>
 	<ul class="nav nav-pills flex-column mb-auto mx-3">
 		<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/workspace">대시보드</a></li>
