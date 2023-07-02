@@ -37,7 +37,7 @@ public class TaskService {
 	public List<TaskWithStatus> getTaskList(int workspaceId) {
 		List<TaskWithStatus> taskList = null;
 		try {
-			System.out.println("Workspace Service 진입");
+			System.out.println("Task Service 진입");
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
 			taskList = taskDao.selectTaskList(workspaceId);
 		} catch (Exception e) {

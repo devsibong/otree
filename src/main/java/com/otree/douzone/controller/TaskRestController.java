@@ -61,7 +61,7 @@ public class TaskRestController {
 	// 특정 칸반 업무 정보 수정
 	@PutMapping
 	public ResponseEntity<String> updateTask(@RequestBody Task task) {
-		System.out.println("workspaceId : " + task.getWorkspaceId());
+		System.out.println("TaskId : " + task.getTaskId());
 		taskService.modifyTask(task);
 		System.out.println("update성공");
 		return ResponseEntity.status(HttpStatus.OK).body("update success");
