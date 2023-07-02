@@ -88,4 +88,15 @@ public class MemberService {
 		}
 		return userList;
 	}
+	
+	public OtreeUser getOtreeUserByEmail(String email) {
+		OtreeUser user = null;
+		try {
+			OtreeUserDao userDao = sqlSession.getMapper(OtreeUserDao.class);
+			user = userDao.getOtreeUserByEmail(email);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
 }

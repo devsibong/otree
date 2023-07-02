@@ -29,4 +29,16 @@ public class TeamRoleService {
 		}
 	}
 	
+	// 워크스페이스 멤버 등록 : 닉네임으로
+	public void createTeamRoleByName (TeamRole teamRole) {
+		try {
+			TeamRoleDao teamRoleDao = sqlsession.getMapper(TeamRoleDao.class);
+			teamRoleDao.insertTeamRole(teamRole);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
