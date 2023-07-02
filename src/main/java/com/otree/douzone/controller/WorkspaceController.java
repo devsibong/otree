@@ -27,15 +27,18 @@ public class WorkspaceController {
 	
 	private WorkspaceService workspaceService;
 	private TeamRoleService teamRoleService;
+	private HttpSession session;
 
 	@Autowired
-	public WorkspaceController(WorkspaceService workspaceService, TeamRoleService teamRoleService) {
+	public WorkspaceController(WorkspaceService workspaceService, TeamRoleService teamRoleService, HttpSession session) {
 	    this.workspaceService = workspaceService;
 		this.teamRoleService = teamRoleService;
+		this.session = session;
 	}
 	
 	@GetMapping("/{workspaceId}")
 	public String workspaceDash(@PathVariable("workspaceId") int workspaceId, Model model) {
+		String path = null;
 		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
 		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
 		WorkspaceTeamUser owner = null;
@@ -49,7 +52,12 @@ public class WorkspaceController {
 		model.addAttribute("teamUserList", teamUserList);
 		model.addAttribute("owner", owner);
 		model.addAttribute("pageType", "dashboard");
-		return "workspace";
+		int userId = (int) session.getAttribute("userId");
+		if(userId == owner.getUserId()) {
+			path = "ownerWorkspace";
+		} else path = "workspace";
+		
+		return path;
 	}
 	
 	@GetMapping("/{workspaceId}/kanban")
