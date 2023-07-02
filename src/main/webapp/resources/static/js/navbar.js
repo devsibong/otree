@@ -18,9 +18,11 @@ function fetchUserInfo() {
 		.then(response => response.json())
 		.then(data => {
 			updateUserInfo(data.name, data.email);
+			hideSpinner();
 		})
 		.catch(error => {
 			console.error("Error:", error);
+			hideSpinner();
 		});
 }
   
@@ -28,3 +30,9 @@ function fetchUserInfo() {
 	document.getElementById("userName").textContent = name;
 	document.getElementById("email").textContent = email;
   }
+  
+  function hideSpinner() {
+	const spinner = document.getElementById('spinner');
+	spinner.style.display = 'none';
+  }
+  

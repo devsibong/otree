@@ -20,7 +20,14 @@
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-center">
-				<div class="fs-4" id="userName"></div>
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border text-primary" role="status" id="spinner">
+							<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+				<div class="fs-4" id="userName">
+					
+				</div>
 				<div class="fs-7" id="email"></div>
 				<div class="justify-content-center d-flex">
 					<div>프로필 편집</div>

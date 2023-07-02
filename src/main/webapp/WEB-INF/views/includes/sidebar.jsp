@@ -3,7 +3,7 @@
 <div class="otree-sidebar-1">
 	<div class="ws-rounded-circle mt-3 mb-3 fs-7 fw-bold">여백</div>
 	<c:forEach var="workspace" items="${workspaceList}">
-        <div class="ws-rounded-circle mt-3 mb-3 fs-7 fw-bold" id="${workspace.workspaceId}" name="workspaceIcon">${workspace.workspaceName.substring(0, 2)}</div>
+        <div class="${selectedWorkspace.workspaceId == workspace.workspaceId ? 'ws-rounded-circle-active' : 'ws-rounded-circle'} mt-3 mb-3 fs-7 fw-bold " id="${workspace.workspaceId}" name="workspaceIcon">${workspace.workspaceName.substring(0, 2)}</div>
     </c:forEach>
     <div class="ws-rounded-circle-plus mt-3 mb-3 fs-4 fw-bold border-green-300" id="createWorkspace">+</div>
 </div>
@@ -16,11 +16,20 @@
 		</p>
 	</div>
 	<ul class="nav nav-pills flex-column mb-auto mx-3">
-		<li class="nav-item"> <a class="nav-link active" href="${pageContext.request.contextPath}/workspace">대시보드</a></li>
-		<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/kanbanboardgo">보드</a></li>
-		<li class="nav-item"> <a class="nav-link" href="#" id="todo">나의 할일</a></li>
-		<li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/boardgo">게시판</a></li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}">대시보드</a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'kanban' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}/kanban">보드</a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link" href="#" id="todo">나의 할일</a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'board' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}/board">게시판</a>
+	    </li>
 	</ul>
+	
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">

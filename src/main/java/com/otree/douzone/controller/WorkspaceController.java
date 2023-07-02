@@ -48,18 +48,44 @@ public class WorkspaceController {
 		model.addAttribute("selectedWorkspace", selectedWorkspace);
 		model.addAttribute("teamUserList", teamUserList);
 		model.addAttribute("owner", owner);
-		
+		model.addAttribute("pageType", "dashboard");
 		return "workspace";
 	}
 	
 	@GetMapping("/{workspaceId}/kanban")
-	public String workspaceKanban() {
-		return "home"; //워크스페이스 칸반 페이지로 변경하기
+	public String workspaceKanban(@PathVariable("workspaceId") int workspaceId, Model model) {
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "kanban");
+		return "kanban";
 	}
 	
 	@GetMapping("/{workspaceId}/board")
-	public String workspaceBoard() {
-		return "home"; //워크스페이스 게시판 페이지로 변경하기
+	public String workspaceBoard(@PathVariable("workspaceId") int workspaceId, Model model) {
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
+		return "board";
 	}
 	
 	@GetMapping("/empty")
@@ -78,19 +104,5 @@ public class WorkspaceController {
 	    redirectAttributes.addAttribute("workspaceId", workspaceId);
 	    return "redirect:/workspace/{workspaceId}";
 	}
-	
-//	// main
-//	@GetMapping("/main")
-//    public String login(Model model, HttpServletRequest request) {
-//		HttpSession session = request.getSession();
-//	    int userId = (int) session.getAttribute("userId");
-//		String path=null;
-//    	List<Workspace> workspaceList =  workspaceService.getWorkspaceList(userId);
-//    	if (workspaceList != null && !workspaceList.isEmpty()) path = "redirect:/workspace/" + workspaceList.get(0).getWorkspaceId();
-//        else path = "redirect:/workspace/empty";
-//        return path;
-//    }	
-	
-	
 	
 }
