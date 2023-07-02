@@ -31,6 +31,17 @@ public class MemberService {
 		return result;
 	}
 	
+	public OtreeUser getOtreeUserById(int userId) {
+		OtreeUser otreeUser = null;
+		try {
+			OtreeUserDao userDao = sqlSession.getMapper(OtreeUserDao.class);
+			otreeUser = userDao.getOtreeUserById(userId);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return otreeUser;
+	}
+	
 	public List<OtreeUser> getOtreeUserList() {
 		List<OtreeUser> userList = null;
 		try {

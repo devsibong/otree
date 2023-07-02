@@ -46,8 +46,6 @@ public class MemberController {
             model.addAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
             path = "login";
         }
-        
-        
         return path;
     }
     

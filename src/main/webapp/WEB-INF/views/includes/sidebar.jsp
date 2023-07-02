@@ -12,7 +12,7 @@
 		<h2 class="mt-5">${selectedWorkspace.workspaceName}</h2>
 		<p class="text-end">
 			<span>owner : </span>
-			<span>${selectedWorkspace.workspaceName}</span>
+			<span>${owner.name}</span>
 		</p>
 	</div>
 	<ul class="nav nav-pills flex-column mb-auto mx-3">
