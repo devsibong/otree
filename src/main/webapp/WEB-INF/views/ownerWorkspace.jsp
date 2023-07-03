@@ -22,8 +22,13 @@
 				<div class="container mt-5">
 					<!-- 개요 -->
 					<div class="mt-5">
-						<h2>프로젝트 개요 <span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span></h2>
+						<h2>프로젝트 개요 <span>
+						<a href="#" id="modifyDescriptionIcon"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a>
+						<a href="#" id="modifyConfirmIcon" class="d-none"><i class="bi bi-check2-square fs-4 text-secondary"></i></a>
+						
+						</span></h2>
 						<p>${selectedWorkspace.description}</p>
+						<input id="modifyDescription" class="form-control d-none"></input>
 					</div>
 
 					<!-- 멤버 -->
@@ -195,6 +200,7 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerWorkspace.js"></script>
 </body>
 </html>
 
