@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 특정 칸반 업무 정보 수정 : taskContent, startDate, endDate  -->
 	<update id="updateTask" >
 		UPDATE TASK
-		SET taskContent = #{taskContent}, TO_DATE(#{startDate}, 'RR/MM/DD'), TO_DATE(#{endDate}, 'RR/MM/DD')
+		SET taskContent = #{taskContent}, startDate = TO_DATE(#{startDate}, 'RR/MM/DD'), endDate = TO_DATE(#{endDate}, 'RR/MM/DD')
 		WHERE taskId = #{taskId}
 	</update>
 	
