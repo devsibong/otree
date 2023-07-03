@@ -262,7 +262,7 @@
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerSidebar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerWorkspace.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/todo.js"></script>
 </body>
