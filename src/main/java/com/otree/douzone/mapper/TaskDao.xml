@@ -49,4 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectMaxTaskSeq" resultType="int">
 		SELECT MAX(TASKSEQ) FROM TASK WHERE STATUSID = #{param1} AND WORKSPACEID = #{param2}
 	</select>
+	
+	<update id="updateTaskSeq">
+	    UPDATE TASK
+	    SET taskSeq = #{taskSeq}, statusId = #{statusId}
+	    WHERE taskId = #{taskId}
+	</update>
 </mapper>
