@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 							})
 								.then(response => response.json())
 								.then(data => {
-									
+
 									let toastshow = new bootstrap.Toast(toast);
 									toastshow.show();
 								})
@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			})
 				.then(response => response.json())
 				.then(data => {
-					let card = icon.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-					card.classList.add('d-none');
+					let card = icon.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+					card.remove();
 					let toastshow = new bootstrap.Toast(toast);
 					toastshow.show();
 				})
