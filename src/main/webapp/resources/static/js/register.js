@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+	document.getElementById("emailVerification").addEventListener("click", function () {
+		event.preventDefault();
+	});
 	document.getElementById("emailConfirm").addEventListener("click", function (event) {
 		event.preventDefault();
 		if (emailValidation()==true) {
@@ -51,7 +54,7 @@ function handleVerification(data) {
 	if (data === verificationInput) {
 		let emailVerificationButton = document.getElementById("emailVerification");
 		emailVerificationButton.textContent = "인증 완료";
-		emailVerificationButton.disabled = true;
+		emailVerificationButton.classList.add(disabled);
 	}
 }
 

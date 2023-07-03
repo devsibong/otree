@@ -2,10 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--  
-	Member getMember(String uid) throws ClassNotFoundException, SQLException;
-    int insert(Member member) throws ClassNotFoundException, SQLException; 
--->
+
 <mapper namespace="com.otree.douzone.dao.WorkspaceDao" >
 	
 	<!-- 워크스페이스 생성 -->
@@ -32,8 +29,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 특정 워크스페이스 정보 수정 -->
 	<update id="updateWorkspace" >
 		UPDATE WORKSPACE
-		SET workspaceName = #{param2.workspaceName}, description = #{param2.description}
-		WHERE workspaceId = #{param1}
+		SET workspaceName = #{workspaceName}, description = #{description}
+		WHERE workspaceId = #{workspaceId}
 	</update>
 	
 	<!-- 특정 워크스페이스 삭제 -->
@@ -41,16 +38,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM WORKSPACE
 		WHERE workspaceId = #{workspaceId}
 	</delete>	
-
-	<!-- 특정 워크스페이스 유저한명 추가 -->
-	
-	<!-- 특정 워크스페이스 전체 유저 목록 조회 -->
-	
-	<!-- 특정 워크스페이스 특정 유저 정보 조회 -->
-	
-	<!-- 특정 워크스페이스 특정 유저 정보 수정 -->
-
-	<!-- 특정 워크스페이스 특정 유저 정보 삭제 -->
-
 
 </mapper>
