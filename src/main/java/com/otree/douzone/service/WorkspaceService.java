@@ -78,18 +78,5 @@ public class WorkspaceService {
 		}
 		System.out.println("service result : "+ result);
 	}
-	
-	// 특정 워크스페이스 유저한명 추가
-	
-	
-	// 특정 워크스페이스 전체 유저 목록 조회
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 조회
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 수정
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 삭제
+
 }

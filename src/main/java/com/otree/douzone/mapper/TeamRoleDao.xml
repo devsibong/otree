@@ -23,11 +23,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			WHERE ow.workspaceId = #{workspaceId}) owo JOIN ROLE r
         ON owo.roleid = r.roleid
 	</select>
-		
-	<!-- 특정 워크스페이스 특정 유저 정보 조회 -->
-	
-	<!-- 특정 워크스페이스 특정 유저 정보 수정 -->
 
 	<!-- 특정 워크스페이스 특정 유저 정보 삭제 -->
+	<delete id="deleteTeamRole">
+		DELETE FROM OTREEUSER_WORKSPACE
+		WHERE workspaceId = #{param1} AND userId = #{param2} 
+	</delete>
 
 </mapper>
