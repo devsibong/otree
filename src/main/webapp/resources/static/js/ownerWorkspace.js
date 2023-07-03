@@ -44,23 +44,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	document.getElementById('memberSerch').addEventListener('keyup', function (event) {
 		let searchKeyword = document.getElementById('memberSerch').value;
-
-		fetch('/douzone/teamrole/' + selectedWorkspaceId+'/search', {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ searchKeyword: searchKeyword }),
-		})
-			.then(response => response.json())
-			.then(data => {
-				console.log(data);
-				const toastshow = new bootstrap.Toast(toast);
-				toastshow.show();
+		if (searchKeyword != null && searchKeyword != "") {
+			fetch('/douzone/teamrole/' + selectedWorkspaceId + '/search', {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ searchKeyword: searchKeyword }),
 			})
-			.catch(error => {
-				console.log(error);
-			});
+				.then(response => response.json())
+				.then(data => {
+					document.getElementById("resultArea").innerHTML = "";
+					let parsedData = JSON.parse(data.data);
+					let exampleCard = document.querySelector("[name='memberCard']");
+					parsedData.forEach(member => {
+						let newCard = exampleCard.cloneNode(true);
+
+						newCard.classList.remove('d-none');
+						newCard.querySelector("[name='memberName']").textContent = member.name;
+						newCard.querySelector("[name='memberEmail']").textContent = member.email;
+						newCard.querySelector("[name='memberId']").id = member.userId;
+
+						let resultArea = document.getElementById("resultArea");
+						resultArea.appendChild(newCard);
+					});
+				})
+				.catch(error => {
+					console.log(error);
+				});
+
+
+
+		}
+
 	});
 
 	let removeMemberIcons = document.getElementsByClassName('removeMemberIcon');

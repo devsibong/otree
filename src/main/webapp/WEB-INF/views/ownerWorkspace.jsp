@@ -212,45 +212,32 @@
 					<input class="form-control" id="memberSerch" placeholder="이름으로 검색하세요..."></input>
 				</div>
 			</div>
-			
-			
-			
-			<div class="card border-green-200 shadow-sm mt-3">
-				<div class="card-body p-3">
-					<div class="row">
-						<div class="col-3">
-							<img src="${pageContext.request.contextPath}/resources/static/image/icon/person-circle.svg" alt="userIcon">
-						</div>
-						<div class="col ms-2">
-							<div class="d-flex justify-content-between">
-								<h5 class="card-title">Name</h5>
-								<div class="justify-content-end">
-		                            <a href="#" id="removeMemberIcon"><i class="bi bi-plus-lg text-primary"></i></a>
-		                        </div>
+			<div id="resultArea">
+				
+			</div>
+			<div class="card border-green-200 shadow-sm mt-3 d-none" name="memberCard">
+					<div class="card-body p-3">
+						<div class="row">
+							<div class="col-3">
+								<img src="${pageContext.request.contextPath}/resources/static/image/icon/person-circle.svg" alt="userIcon">
 							</div>
-							<p class="card-text">dddd@com</p>
+							<div class="col ms-2">
+								<div class="d-flex justify-content-between">
+									<h5 class="card-title" name="memberName">Name</h5>
+									<div class="d-none" name="memberId"></div>
+									<div class="justify-content-end">
+			                            <a href="#" id="plusMemberIcon"><i class="bi bi-plus-lg text-primary"></i></a>
+			                        </div>
+								</div>
+								<p class="card-text" name="memberEmail">dddd@com</p>
+							</div>
 						</div>
 					</div>
-				</div>
 			</div>
-			<div class="card border-green-200 shadow-sm mt-3">
-				<div class="card-body p-3">
-					<div class="row">
-						<div class="col-3">
-							<img src="${pageContext.request.contextPath}/resources/static/image/icon/person-circle.svg" alt="userIcon">
-						</div>
-						<div class="col ms-2">
-							<div class="d-flex justify-content-between">
-								<h5 class="card-title">Name</h5>
-								<div class="justify-content-end">
-		                            <a href="#" id="removeMemberIcon"><i class="bi bi-plus-lg text-primary"></i></a>
-		                        </div>
-							</div>
-							<p class="card-text">dddd@com</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+			
+			
+			
 			
 			
 			

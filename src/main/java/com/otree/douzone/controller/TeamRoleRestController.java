@@ -73,30 +73,26 @@ public class TeamRoleRestController {
 	
 
     @PostMapping("/{workspaceId}/search")
-    public ResponseEntity<Map<String,Object>> getMemberByName(@PathVariable int workspaceId, @RequestBody Map<String, String> requestBody) {
-    	String searchName = requestBody.get("searchKeyword");
-    	 List<OtreeUser> userList = memberService.getOtreeUserListByName(searchName, workspaceId);
+	public ResponseEntity<Map<String, Object>> getMemberByName(@PathVariable int workspaceId, @RequestBody Map<String, String> requestBody) {
+		String searchName = requestBody.get("searchKeyword");
+		List<OtreeUser> userList = memberService.getOtreeUserListByName(searchName, workspaceId);
+		ObjectMapper objectMapper = new ObjectMapper();
+		String json;
+		try {
+			json = objectMapper.writeValueAsString(userList);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			Map<String, Object> errorResponse = new HashMap<>();
+			errorResponse.put("message", "Error occurred during JSON serialization");
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+		}
 
-    	    ObjectMapper objectMapper = new ObjectMapper();
-    	    String json;
-    	    try {
-    	        json = objectMapper.writeValueAsString(userList);
-    	    } catch (JsonProcessingException e) {
-    	        // JSON 직렬화 오류 처리
-    	        e.printStackTrace();
-    	        // 에러 응답 반환
-    	        Map<String, Object> errorResponse = new HashMap<>();
-    	        errorResponse.put("message", "Error occurred during JSON serialization");
-    	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    	    }
+		Map<String, Object> response = new HashMap<>();
+		response.put("message", "success");
+		response.put("data", json);
 
-    	    Map<String, Object> response = new HashMap<>();
-    	    response.put("message", "success");
-    	    response.put("data", json);
-
-    	    return ResponseEntity.ok(response);
-    }
-	
+		return ResponseEntity.ok(response);
+	}
 	
 	
 }
