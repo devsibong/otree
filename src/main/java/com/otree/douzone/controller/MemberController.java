@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.dto.Workspace;
-import com.otree.douzone.service.EmailService;
 import com.otree.douzone.service.MemberService;
 import com.otree.douzone.service.WorkspaceService;
 
@@ -26,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
     private final MemberService memberService;
     private final WorkspaceService workspaceService;
-    private final EmailService emailService;
     private final HttpSession session;
     
     @GetMapping("/login")
@@ -63,12 +61,9 @@ public class MemberController {
 		return "register";
 	}
     
-//    @PostMapping("/register")
-//	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
-//    	String email = otreeUser.getEmail();
-//    	String subject = "test";
-//    	String text = "emailtest";
-//    	emailService.sendEmail(email);
-//		return "register";
-//	}
+    @PostMapping("/register")
+	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
+    	memberService.createOtreeUser(otreeUser);
+		return "login";
+	}
 }

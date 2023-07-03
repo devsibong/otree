@@ -20,11 +20,11 @@
 			<main class="col justify-content-start d-flex">
 				<!-- 여백 -->
 				<div class="container mt-5">
-				
 					<!-- 개요 -->
 					<div class="mt-5">
 						<h2>워크스페이스가 없습니다. 새로운 워크스페이스를 생성하세요.</h2>
 					</div>
+				
 				</div>
 			</main>
 		</div>

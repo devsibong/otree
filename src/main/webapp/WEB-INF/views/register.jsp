@@ -18,9 +18,9 @@
 								<div class="mb-4">
 									<h3 class="fw-bold mb-5">회원가입</h3>
 								</div>
-								<form action="${pageContext.request.contextPath}/member/register" method="post">
+								<form action="${pageContext.request.contextPath}/member/register" method="post" id="registerForm">
 									<!-- 이메일 입력 -->
-									<div class="row">
+									<div class="row mb-4">
 										<div class="text-primary text-start mb-2">이메일 입력</div>
 										<div class="col-9 form-outline form-white text-start">
 											<input type="email" id="email" name="email" class="form-control" placeholder="이메일" />
@@ -32,18 +32,23 @@
 											</button>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row d-none" id="emailConfirmArea">
 										<div class="col-9 form-outline form-white mb-4 text-start">
 											<div id="emailErrorMessage" class="text-danger"></div>
 										</div>
 									</div>
 									<div class="row d-none" id="verificationArea">
 										<div class="text-primary text-start mb-2">인증번호 확인</div>
-										<div class="col-9 form-outline form-white mb-4 text-start">
+										<div class="col-9 form-outline form-white text-start">
 											<input type="text" id="verificationInput" class="form-control"/>				
 										</div>
-										<div class="col-3">
-											<button class="btn btn-primary mb-3" id="emailVerification">확인</button>
+										<div class="col-3 px-0 d-grid gap-2">
+											<button class="btn btn-primary" id="emailVerification">확인</button>
+										</div>
+									</div>
+									<div class="row d-none" id="verificationNumberArea">
+										<div class="col-9 form-outline form-white mb-4 text-start">
+											<div id="emailVerifyMessage" class="text-danger"></div>
 										</div>
 									</div>
 									<!-- 비밀번호 입력 -->
@@ -58,6 +63,12 @@
 										<input type="password" id="passwordConfirm" class="form-control" placeholder="비밀번호" />
 									</div>
 									
+									<div class="row d-none" id="verificationPassword">
+										<div class="col-9 form-outline form-white mb-4 text-start">
+											<div id="pwVerificationMessage" class="text-danger"></div>
+										</div>
+									</div>
+									
 									<!-- 닉네임 입력 -->
 									<div class="form-outline form-white mb-5 text-start">
 										<label class="form-label" for="name">닉네임</label>
@@ -66,7 +77,7 @@
 									
 									<!-- 인증메일 보내기 -->
 									<div class="d-grid gap-2 mb-4">
-										<button class="btn btn-primary btn-lg fw-bold" type="submit">인증메일 보내기</button>
+										<button class="btn btn-primary btn-lg fw-bold" type="submit" id="register">회원가입</button>
 									</div>
 								</form>
 							</div>
