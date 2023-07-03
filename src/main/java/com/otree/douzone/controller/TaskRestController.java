@@ -56,13 +56,23 @@ public class TaskRestController {
 	}
 	
 	// 특정 칸반 업무 정보 수정
-	@PutMapping
+	@PutMapping("/modify")
 	public ResponseEntity<String> modifyTask(@RequestBody Task task) {
 		System.out.println("TaskId : " + task.getTaskId());
 		taskService.modifyTask(task);
 		System.out.println("update성공");
 		return ResponseEntity.status(HttpStatus.OK).body("update success");
 	}
+	
+	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update) --------------------------------------
+//	@PutMapping
+//	public ResponseEntity<String> modifyTaskSeq(@RequestBody List<Task> taskList ) {
+//		System.out.println("taskList : " + taskList);
+//		taskService.modifyTaskSeq(task);
+//		System.out.println("update성공");
+//		return ResponseEntity.status(HttpStatus.OK).body("update success");
+//	}
+	//--------------------------------------------------------------------------------------
 	
 	// 특정 칸반 업무 삭제 
 	@DeleteMapping("/{taskId}")

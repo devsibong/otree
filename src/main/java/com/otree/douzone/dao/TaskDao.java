@@ -12,5 +12,6 @@ public interface TaskDao {
 	public TaskWithStatus selectTaskById(int taskId) throws SQLException;
 	public void updateTask(Task task) throws SQLException;
 	public int deleteTask(int taskId) throws SQLException;
-	public int selectMaxTaskseq(int statusId, int workspaceId) throws SQLException;
+	public int selectMaxTaskSeq(int statusId, int workspaceId) throws SQLException;
+	public void updateTaskSeq(Task task) throws SQLException;
 }

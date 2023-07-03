@@ -45,7 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE taskId = #{taskId}
 	</delete>	
 
-	<select id="selectMaxTaskseq" resultType="int">
+	<!-- 업무시퀀스 수정 -->
+	<select id="selectMaxTaskSeq" resultType="int">
 		SELECT MAX(TASKSEQ) FROM TASK WHERE STATUSID = #{param1} AND WORKSPACEID = #{param2}
 	</select>
 </mapper>
