@@ -38,6 +38,8 @@ public class TaskRestController {
 	}
 	
 	// 워크스페이스의 전체 칸반 업무 목록 조회 
+	//"taskSeq": 2,
+    //"statusId": 1,
 	@GetMapping("/list/{workspaceId}")
 	public ResponseEntity<List<TaskWithStatus>> getTaskList (@PathVariable("workspaceId") int workspaceId) {
 		//System.out.println("workspaceId : " + workspaceId);
