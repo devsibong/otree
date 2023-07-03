@@ -34,8 +34,6 @@ public class TaskRestController {
 	public ResponseEntity<String> createTask(@RequestBody Task task) {
 		//System.out.println("task : " + task);
 		taskService.createTask(task);
-		//System.out.println("insert성공");
-		// userid, workspaceid, role:owner insert
 		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
 	}
 	
@@ -58,17 +56,27 @@ public class TaskRestController {
 	}
 	
 	// 특정 칸반 업무 정보 수정
-	@PutMapping
-	public ResponseEntity<String> updateTask(@RequestBody Task task) {
-		//System.out.println("TaskId : " + task.getTaskId());
+	@PutMapping("/modify")
+	public ResponseEntity<String> modifyTask(@RequestBody Task task) {
+		System.out.println("TaskId : " + task.getTaskId());
 		taskService.modifyTask(task);
-		//System.out.println("update성공");
+		System.out.println("update성공");
 		return ResponseEntity.status(HttpStatus.OK).body("update success");
 	}
 	
+	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update) --------------------------------------
+//	@PutMapping
+//	public ResponseEntity<String> modifyTaskSeq(@RequestBody List<Task> taskList ) {
+//		System.out.println("taskList : " + taskList);
+//		taskService.modifyTaskSeq(task);
+//		System.out.println("update성공");
+//		return ResponseEntity.status(HttpStatus.OK).body("update success");
+//	}
+	//--------------------------------------------------------------------------------------
+	
 	// 특정 칸반 업무 삭제 
 	@DeleteMapping("/{taskId}")
-	public ResponseEntity<String> deleteTask(@PathVariable("taskId") int taskId) {
+	public ResponseEntity<String> removeTask(@PathVariable("taskId") int taskId) {
 		//System.out.println("taskId : " + taskId);
 		taskService.removeTask(taskId);
 		//System.out.println("delete성공");

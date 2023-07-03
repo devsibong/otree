@@ -24,6 +24,10 @@ public class TaskService {
 		int taskId = -1;
 		try {
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
+			// task의 statusSeq를 셋팅
+			int newSeq = taskDao.selectMaxTaskSeq(task.getStatusId(), task.getWorkspaceId());
+			task.setTaskSeq(newSeq+1);
+			// task의 statusSeq 삽입
 			taskDao.insertTask(task);
 			taskId = task.getTaskId();
 		} catch (SQLException e) {
@@ -61,6 +65,16 @@ public class TaskService {
 		try {
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
 			taskDao.updateTask(task);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update)
+	public void modifyTaskSeq (Task task) {
+		try {
+			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
+			taskDao.updateTaskSeq(task);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
