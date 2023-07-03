@@ -31,10 +31,9 @@
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations" 
-			value="classpath*:com/otree/douzone/mapper/*.xml" />
+		<property name="mapperLocations" value="classpath*:com/otree/douzone/mapper/*.xml" />
+		<property name="configLocation" value="classpath:/mybatisConfig.xml"></property>
 	</bean>
-
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactoryBean" />
@@ -50,6 +49,9 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	
+	
 	
 		
 </beans>
