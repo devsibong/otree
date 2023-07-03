@@ -52,7 +52,8 @@ public class WorkspaceRestController {
 	public ResponseEntity<Map<String,String>> updateWorkspace(@PathVariable("workspaceId") int workspaceId, @RequestBody Workspace changedWorkspace) {
 		Workspace workspace = new Workspace();
 		workspace = workspaceService.getWorkspaceById(workspaceId);
-		workspace.setWorkspaceName(changedWorkspace.getWorkspaceName());
+		if(changedWorkspace.getWorkspaceName() != null ) workspace.setWorkspaceName(changedWorkspace.getWorkspaceName());
+		if(changedWorkspace.getDescription() != null) workspace.setDescription(changedWorkspace.getDescription());
 		workspaceService.modifyWorkspace(workspace);
 		Map<String, String> response = new HashMap<>();
 		response.put("message", "success");

@@ -24,11 +24,10 @@
 					<div class="mt-5">
 						<h2>프로젝트 개요 <span>
 						<a href="#" id="modifyDescriptionIcon"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a>
-						<a href="#" id="modifyConfirmIcon" class="d-none"><i class="bi bi-check2-square fs-4 text-secondary"></i></a>
-						
+						<a href="#" id="modifyDescriptionConfirmIcon" class="d-none"><i class="bi bi-check2-square fs-4 text-secondary"></i></a>
 						</span></h2>
-						<p>${selectedWorkspace.description}</p>
-						<input id="modifyDescription" class="form-control d-none"></input>
+						<p id="workspaceDescription" class="text-start">${selectedWorkspace.description}</p>
+						<input id="modifyDescription" class="form-control d-none" type="text"></input>
 					</div>
 
 					<!-- 멤버 -->

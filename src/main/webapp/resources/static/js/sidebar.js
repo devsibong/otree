@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-	const bsOffcanvas = new bootstrap.Offcanvas('#todoOffcanvas');
-	const toast = document.getElementById('liveToast');
+	let bsOffcanvas = new bootstrap.Offcanvas('#todoOffcanvas');
+	let toast = document.getElementById('liveToast');
 	let todoActive = 0;
 	
 	document.getElementById('todo').addEventListener('click', function (event) {
