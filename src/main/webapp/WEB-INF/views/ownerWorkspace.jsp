@@ -33,7 +33,7 @@
 					<!-- 멤버 -->
 					<div class="mt-5">
 						<h2>멤버
-							<span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span>
+							<span><a href="#" id="addMemberIcon"><i class="bi bi-plus-lg fs-4 text-secondary"></i></a></span>
 						</h2>
 						<div class="row">
 							<c:forEach var="teamUser" items="${teamUserList}">
@@ -47,9 +47,12 @@
 												<div class="col ms-2">
 													<div class="d-flex justify-content-between">
 														<h5 class="card-title">${teamUser.name}</h5>
-														<c:if test="${teamUser.userId eq owner.userId}">
-							                                <p class="badge text-bg-primary">Owner</p>
-							                            </c:if>
+														<div class="justify-content-end">
+															<c:if test="${teamUser.userId eq owner.userId}">
+								                                <p class="badge text-bg-primary">Owner</p>
+								                            </c:if>
+								                            <a href="#" id="removeMemberIcon"><i class="bi bi-trash-fill text-primary"></i></a>
+								                        </div>
 													</div>
 													<p class="card-text">${teamUser.email}</p>
 												</div>
@@ -193,6 +196,67 @@
 			</main>
 		</div>
 	</section>
+	
+	
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="memberOffcanvas" data-bs-backdrop="false" style="margin-top: 65px;">
+		<div class="offcanvas-header">
+		    <h5 class="offcanvas-title" id="offcanvasRightLabel">새 멤버 추가</h5>
+		    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="row">
+				<div class="col-3">
+					<input class="form-control" placeholder="이름"></input>
+				</div>
+				<div class="col-9">
+					<input class="form-control" id="memberSerch" placeholder="이름으로 검색하세요..."></input>
+				</div>
+			</div>
+			
+			
+			
+			<div class="card border-green-200 shadow-sm mt-3">
+				<div class="card-body p-3">
+					<div class="row">
+						<div class="col-3">
+							<img src="${pageContext.request.contextPath}/resources/static/image/icon/person-circle.svg" alt="userIcon">
+						</div>
+						<div class="col ms-2">
+							<div class="d-flex justify-content-between">
+								<h5 class="card-title">Name</h5>
+								<div class="justify-content-end">
+		                            <a href="#" id="removeMemberIcon"><i class="bi bi-plus-lg text-primary"></i></a>
+		                        </div>
+							</div>
+							<p class="card-text">dddd@com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card border-green-200 shadow-sm mt-3">
+				<div class="card-body p-3">
+					<div class="row">
+						<div class="col-3">
+							<img src="${pageContext.request.contextPath}/resources/static/image/icon/person-circle.svg" alt="userIcon">
+						</div>
+						<div class="col ms-2">
+							<div class="d-flex justify-content-between">
+								<h5 class="card-title">Name</h5>
+								<div class="justify-content-end">
+		                            <a href="#" id="removeMemberIcon"><i class="bi bi-plus-lg text-primary"></i></a>
+		                        </div>
+							</div>
+							<p class="card-text">dddd@com</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
