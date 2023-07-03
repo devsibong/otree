@@ -54,10 +54,16 @@ public class TeamRoleRestController {
 	// 워크스페이스 팀원 리스트 조회
 	@GetMapping("/{workspaceId}")
 	public ResponseEntity<List<WorkspaceTeamUser>> getWorkspaceTeamList (@PathVariable("workspaceId") int workspaceId) {
-		System.out.println("workspaceId : " + workspaceId);
 		List<WorkspaceTeamUser> workspaceTeamList = teamRoleService.getWorkspaceTeamList(workspaceId);
-		System.out.println("select성공 : "+ workspaceTeamList);
+		//System.out.println("select성공 : "+ workspaceTeamList);
 		return ResponseEntity.status(HttpStatus.OK).body(workspaceTeamList);
+	}
+	
+	// 워크스페이스 팀원 삭제(추방)
+	@DeleteMapping("/{workspaceId}")
+	public ResponseEntity<String> removeTeamRole(@PathVariable("workspaceId") int workspaceId, int userId) {
+		teamRoleService.removeUser(workspaceId, userId);
+		return ResponseEntity.status(HttpStatus.OK).body("delete success");
 	}
 	
 }

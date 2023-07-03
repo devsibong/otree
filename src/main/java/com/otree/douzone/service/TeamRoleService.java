@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.otree.douzone.dao.TeamRoleDao;
+import com.otree.douzone.dao.WorkspaceDao;
 import com.otree.douzone.dto.TeamRole;
 import com.otree.douzone.dto.WorkspaceTeamUser;
 
@@ -54,5 +55,15 @@ public class TeamRoleService {
 		return workspaceTeamList;
 	}
 	
+	// 특정 워크스페이스 특정 유저 정보 삭제 : 워크스페이스 강퇴
+	public void removeUser (int workspaceId, int userId) {
+		int result = 0;
+		try {
+			TeamRoleDao teamRoleDao = sqlsession.getMapper(TeamRoleDao.class);
+			result = teamRoleDao.deleteTeamRole(workspaceId, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
