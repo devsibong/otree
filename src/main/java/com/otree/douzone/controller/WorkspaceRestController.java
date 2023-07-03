@@ -53,7 +53,7 @@ public class WorkspaceRestController {
 	}
 	
 	// 특정 워크스페이스 삭제 
-	@DeleteMapping("/{workspaceId}")
+	@DeleteMapping("/{workspaceId}") // [수정하기] : 함수명 removeWorkspace로 변경
 	public ResponseEntity<String> deleteWorkspace(@PathVariable("workspaceId") int workspaceId) {
 		workspaceService.removeWorkspace(workspaceId);
 		return ResponseEntity.status(HttpStatus.OK).body("delete success");

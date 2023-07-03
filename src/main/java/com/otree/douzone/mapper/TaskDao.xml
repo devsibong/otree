@@ -14,12 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{taskId}, #{workspaceId}, TO_DATE(#{startDate}, 'RR/MM/DD'), TO_DATE(#{endDate}, 'RR/MM/DD'), #{taskContent}, #{taskSeq}, #{statusId}, SYSDATE)
 	</insert>
 
-	<!-- 워크스페이스의 전체 칸반 업무 목록 조회 -->
+	<!-- 워크스페이스의 전체 칸반 업무 리스트 조회 -->
 	<select id="selectTaskList" resultType="com.otree.douzone.dto.TaskWithStatus">
 		SELECT t.taskId taskId, t.workspaceId workspaceId, t.startDate startDate, t.endDate endDate, t.taskContent taskContent, t.taskSeq taskSeq, t.statusId statusId, ts.status status, t.createdAt createdAt
 		FROM TASK t JOIN TASKSTATUS ts
 		ON t.statusId = ts.statusId
 		WHERE t.workspaceId = #{workspaceId}
+		ORDER BY statusId, taskSeq
 	</select>
 	
 	<!-- 특정 칸반 업무 정보 조회 -->
@@ -31,10 +32,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE t.taskId = #{taskId} 
 	</select>
 	
-	<!-- 특정 칸반 업무 정보 수정 -->
+	<!-- 특정 칸반 업무 정보 수정 : taskContent, startDate, endDate  -->
 	<update id="updateTask" >
 		UPDATE TASK
-		SET taskContent = #{taskContent}, TO_DATE(#{startDate}, 'RR/MM/DD'), TO_DATE(#{endDate}, 'RR/MM/DD'), taskSeq = #{taskSeq}, statusId = #{statusId}
+		SET taskContent = #{taskContent}, TO_DATE(#{startDate}, 'RR/MM/DD'), TO_DATE(#{endDate}, 'RR/MM/DD')
 		WHERE taskId = #{taskId}
 	</update>
 	
