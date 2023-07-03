@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE boardId = #{boardId}
 	</select> 
 	
+	<select id="getComment" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
+	SELECT commentId, boardComment, boardId ,userId 
+	FROM boardcomment
+	WHERE commentId = #{commentId}
+	</select> 
+	
 
 	<insert id ="insertComment" parameterType="com.otree.douzone.dto.BoardComment">
 	INSERT INTO boardcomment(commentId,boardComment,boardId,userId) 
@@ -27,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<delete id="deleteComment" parameterType="int">
 	DELETE FROM boardcomment
-	WHERE boardId = #{boardId}
+	WHERE commentId = #{commentId}
 	</delete>
 </mapper>
 

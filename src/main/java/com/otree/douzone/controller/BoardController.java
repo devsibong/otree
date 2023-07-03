@@ -56,7 +56,6 @@ public class BoardController {
 		model.addAttribute("boardDetail",board);
 		model.addAttribute("boardFileList", boardFile);
 		model.addAttribute("boardCommentList",boardCommentList);
-		System.out.println(boardId);
 		return "boarddetail"; 
 	}
 	
