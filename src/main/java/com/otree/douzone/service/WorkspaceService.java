@@ -25,7 +25,6 @@ public class WorkspaceService {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceDao.insertWorkspace(workspace);
 			workspaceId = workspace.getWorkspaceId();
-			System.out.println("WorkspaceService:inserted-workspaceId "+workspaceId);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +35,6 @@ public class WorkspaceService {
 	public List<Workspace> getWorkspaceList(int userId) {
 		List<Workspace> workspaceList = null;
 		try {
-			System.out.println("Workspace Service 진입");
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceList = workspaceDao.selectWorkspaceList(userId);
 		} catch (Exception e) {
@@ -76,7 +74,6 @@ public class WorkspaceService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("service result : "+ result);
 	}
 
 }
