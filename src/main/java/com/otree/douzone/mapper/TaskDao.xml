@@ -32,10 +32,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE t.taskId = #{taskId} 
 	</select>
 	
-	<!-- 특정 칸반 업무 정보 수정 : taskContent, startDate, endDate  -->
+	<!-- 특정 칸반 업무 수정 : taskContent, startDate, endDate  -->
 	<update id="updateTask" >
 		UPDATE TASK
 		SET taskContent = #{taskContent}, startDate = TO_DATE(#{startDate}, 'RR/MM/DD'), endDate = TO_DATE(#{endDate}, 'RR/MM/DD')
+		WHERE taskId = #{taskId}
+	</update>
+	
+	<!-- 특정 칸반 업무 정보 수정 : taskSeq, statusId  -->
+	<update id="updateTaskSeq" >
+		UPDATE TASK
+		SET taskSeq = #{taskSeq}, statusId = #{statusId}
 		WHERE taskId = #{taskId}
 	</update>
 	
@@ -45,8 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE taskId = #{taskId}
 	</delete>	
 
-	<!-- 업무시퀀스 수정 -->
+	<!-- 업무시퀀스 수정 : max값 얻기
 	<select id="selectMaxTaskSeq" resultType="int">
 		SELECT MAX(TASKSEQ) FROM TASK WHERE STATUSID = #{param1} AND WORKSPACEID = #{param2}
-	</select>
+	</select> -->
 </mapper>

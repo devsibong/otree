@@ -71,10 +71,12 @@ public class TaskService {
 	}
 	
 	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update)
-	public void modifyTaskSeq (Task task) {
+	public void modifyTaskSeq (List<Task> taskList) {
 		try {
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
-			taskDao.updateTaskSeq(task);
+			for(Task task : taskList) {
+				taskDao.updateTaskSeq(task);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

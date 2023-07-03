@@ -70,11 +70,10 @@ public class TaskRestController {
 //	@PutMapping
 //	public ResponseEntity<String> modifyTaskSeq(@RequestBody List<Task> taskList ) {
 //		System.out.println("taskList : " + taskList);
-//		taskService.modifyTaskSeq(task);
-//		System.out.println("update성공");
+//		taskService.modifyTaskSeq(taskList);
+//		
 //		return ResponseEntity.status(HttpStatus.OK).body("update success");
 //	}
-	//--------------------------------------------------------------------------------------
 	
 	// 특정 칸반 업무 삭제 
 	@DeleteMapping("/{taskId}")
