@@ -1,5 +1,6 @@
 package com.otree.douzone.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,13 +54,26 @@ public class TeamRoleRestController {
 		return ResponseEntity.ok(response);
 	}
 	
-	// 워크스페이스 팀원 리스트 조회
 	@GetMapping("/{workspaceId}")
-	public ResponseEntity<List<WorkspaceTeamUser>> getWorkspaceTeamList (@PathVariable("workspaceId") int workspaceId) {
-		List<WorkspaceTeamUser> workspaceTeamList = teamRoleService.getWorkspaceTeamList(workspaceId);
-		//System.out.println("select성공 : "+ workspaceTeamList);
-		return ResponseEntity.status(HttpStatus.OK).body(workspaceTeamList);
+	public ResponseEntity<Map<String,Object>> getWorkspaceTeamList (@PathVariable("workspaceId") int workspaceId) {
+	    List<WorkspaceTeamUser> workspaceTeamList = teamRoleService.getWorkspaceTeamList(workspaceId);
+	    WorkspaceTeamUser owner = null;
+	    for(WorkspaceTeamUser user : workspaceTeamList) {
+	        if(user.getRoleId()==3) {
+	            owner = user;
+	            break;
+	        }
+	    }
+	    List<WorkspaceTeamUser> memberList = new ArrayList<>(workspaceTeamList);
+	    memberList.remove(owner);
+
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("owner", owner);
+	    response.put("memberList", memberList);
+
+	    return ResponseEntity.ok(response);
 	}
+
 	
 	// 워크스페이스 팀원 삭제(추방)
 	@DeleteMapping("/{workspaceId}")
