@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.dto.TeamRole;
 import com.otree.douzone.dto.WorkspaceTeamUser;
@@ -68,5 +70,33 @@ public class TeamRoleRestController {
 		response.put("message", "success");
 		return ResponseEntity.ok(response);
 	}
+	
+
+    @PostMapping("/{workspaceId}/search")
+    public ResponseEntity<Map<String,Object>> getMemberByName(@PathVariable int workspaceId, @RequestBody Map<String, String> requestBody) {
+    	String searchName = requestBody.get("searchKeyword");
+    	 List<OtreeUser> userList = memberService.getOtreeUserListByName(searchName, workspaceId);
+
+    	    ObjectMapper objectMapper = new ObjectMapper();
+    	    String json;
+    	    try {
+    	        json = objectMapper.writeValueAsString(userList);
+    	    } catch (JsonProcessingException e) {
+    	        // JSON 직렬화 오류 처리
+    	        e.printStackTrace();
+    	        // 에러 응답 반환
+    	        Map<String, Object> errorResponse = new HashMap<>();
+    	        errorResponse.put("message", "Error occurred during JSON serialization");
+    	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    	    }
+
+    	    Map<String, Object> response = new HashMap<>();
+    	    response.put("message", "success");
+    	    response.put("data", json);
+
+    	    return ResponseEntity.ok(response);
+    }
+	
+	
 	
 }

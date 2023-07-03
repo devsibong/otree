@@ -264,6 +264,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerWorkspace.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/todo.js"></script>
 </body>
 </html>
 
