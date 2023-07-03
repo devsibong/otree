@@ -9,14 +9,22 @@
 </div>
 <div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 vh-100 border border-green-300">
 	<div class="mt-5 mx-3">
-		<h2 class="mt-5">${selectedWorkspace.workspaceName}</h2>
-		<p class="text-end">
-			<span><a href="#"><i class="bi bi-pencil-square fs-7 text-secondary me-2"></i></a></span>
-			<span>owner : </span>
-			<span>${owner.name}</span>
-		</p>
+		<h2 class="mt-5">반갑습니다!</h2>
 	</div>
-	<ul class="nav nav-pills flex-column mb-auto mx-3">
+	
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">나의 할일</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+  	<div>할일 추가</div>
+  	<div>알마인드 과제</div>
+  	<div>알마인드 과제</div>
+  </div>
+  <ul class="nav nav-pills flex-column mb-auto mx-3 d-none">
 	    <li class="nav-item mt-2">
 	        <a class="nav-link ${pageType == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}">
 	 			<i class="bi bi-house-door-fill me-2"></i> <span class="fw-bold">대시보드</span></a>
@@ -37,20 +45,8 @@
 	        </a>
 	    </li>
 	</ul>
-	
-</div>
-
-<div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasRightLabel">나의 할일</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-  	<div>할일 추가</div>
-  	<div>알마인드 과제</div>
-  	<div>알마인드 과제</div>
-  </div>
 </div> 
+
 
 <!-- Modal -->
 <div class="modal fade position-fixed" id="createWorkspaceModal" tabindex="-1" aria-labelledby="createWorkspaceModalLabel" aria-hidden="true">

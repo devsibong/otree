@@ -28,27 +28,25 @@ public class BoardService {
 	
 	//(C)게시글 생성
 	public boolean createBoard(Board board) {
-		System.out.println("BoardService: "+board);
 		boolean result = false;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
 			boardDao.insertBoard(board);
-			System.out.println("확인 : "+board);
 			result = true;
 		} catch(SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();		
+			System.out.println(e1.getMessage());
 		}
 		return result;
 	}
 	
 	//(R) 페이징 처리 조회에 필요한 method 
-	public int getBoardCount(String field, String query) {
+	public int getBoardCount() {
 		int result = 0;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			result = boardDao.getBoardCount(field, query);
+			result = boardDao.getBoardCount();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e1) {
@@ -74,7 +72,7 @@ public class BoardService {
 	}
 	
 	
-	//(R) 첫화면 가져오기
+	//(R) 페이징 안된거 가져오기
 	public List<Board> getBoardList() {
 		List<Board> boardList = null;
 		try {

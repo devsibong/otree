@@ -10,12 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT boardId_seq.nextval FROM dual
 		</selectKey> -->
 		INSERT INTO board (boardId, userId, workspaceId, boardTitle, boardContent, createdAt)
-		VALUES (boardId_seq.nextval, #{userId}, #{workspaceId}, #{boardTitle}, #{boardContent}, SYSDATE)
+		VALUES (boardId_seq.nextval, 1, 2, #{boardTitle}, #{boardContent}, SYSDATE)
 	</insert>
 	
 	<!-- 게시글 개수 가져오기 페이징에 필요한 듯 -->
 	<select id="getBoardCount" resultType="int">
-	SELECT COUNT(*) CNT FROM board WHERE ${param1} LIKE '%${param2}%'
+	SELECT COUNT(*) FROM board
 	</select>
 	
 	
@@ -35,7 +35,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 그냥 전체 가져오기 -->
 	<select id ="getBoardList" resultType="com.otree.douzone.dto.Board">
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt FROM board
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	FROM board
+	ORDER BY boardId DESC
+	
 	</select>
 
 
@@ -60,15 +63,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 제목과 컨텐츠 업데이트가능. -->
-	<update id="updateEmp" parameterType="com.otree.douzone.dto.Board">
+	<update id="updateBoard" parameterType="com.otree.douzone.dto.Board">
 	UPDATE board
 	SET boardTitle = #{boardTitle}, boardContent = #{boardContent}
 	WHERE boardId = #{boardId}
 	</update>
 	
+	<!--  
 	<delete id="deleteBoard" parameterType="int">
 	DELETE FROM board
 	WHERE boardId = #{boardId}
+	</delete>
+	-->
+	
+	<delete id="deleteBoard" parameterType="int">
+    BEGIN
+    	DELETE FROM boardcomment WHERE boardId = #{boardId};
+        DELETE FROM boardfile WHERE boardId = #{boardId};
+        DELETE FROM board WHERE boardId = #{boardId};
+    END;
 	</delete>
 	
 

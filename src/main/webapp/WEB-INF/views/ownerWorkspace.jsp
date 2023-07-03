@@ -22,13 +22,15 @@
 				<div class="container mt-5">
 					<!-- 개요 -->
 					<div class="mt-5">
-						<h2>프로젝트 개요</h2>
+						<h2>프로젝트 개요 <span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span></h2>
 						<p>${selectedWorkspace.description}</p>
 					</div>
 
 					<!-- 멤버 -->
 					<div class="mt-5">
-						<h2>멤버</h2>
+						<h2>멤버
+							<span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span>
+						</h2>
 						<div class="row">
 							<c:forEach var="teamUser" items="${teamUserList}">
 								<div class="col-3">
@@ -100,7 +102,9 @@
 					
 						<!-- 마일스톤 -->
 						<div class="col-6">
-							<h2>마일스톤</h2>
+							<h2>마일스톤
+								<span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span>
+							</h2>
 							<div class="row text-center">
 								<div class="col">
 									<div class="card border-green-100">

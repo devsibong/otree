@@ -15,13 +15,20 @@
 <div class="modal fade custom-modal position-fixed" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog custom-size">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header border-bottom-0">
 				<button type="button" class="btn-close" data-bs-dismiss="modal"
 					aria-label="Close"></button>
 			</div>
 			<div class="modal-body text-center">
-				<div class="fs-4">홍길동</div>
-				<div class="fs-7">aaaa@gmail.com</div>
+				<div class="d-flex justify-content-center">
+					<div class="spinner-border text-primary" role="status" id="spinner">
+							<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+				<div class="fs-4" id="userName">
+					
+				</div>
+				<div class="fs-7" id="email"></div>
 				<div class="justify-content-center d-flex">
 					<div>프로필 편집</div>
 					<div>|</div>

@@ -1,5 +1,8 @@
 package com.otree.douzone.controller;
 
+import java.util.List;
+import java.util.Locale;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -10,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.otree.douzone.dto.OtreeUser;
+import com.otree.douzone.dto.Workspace;
 import com.otree.douzone.service.MemberService;
+import com.otree.douzone.service.WorkspaceService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
+    private final WorkspaceService workspaceService;
     private final HttpSession session;
     
     @GetMapping("/login")
@@ -28,16 +34,20 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute OtreeUser otreeUser, Model model) {
+    	String path = "login";
     	String email = otreeUser.getEmail();
     	String password = otreeUser.getPassword();
         int isUser = memberService.login(email, password);
         if (isUser != -1) {
         	session.setAttribute("userId", isUser);
-            return "redirect:/workspace";
+        	List<Workspace> workspaceList =  workspaceService.getWorkspaceList(isUser);
+        	if (workspaceList != null && !workspaceList.isEmpty()) path = "redirect:/workspace/" + workspaceList.get(0).getWorkspaceId();
+            else path = "redirect:/workspace/empty";
         } else {
             model.addAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
-            return "login";
+            path = "login";
         }
+        return path;
     }
     
     @GetMapping("/logout")
@@ -45,4 +55,15 @@ public class MemberController {
     	session.invalidate();
         return "redirect:/login";
     }
+    
+    @GetMapping("/register")
+	public String register(Locale locale, Model model) {
+		return "register";
+	}
+    
+    @PostMapping("/register")
+	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
+    	memberService.createOtreeUser(otreeUser);
+		return "login";
+	}
 }

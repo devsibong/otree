@@ -38,5 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    WHERE email = #{email}
 	</select>
 	
-	
+	<select id="getOtreeUserById" parameterType="int" resultType="com.otree.douzone.dto.OtreeUser">
+	    SELECT userId, name, password, email, profileSrc
+	    FROM OTREEUSER
+	    WHERE userId = #{userId}
+	</select>
 </mapper>
