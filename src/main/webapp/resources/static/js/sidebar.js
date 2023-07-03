@@ -1,19 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-	let bsOffcanvas = new bootstrap.Offcanvas('#todoOffcanvas');
 	let toast = document.getElementById('liveToast');
-	let todoActive = 0;
-	
-	document.getElementById('todo').addEventListener('click', function (event) {
-		event.preventDefault();
-		if (todoActive == 0) {
-			this.classList.add('active');
-			todoActive = 1;
-		} else {
-			this.classList.remove('active');
-			todoActive = 0
-		}
-		bsOffcanvas.toggle();
-	});
 
 	const workspaceModal = new bootstrap.Modal(document.getElementById('createWorkspaceModal'), {
 		backdrop: false
@@ -60,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				document.getElementById('workspaceName').classList.remove('d-none');
 				document.getElementById('workspaceNameModify').classList.add('d-none');
 				document.getElementById('modifyWorkspaceName').classList.remove('d-none');
-				const toastshow = new bootstrap.Toast(toast);
+				let toastshow = new bootstrap.Toast(toast);
 				toastshow.show();
 			})
 			.catch(error => {

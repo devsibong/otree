@@ -51,7 +51,7 @@
 															<c:if test="${teamUser.userId eq owner.userId}">
 								                                <p class="badge text-bg-primary">Owner</p>
 								                            </c:if>
-								                            <a href="#" id="removeMemberIcon"><i class="bi bi-trash-fill text-primary"></i></a>
+								                            <a href="#" class="removeMemberIcon" id="${teamUser.userId}"><i class="bi bi-trash-fill text-primary"></i></a>
 								                        </div>
 													</div>
 													<p class="card-text">${teamUser.email}</p>
@@ -264,6 +264,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerWorkspace.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/todo.js"></script>
 </body>
 </html>
 
