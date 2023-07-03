@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				document.getElementById('workspaceDescription').classList.remove('d-none');
 				document.getElementById('modifyDescriptionConfirmIcon').classList.add('d-none');
 				document.getElementById('modifyDescriptionIcon').classList.remove('d-none');
-				const toastshow = new bootstrap.Toast(toast);
+				let toastshow = new bootstrap.Toast(toast);
 				toastshow.show();
 			})
 			.catch(error => {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById('memberSerch').addEventListener('keyup', function (event) {
 		if (event.key === 'Enter') {
 			let searchKeyword = document.getElementById('memberSerch').value;
-			
+
 			fetch('/douzone/workspace/' + selectedWorkspaceId, {
 				method: "PUT",
 				headers: {
@@ -69,10 +69,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
+	let removeMemberIcons = document.getElementsByClassName('removeMemberIcon');
+	Array.from(removeMemberIcons).forEach(function (icon) {
+		icon.addEventListener('click', function (event) {
+			event.preventDefault();
+			let removeId = icon.id;
+			fetch('/douzone/teamrole/' + selectedWorkspaceId, {
+				method: "DELETE",
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ removeId: removeId }),
+			})
+				.then(response => response.json())
+				.then(data => {
+					let card = icon.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+					card.classList.add('d-none');
+					let toastshow = new bootstrap.Toast(toast);
+					toastshow.show();
+				})
+				.catch(error => {
+					console.log(error);
+				});
+		});
+	});
 
-
-
-	
-	
 
 });

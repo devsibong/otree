@@ -1,6 +1,8 @@
 package com.otree.douzone.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,14 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.otree.douzone.dto.OtreeUser;
 import com.otree.douzone.dto.TeamRole;
-import com.otree.douzone.dto.Workspace;
 import com.otree.douzone.dto.WorkspaceTeamUser;
 import com.otree.douzone.service.MemberService;
 import com.otree.douzone.service.TeamRoleService;
@@ -61,9 +61,12 @@ public class TeamRoleRestController {
 	
 	// 워크스페이스 팀원 삭제(추방)
 	@DeleteMapping("/{workspaceId}")
-	public ResponseEntity<String> removeTeamRole(@PathVariable("workspaceId") int workspaceId, int userId) {
+	public ResponseEntity<Map<String,String>> removeTeamRole(@PathVariable("workspaceId") int workspaceId, @RequestBody Map<String, Integer> requestBody) {
+		int userId = requestBody.get("removeId");
 		teamRoleService.removeUser(workspaceId, userId);
-		return ResponseEntity.status(HttpStatus.OK).body("delete success");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "success");
+		return ResponseEntity.ok(response);
 	}
 	
 }
