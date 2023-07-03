@@ -1,6 +1,8 @@
 package com.otree.douzone.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,13 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.otree.douzone.dto.Emp;
 import com.otree.douzone.dto.Workspace;
 import com.otree.douzone.service.WorkspaceService;
 
@@ -45,11 +45,16 @@ public class WorkspaceRestController {
 //		return ResponseEntity.status(HttpStatus.OK).body(workspace);
 //	}
 	
-	// 특정 워크스페이스 정보 수정
-	@PutMapping
-	public ResponseEntity<String> updateWorkspace(@RequestBody Workspace workspace) {
+	@PutMapping("/{workspaceId}")
+	public ResponseEntity<Map<String,String>> updateWorkspace(@PathVariable("workspaceId") int workspaceId, @RequestBody Workspace changedWorkspace) {
+		Workspace workspace = new Workspace();
+		workspace = workspaceService.getWorkspaceById(workspaceId);
+		if(changedWorkspace.getWorkspaceName() != null ) workspace.setWorkspaceName(changedWorkspace.getWorkspaceName());
+		if(changedWorkspace.getDescription() != null) workspace.setDescription(changedWorkspace.getDescription());
 		workspaceService.modifyWorkspace(workspace);
-		return ResponseEntity.status(HttpStatus.OK).body("update success");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "success");
+		return ResponseEntity.ok(response);
 	}
 	
 	// 특정 워크스페이스 삭제 
