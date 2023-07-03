@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("emailConfirm").addEventListener("click", function (event) {
 		event.preventDefault();
-		if (emailValidation()==true) {
+		if (emailValidation() == true) {
 			let emailInput = document.getElementById("email");
 			let emailValue = emailInput.value;
 			showSpinner();
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						event.preventDefault();
 						handleVerification(data);
 					});
+					
 				})
 				.catch(error => {
 					console.log(error);
@@ -29,11 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	});
 
-	document.getElementById("register").addEventListener("click", function(event) {
+	
+
+	document.getElementById("register").addEventListener("click", function (event) {
 		event.preventDefault();
 		let password = document.getElementById("password").value;
 		let passwordConfirm = document.getElementById("passwordConfirm").value;
-		if(password==passwordConfirm) {
+		if (password == passwordConfirm) {
 			document.getElementById("verificationPassword").classList.add("d-none");
 			document.getElementById("registerForm").submit();
 		} else {
@@ -67,14 +70,14 @@ function emailValidation() {
 function handleVerification(data) {
 	let verificationInput = document.getElementById("verificationInput").value;
 	let verificationNumberArea = document.getElementById("verificationNumberArea");
-	if (parseInt(data) == parseInt(verificationInput)) {
+	if (parseInt(data) === parseInt(verificationInput)) {
 		verificationNumberArea.classList.remove("d-none");
 		let emailVerificationButton = document.getElementById("emailVerification");
 		emailVerificationButton.textContent = "완료됨";
 		emailVerificationButton.setAttribute('disabled', '');
 	} else {
 		verificationNumberArea.classList.remove("d-none");
-		document.getElementById("emailVerifyMessage").textContent("인증 번호를 올바르게 입력하세요.");
+		document.getElementById("emailVerifyMessage").textContent = "인증 번호를 올바르게 입력하세요.";
 	}
 }
 
