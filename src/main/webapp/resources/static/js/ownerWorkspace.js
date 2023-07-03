@@ -65,6 +65,27 @@ document.addEventListener("DOMContentLoaded", function () {
 						newCard.querySelector("[name='memberEmail']").textContent = member.email;
 						newCard.querySelector("[name='memberId']").id = member.userId;
 
+						let plusMemberIcon = newCard.querySelector("#plusMemberIcon");
+
+						plusMemberIcon.addEventListener("click", function () {
+							let memberId = newCard.querySelector("[name='memberId']").id;
+							fetch('/douzone/teamrole/' + selectedWorkspaceId, {
+								method: "POST",
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								body: JSON.stringify({ userId: memberId }),
+							})
+								.then(response => response.json())
+								.then(data => {
+									
+									let toastshow = new bootstrap.Toast(toast);
+									toastshow.show();
+								})
+								.catch(error => {
+									console.log(error);
+								});
+						});
 						let resultArea = document.getElementById("resultArea");
 						resultArea.appendChild(newCard);
 					});
