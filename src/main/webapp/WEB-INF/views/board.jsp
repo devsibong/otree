@@ -42,7 +42,7 @@
 								<c:forEach var="board" items="${boardList}">
 									<tr class="vh-5">
 										<th scope="row"><c:out value="${board.boardId}" /></th>
-										<td class="text-start"><a href="/douzone/getBoardDetail?boardId=${board.boardId}"><c:out value="${board.boardTitle}"/></a></td>
+										<td class="text-start"><a href="/douzone/workspace/${board.workspaceId}/getBoardDetail?boardId=${board.boardId}"><c:out value="${board.boardTitle}"/></a></td>
 										<td>${board.userId}</td>
 										<td><c:out value="${board.createdAt}" /></td>
 										<td><c:out value="${board.createdAt}" /></td>
@@ -59,7 +59,7 @@
 							</tbody>
 						</table>
 					</div>
-					<button onclick="window.location.href='/douzone/createBoard'">글쓰기</button>
+					<button onclick="window.location.href='/douzone/workspace/${workspaceId}/createBoard'">글쓰기</button>
 				</div>
 			</main>
 		</div>

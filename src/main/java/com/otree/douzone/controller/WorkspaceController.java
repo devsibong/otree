@@ -78,30 +78,30 @@ public class WorkspaceController {
 		return "kanban";
 	}
 	
-	@GetMapping("/{workspaceId}/board")
-	public String workspaceBoard(@PathVariable("workspaceId") int workspaceId, Model model) {
-		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
-		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
-		WorkspaceTeamUser owner = null;
-		for(WorkspaceTeamUser user : teamUserList) {
-			if(user.getRoleId()==3) {
-				owner = user;
-				break;
-			}
-		}
-		model.addAttribute("selectedWorkspace", selectedWorkspace);
-		model.addAttribute("teamUserList", teamUserList);
-		model.addAttribute("owner", owner);
-		model.addAttribute("pageType", "board");
-		return "board";
-	}
+//	@GetMapping("/{workspaceId}/board")
+//	public String workspaceBoard(@PathVariable("workspaceId") int workspaceId, Model model) {
+//		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+//		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+//		WorkspaceTeamUser owner = null;
+//		for(WorkspaceTeamUser user : teamUserList) {
+//			if(user.getRoleId()==3) {
+//				owner = user;
+//				break;
+//			}
+//		}
+//		model.addAttribute("selectedWorkspace", selectedWorkspace);
+//		model.addAttribute("teamUserList", teamUserList);
+//		model.addAttribute("owner", owner);
+//		model.addAttribute("pageType", "board");
+//		return "board";
+//	}
 	
 	@GetMapping("/empty")
 	public String emptyWorkspace() {
 		return "empty";
 	}
 	
-	//워크스페이스 생성
+	//�썙�겕�뒪�럹�씠�뒪 �깮�꽦
 	@PostMapping("")
 	public String createWorkspace(@ModelAttribute Workspace workspace, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 	    HttpSession session = request.getSession();
