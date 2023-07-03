@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				document.getElementById('workspaceName').classList.remove('d-none');
 				document.getElementById('workspaceNameModify').classList.add('d-none');
 				document.getElementById('modifyWorkspaceName').classList.remove('d-none');
-				const toastshow = new bootstrap.Toast(toast);
+				let toastshow = new bootstrap.Toast(toast);
 				toastshow.show();
 			})
 			.catch(error => {
