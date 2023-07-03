@@ -89,11 +89,11 @@ public class MemberService {
 		return result;
 	}
 	
-	public List<OtreeUser> getOtreeUserListByName(String name) {
+	public List<OtreeUser> getOtreeUserListByName(String name, int workspaceId) {
 		List<OtreeUser> userList = null;
 		try {
 			OtreeUserDao userDao = sqlSession.getMapper(OtreeUserDao.class);
-			userList = userDao.searchOtreeUserByNameFilter(name); 
+			userList = userDao.searchOtreeUserByNameFilter(name, workspaceId); 
 			//userList = userDao.searchOtreeUserByName(name);
 		} catch (SQLException e) {
 			e.printStackTrace();

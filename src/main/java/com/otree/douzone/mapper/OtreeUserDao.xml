@@ -33,11 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				(select o.userId userId, o.name name, o.email email, o.profileSrc profileSrc, 
 				    ow.userId userId2, ow.workspaceId workspaceId, ow.roleId roleId
 				from OTREEUSER o 
-				    left outer join (select * from OTREEUSER_WORKSPACE where workspaceId = 1) ow
+				    left outer join (select * from OTREEUSER_WORKSPACE where workspaceId = #{param2}) ow
 				ON o.userId = ow.userId
 				) ji
 				WHERE ji.USERID2 IS NULL) aa
-	    WHERE aa.name LIKE '%' || #{name} || '%'
+	    WHERE aa.name LIKE '%' || #{param1} || '%'
 	</select>
 	
 	<select id="searchOtreeUserByName" parameterType="String" resultType="com.otree.douzone.dto.OtreeUser">
