@@ -59,4 +59,11 @@ public class TeamRoleRestController {
 		return ResponseEntity.status(HttpStatus.OK).body(workspaceTeamList);
 	}
 	
+	// 워크스페이스 팀원 삭제(추방)
+	@DeleteMapping("/{workspaceId}")
+	public ResponseEntity<String> removeTeamRole(@PathVariable("workspaceId") int workspaceId, int userId) {
+		teamRoleService.removeUser(workspaceId, userId);
+		return ResponseEntity.status(HttpStatus.OK).body("delete success");
+	}
+	
 }
