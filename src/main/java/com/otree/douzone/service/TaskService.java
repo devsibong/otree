@@ -26,7 +26,6 @@ public class TaskService {
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
 			taskDao.insertTask(task);
 			taskId = task.getTaskId();
-			System.out.println("TaskService:inserted-taskId "+taskId);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +36,6 @@ public class TaskService {
 	public List<TaskWithStatus> getTaskList(int workspaceId) {
 		List<TaskWithStatus> taskList = null;
 		try {
-			System.out.println("Task Service 진입");
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
 			taskList = taskDao.selectTaskList(workspaceId);
 		} catch (Exception e) {
@@ -77,7 +75,6 @@ public class TaskService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("service result : "+ result);
 	}
 
 }

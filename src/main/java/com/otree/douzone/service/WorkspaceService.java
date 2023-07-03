@@ -25,7 +25,6 @@ public class WorkspaceService {
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceDao.insertWorkspace(workspace);
 			workspaceId = workspace.getWorkspaceId();
-			System.out.println("WorkspaceService:inserted-workspaceId "+workspaceId);	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -36,7 +35,6 @@ public class WorkspaceService {
 	public List<Workspace> getWorkspaceList(int userId) {
 		List<Workspace> workspaceList = null;
 		try {
-			System.out.println("Workspace Service 진입");
 			WorkspaceDao workspaceDao = sqlsession.getMapper(WorkspaceDao.class);
 			workspaceList = workspaceDao.selectWorkspaceList(userId);
 		} catch (Exception e) {
@@ -76,20 +74,6 @@ public class WorkspaceService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("service result : "+ result);
 	}
-	
-	// 특정 워크스페이스 유저한명 추가
-	
-	
-	// 특정 워크스페이스 전체 유저 목록 조회
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 조회
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 수정
-	
-	
-	// 특정 워크스페이스 특정 유저 정보 삭제
+
 }

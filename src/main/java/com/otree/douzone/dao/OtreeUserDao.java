@@ -13,4 +13,5 @@ public interface OtreeUserDao {
     void updateOtreeUser(OtreeUser otreeUser) throws SQLException;
     void deleteOtreeUser(int userId) throws SQLException;
     List<OtreeUser> searchOtreeUserByName(String name) throws SQLException;
+    List<OtreeUser> searchOtreeUserByNameFilter(String name) throws SQLException;
 }

@@ -32,9 +32,7 @@ public class WorkspaceRestController {
 	// 유저의 전체 워크스페이스 목록 조회 
 	@GetMapping("/list/{userId}")
 	public ResponseEntity<List<Workspace>> getWorkspaceList (@PathVariable("userId") int userId) {
-		System.out.println("userId : " + userId);
 		List<Workspace> workspaceList = workspaceService.getWorkspaceList(userId);
-		System.out.println("select성공");
 		return ResponseEntity.status(HttpStatus.OK).body(workspaceList);
 	}
 	
@@ -50,18 +48,14 @@ public class WorkspaceRestController {
 	// 특정 워크스페이스 정보 수정
 	@PutMapping
 	public ResponseEntity<String> updateWorkspace(@RequestBody Workspace workspace) {
-		System.out.println("workspaceId : " + workspace.getWorkspaceId());
 		workspaceService.modifyWorkspace(workspace);
-		System.out.println("update성공");
 		return ResponseEntity.status(HttpStatus.OK).body("update success");
 	}
 	
 	// 특정 워크스페이스 삭제 
 	@DeleteMapping("/{workspaceId}")
 	public ResponseEntity<String> deleteWorkspace(@PathVariable("workspaceId") int workspaceId) {
-		System.out.println("workspaceId : " + workspaceId);
 		workspaceService.removeWorkspace(workspaceId);
-		System.out.println("delete성공");
 		return ResponseEntity.status(HttpStatus.OK).body("delete success");
 	}
 	
