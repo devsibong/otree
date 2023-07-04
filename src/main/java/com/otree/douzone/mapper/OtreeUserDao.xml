@@ -26,6 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE userId = #{userId}
 	</delete>
 	
+	<!-- 워크스페이스 팀원 초대 목록 : 이미 워크스페이스 멤버인 유저 제외한 userList -->
+	<select id="searchOtreeUserByNameFilter" parameterType="String" resultType="com.otree.douzone.dto.OtreeUser">
+	    SELECT aa.userId userId, aa.name name, aa.email email, aa.profileSrc profileSrc
+	    FROM (SELECT ji.userId, ji.name, ji.email, ji.profileSrc, ji.userId2, ji.workspaceId, ji.roleId FROM 
+				(select o.userId userId, o.name name, o.email email, o.profileSrc profileSrc, 
+				    ow.userId userId2, ow.workspaceId workspaceId, ow.roleId roleId
+				from OTREEUSER o 
+				    left outer join (select * from OTREEUSER_WORKSPACE where workspaceId = #{param2}) ow
+				ON o.userId = ow.userId
+				) ji
+				WHERE ji.USERID2 IS NULL) aa
+	    WHERE aa.name LIKE '%' || #{param1} || '%'
+	</select>
+	
 	<select id="searchOtreeUserByName" parameterType="String" resultType="com.otree.douzone.dto.OtreeUser">
 	    SELECT userId, name, password, email, profileSrc
 	    FROM OTREEUSER
@@ -43,7 +57,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    FROM OTREEUSER
 	    WHERE userId = #{userId}
 	</select>
-	
-	
-	
 </mapper>

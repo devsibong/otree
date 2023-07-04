@@ -1,4 +1,4 @@
-package com.otree.douzone.controller;
+ package com.otree.douzone.controller;
 
 import java.util.List;
 
@@ -53,7 +53,10 @@ public class WorkspaceController {
 		model.addAttribute("owner", owner);
 		model.addAttribute("pageType", "dashboard");
 		int userId = (int) session.getAttribute("userId");
-		if(userId == owner.getUserId()) {
+		boolean isOwner = (userId == owner.getUserId());
+		model.addAttribute("ownerWorkspace", owner);
+		model.addAttribute("isOwner", isOwner);
+		if(isOwner) {
 			path = "ownerWorkspace";
 		} else path = "workspace";
 		
