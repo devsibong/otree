@@ -51,11 +51,15 @@
 	</div>
 	<div class="offcanvas-body" id="offcanvasBody">
 		<input type="text" id="inputToDo" placeholder="할일을 작성해주세요">
-		<input class="btn-primary" id="addToDoBtn" type="button" value="할일추가">
-	  	<div id="toDoBody">here</div>
-	  	<div>알마인드 과제</div>
-	  	<div>알마인드 과제</div>
+		<input class="btn-primary" id="addToDoBtn" type="button" value="등록">
+		<div class="function-box" id="function-box1">
+			<h4>---------------------------</h4><br>
+			<div class="toDoDropBox" id="toDoBody"></div>
+			
+			<h4>---------------------------</h4><br>
+		</div>
 	</div>
+			
 </div> 
 
 <!-- Modal -->
