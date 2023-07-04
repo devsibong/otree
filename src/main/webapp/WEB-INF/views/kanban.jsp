@@ -93,22 +93,33 @@
 		    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 		</div>
 		<div class="offcanvas-body">
-        <form id="taskForm">
-            <div class="mb-3">
-                <label for="startDate" class="form-label">시작일</label>
-                <input type="date" class="form-control" id="startDate" name="startDate" required>
-            </div>
-            <div class="mb-3">
-                <label for="endDate" class="form-label">종료일</label>
-                <input type="date" class="form-control" id="endDate" name="endDate" required>
-            </div>
-            <div class="mb-3">
-                <label for="taskContent" class="form-label">작업 내용</label>
-                <textarea class="form-control" id="taskContent" name="taskContent" required></textarea>
-            </div>
-            <button id="createTask" class="btn btn-primary">작업 생성</button>
-        </form>
-    </div>
+	        <form id="taskForm">
+	            <div class="mb-3">
+	                <label for="startDate" class="form-label">시작일</label>
+	                <input type="date" class="form-control" id="startDate" name="startDate" required>
+	            </div>
+	            <div class="mb-3">
+	                <label for="endDate" class="form-label">종료일</label>
+	                <input type="date" class="form-control" id="endDate" name="endDate" required>
+	            </div>
+	            <div class="mb-3">
+	                <label for="taskContent" class="form-label">작업 내용</label>
+	                <textarea class="form-control" id="taskContent" name="taskContent" required></textarea>
+	            </div>
+	            <button id="createTask" class="btn btn-primary">작업 생성</button>
+	        </form>
+    	</div>
+	</div>
+	<div class="offcanvas offcanvas-end border-left-green-200" tabindex="-1" id="taskDetailOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
+		<div class="offcanvas-header">
+		    <h5 class="offcanvas-title" id="offcanvasRightLabel" name="taskContent"></h5>
+		    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<div class="mb-3" name="taskStart"></div>
+			<div class="mb-3" name="taskEnd"></div>
+			<button id="removeTask" class="btn btn-primary">삭제</button>
+    	</div>
 	</div> 
 	
 	
