@@ -7,6 +7,8 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/static/css/custom.css">
 <link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
@@ -27,7 +29,7 @@
 					</div>
 
 					<div
-						class="mt-5 row border-top border-bottom border-green-500 border-2 vh-60">
+						class="mt-5 row border-top border-bottom border-success border-2 vh-60">
 						<table class="table text-center" style="table-layout: fixed">
 							<thead>
 								<tr>
@@ -42,8 +44,8 @@
 								<c:forEach var="board" items="${boardList}">
 									<tr class="vh-5">
 										<th scope="row"><c:out value="${board.boardId}" /></th>
-										<td align ="center" class="text-start"><a href="/douzone/workspace/${board.workspaceId}/getBoardDetail?boardId=${board.boardId}"><c:out value="${board.boardTitle}"/></a></td>
-										<td>${board.userId}</td>
+										<td align="center" class="col-6"><a href="/douzone/workspace/${board.workspaceId}/getBoardDetail?boardId=${board.boardId}"><c:out value="${board.boardTitle}"/></a></td>
+										<td>${board.name}</td>
 										<td><c:out value="${board.createdAt}" /></td>
 										<td><c:out value="${board.readcount}" /></td>
 									</tr>
@@ -59,7 +61,7 @@
 							</tbody>
 						</table>
 					</div>
-					<button onclick="window.location.href='/douzone/workspace/${workspaceId}/createBoard'">글쓰기</button>
+					<button onclick="window.location.href='/douzone/workspace/${workspaceId}/createBoard'" class="btn btn-primary">글쓰기</button>
 				</div>
 			</main>
 		</div>
@@ -76,5 +78,3 @@
 		src="${pageContext.request.contextPath}/resources/static/js/todo.js"></script>
 </body>
 </html>
-
-

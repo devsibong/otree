@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SELECT boardId_seq.nextval FROM dual
 		</selectKey> -->
 		INSERT INTO board (boardId, userId, workspaceId, boardTitle, boardContent, createdAt)
-		VALUES (boardId_seq.nextval, 1, #{workspaceId}, #{boardTitle}, #{boardContent}, SYSDATE)
+		VALUES (boardId_seq.nextval, #{userId}, #{workspaceId}, #{boardTitle}, #{boardContent}, SYSDATE)
 	</insert>
 	
 	
@@ -33,14 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		             ) 	WHERE NUM BETWEEN 1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
 	</select>
 	
-
-	<!-- 해당 워크스페이스의 BoardList 가져오기 -->
+	
+	<!-- 해당 워크스페이스의 BoardList 하지만 join이 첨가된 것 가져오기 -->
 	<select id ="getBoardList" parameterType="int" resultType="com.otree.douzone.dto.Board">
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt, readcount
-	FROM board
+	SELECT B.boardId, B.userId, B.workspaceId, B.boardTitle, B.boardContent, B.createdAt, B.readcount, U.name
+	FROM board B
+	JOIN otreeuser U ON B.USERID = U.USERID
 	WHERE workspaceId = #{workspaceId}
 	ORDER BY boardId DESC
-	
 	</select>
 
 
@@ -56,8 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 게시글 클릭시 board객체 뿌리기 -->
 	<select id ="getBoardByBoardId" parameterType="int" resultType="com.otree.douzone.dto.Board">
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt, readcount
-	FROM board
+	SELECT B.boardId, B.userId, B.workspaceId, B.boardTitle, B.boardContent, B.createdAt, B.readcount, U.name
+	FROM board B
+	JOIN otreeuser U ON B.USERID = U.USERID
 	WHERE boardId = #{boardId}
 	</select>
 	
@@ -85,6 +86,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM board WHERE boardId = #{boardId};
     END;
 	</delete>
+	
+	
+	
+	<!-- 좋지 않은 방법 -->
+	<!-- userId로 userName 가져오기 -->
+	<select id ="getUserNameByUserId" parameterType="int" resultType ="String" >
+	SELECT name
+	FROM otreeuser
+	WHERE userId = #{userId}
+	</select>
+	<!-- 좋지 않은 방법 -->
 	
 
 </mapper>

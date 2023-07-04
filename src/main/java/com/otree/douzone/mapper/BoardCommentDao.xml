@@ -4,17 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.otree.douzone.dao.BoardCommentDao">
 
-	<select id="getComment" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
-	SELECT commentId, boardComment, boardId ,userId 
-	FROM boardcomment
+	<select id="getCommentVO" parameterType="int" resultType="com.otree.douzone.dto.BoardCommentVO">
+	SELECT BC.commentId,BC.boardComment,BC.boardId,BC.userId, U.name
+	FROM boardcomment BC
+	JOIN otreeuser U ON BC.USERID = U.USERID
 	WHERE commentId = #{commentId}
 	</select>
 	 
-	<select id="getCommentList" parameterType="int" resultType="com.otree.douzone.dto.BoardComment">
-	SELECT commentId, boardComment, boardId ,userId 
-	FROM boardcomment
+	<select id="getCommentListVO" parameterType="int" resultType="com.otree.douzone.dto.BoardCommentVO">
+	SELECT BC.commentId,BC.boardComment,BC.boardId,BC.userId, U.name
+	FROM boardcomment BC
+	JOIN otreeuser U ON BC.USERID = U.USERID
 	WHERE boardId = #{boardId}
-	ORDER BY commentId 
 	</select> 
 	
 	
