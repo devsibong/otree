@@ -22,7 +22,7 @@ import com.otree.douzone.service.BoardService;
 
 // 게시판 댓글 처리를 위한 비동기 컨트롤러
 @RestController 
-@RequestMapping("/BoardCommentRest")
+@RequestMapping("test")
 public class BoardCommentRestController {
 
 	private BoardCommentService boardCommentService;
@@ -37,6 +37,11 @@ public class BoardCommentRestController {
 	@PostMapping
 	public ResponseEntity<List<BoardComment>> createBoardComment(@RequestBody BoardComment boardComment) {
 		List<BoardComment> boardCommentList = null;
+		System.out.println("1111111111111111111111");
+		System.out.println("2222222222222222222222");
+		System.out.println("3333333333333333333333");
+		System.out.println("4444444444444444444444");
+		System.out.println("55555555555555555555555");
 		try {
 			boardCommentService.createComment(boardComment);  
 			boardCommentList = boardCommentService.getCommentList(boardComment.getBoardId()); // 성공시 boardCommentList return 
@@ -50,6 +55,11 @@ public class BoardCommentRestController {
 	@GetMapping
 	public ResponseEntity<BoardComment> getBoardComment(@RequestParam("param") int commentId) {
 		BoardComment boardComment = null;
+		System.out.println("1111111111111111111111");
+		System.out.println("2222222222222222222222");
+		System.out.println("3333333333333333333333");
+		System.out.println("4444444444444444444444");
+		System.out.println("55555555555555555555555");
 		try {
 			boardComment = boardCommentService.getComment(commentId); // 성공시 boardCommentList return 
 			return new ResponseEntity<BoardComment>(boardComment, HttpStatus.OK);
@@ -64,6 +74,11 @@ public class BoardCommentRestController {
 	@PutMapping
 	public ResponseEntity<BoardComment> modifyBoard(@RequestBody BoardComment boardComment) {
 		BoardComment boardComment1 = null;
+		System.out.println("1111111111111111111111");
+		System.out.println("2222222222222222222222");
+		System.out.println("3333333333333333333333");
+		System.out.println("4444444444444444444444");
+		System.out.println("55555555555555555555555");
 		try {
 			boardCommentService.modifyComment(boardComment.getBoardComment(), boardComment.getCommentId());
 			boardComment1 = boardCommentService.getComment(boardComment.getCommentId());
@@ -77,6 +92,11 @@ public class BoardCommentRestController {
 	@DeleteMapping
 	public ResponseEntity<List<BoardComment>> deleteBoard(@RequestParam("commentId") int commentId, @RequestParam("boardId")int boardId) {
 		List<BoardComment> boardCommentList = null;
+		System.out.println("1111111111111111111111");
+		System.out.println("2222222222222222222222");
+		System.out.println("3333333333333333333333");
+		System.out.println("4444444444444444444444");
+		System.out.println("55555555555555555555555");
 		try {
 			boardCommentService.removeComment(commentId);
 			boardCommentList = boardCommentService.getCommentList(boardId);
