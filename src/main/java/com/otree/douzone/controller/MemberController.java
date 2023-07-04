@@ -1,6 +1,7 @@
 package com.otree.douzone.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -54,4 +55,15 @@ public class MemberController {
     	session.invalidate();
         return "redirect:/login";
     }
+    
+    @GetMapping("/register")
+	public String register(Locale locale, Model model) {
+		return "register";
+	}
+    
+    @PostMapping("/register")
+	public String registerEmail(@ModelAttribute OtreeUser otreeUser, Model model) {
+    	memberService.createOtreeUser(otreeUser);
+		return "login";
+	}
 }

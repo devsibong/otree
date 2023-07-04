@@ -22,7 +22,23 @@
 			<url>http://maven.jahia.org/maven2</url>
 		</repository>
 	</repositories>
-	<dependencies>
+	<dependencies>		
+		<!-- Spring Mail -->
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-context-support</artifactId>
+	        <version>5.3.10</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>javax.mail</groupId>
+	        <artifactId>javax.mail-api</artifactId>
+	        <version>1.6.2</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>com.sun.mail</groupId>
+	        <artifactId>javax.mail</artifactId>
+	        <version>1.6.2</version>
+	    </dependency>
 		<!-- 인터페이스 없이도 Transactional 사용 가능 -->
 		<dependency>
 			<groupId>cglib</groupId>
@@ -229,6 +245,18 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jasypt/jasypt -->
+		<dependency>
+		    <groupId>org.jasypt</groupId>
+		    <artifactId>jasypt</artifactId>
+		    <version>1.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring31</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

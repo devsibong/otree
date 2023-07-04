@@ -3,15 +3,15 @@
 <div class="otree-sidebar-1">
 	<div class="ws-rounded-circle mt-3 mb-3 fs-7 fw-bold">여백</div>
 	<c:forEach var="workspace" items="${workspaceList}">
-        <div class="ws-rounded-circle mt-3 mb-3 fs-7 fw-bold" id="${workspace.workspaceId}" name="workspaceIcon">${workspace.workspaceName.substring(0, 2)}</div>
+        <div class="${selectedWorkspace.workspaceId == workspace.workspaceId ? 'ws-rounded-circle-active' : 'ws-rounded-circle'} mt-3 mb-3 fs-7 fw-bold " id="${workspace.workspaceId}" name="workspaceIcon">${workspace.workspaceName.substring(0, 2)}</div>
     </c:forEach>
-    <div class="ws-rounded-circle-plus mt-3 mb-3 fs-4 fw-bold border-green-300" name="workspaceIcon" id="createWorkspace">+</div>
+    <div class="ws-rounded-circle-plus mt-3 mb-3 fs-4 fw-bold border-green-300" id="createWorkspace">+</div>
 </div>
-<div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 bg-green-100 vh-100">
+<div class="otree-sidebar-2 d-flex flex-column flex-shrink-0 vh-100 border border-green-300">
 	<div class="mt-5 mx-3">
 		<h2 class="mt-5">반갑습니다!</h2>
-		<div id="todo"></div>
 	</div>
+	
 </div>
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
@@ -24,7 +24,29 @@
   	<div>알마인드 과제</div>
   	<div>알마인드 과제</div>
   </div>
+  <ul class="nav nav-pills flex-column mb-auto mx-3 d-none">
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'dashboard' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}">
+	 			<i class="bi bi-house-door-fill me-2"></i> <span class="fw-bold">대시보드</span></a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'kanban' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}/kanban">
+	      	  <i class="bi bi-kanban-fill me-2"></i> <span class="fw-bold">보드</span>
+	        </a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link" href="#" id="todo">
+	        	<i class="bi bi-check2-square me-2"></i> <span class="fw-bold">나의 할일</span>
+	        </a>
+	    </li>
+	    <li class="nav-item mt-2">
+	        <a class="nav-link ${pageType == 'board' ? 'active' : ''}" href="${pageContext.request.contextPath}/workspace/${selectedWorkspace.workspaceId}/board">
+	        	<i class="bi bi-clipboard-heart-fill me-2"></i> <span class="fw-bold">게시판</span>
+	        </a>
+	    </li>
+	</ul>
 </div> 
+
 
 <!-- Modal -->
 <div class="modal fade position-fixed" id="createWorkspaceModal" tabindex="-1" aria-labelledby="createWorkspaceModalLabel" aria-hidden="true">
