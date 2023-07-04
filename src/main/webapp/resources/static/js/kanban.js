@@ -119,6 +119,10 @@ function getTaskList() {
 				$card.find('[name="statusId"]').text(task.statusId);
 				$card.find('[name="taskSeq"]').text(task.taskSeq);
 
+				$card.on('click', function () {
+                    toggleTaskDetail($card);
+                });
+
 				if (task.statusId === 5) {
 					$('#generated').append($card);
 				} else if (task.statusId === 6) {
@@ -159,6 +163,45 @@ function updateTask(taskId, taskSeq, statusId) {
 		data: JSON.stringify(data),
 		success: function (response) {
 			hideKanbanSpinner();
+		},
+		error: function (error) {
+			console.log(error);
+			hideKanbanSpinner();
+		},
+	});
+}
+
+function toggleTaskDetail($card) {
+    let taskContent = $card.find('[name="taskContent"]').text();
+    let taskStart = $card.find('[name="startDate"]').text();
+    let taskEnd = $card.find('[name="endDate"]').text();
+    let taskId = $card.find('[name="taskId"]').text();
+
+    $('#taskDetailOffcanvas [name="taskContent"]').text(taskContent);
+    $('#taskDetailOffcanvas [name="taskStart"]').text('Start Date: ' + taskStart);
+    $('#taskDetailOffcanvas [name="taskEnd"]').text('End Date: ' + taskEnd);
+
+    $('#taskDetailOffcanvas #removeTask').off('click').on('click', function () {
+        removeTask(taskId);
+		$('#taskDetailOffcanvas').offcanvas('hide');
+    });
+
+    $('#taskDetailOffcanvas').offcanvas('show');
+}
+
+function removeTask(taskId) {
+	showKanbanSpinner();
+	let data = {
+		taskId: taskId,
+	};
+
+	$.ajax({
+		type: 'DELETE',
+		url: '/douzone/task/'+taskId,
+		contentType: 'application/json',
+		success: function (response) {
+			hideKanbanSpinner();
+			getTaskList();
 		},
 		error: function (error) {
 			console.log(error);
