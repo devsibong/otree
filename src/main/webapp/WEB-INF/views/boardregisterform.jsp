@@ -16,7 +16,8 @@
 	<div id="pageContainer">
 		<div style="padding-top: 25px; text-align: center">
 			<!-- form 시작 ---------->
-			<form name="bbs" action="" method="POST" >
+		<form name="bbs" action="" method="POST" >
+			<input type="hidden" value ="${workspaceId}" >
 				<table width="95%" border="2" align="center">
 					<tr>
 						<td width="20%" align="center">제목</td>
@@ -41,7 +42,7 @@
 						</td>
 					</tr>
 				</table>
-			</form>
+		</form>
 			<table>
 			<tr>
 				<td>

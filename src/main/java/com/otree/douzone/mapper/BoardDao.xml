@@ -5,13 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.otree.douzone.dao.BoardDao">
 	
 	<!--삽입 -->
+	<!-- 임의의 유저 id -->
 	<insert id="insertBoard" parameterType="com.otree.douzone.dto.Board">
 		<!-- <selectKey keyProperty="boardId" resultType="int" order="BEFORE">
 			SELECT boardId_seq.nextval FROM dual
 		</selectKey> -->
 		INSERT INTO board (boardId, userId, workspaceId, boardTitle, boardContent, createdAt)
-		VALUES (boardId_seq.nextval, 1, 2, #{boardTitle}, #{boardContent}, SYSDATE)
+		VALUES (boardId_seq.nextval, 1, #{workspaceId}, #{boardTitle}, #{boardContent}, SYSDATE)
 	</insert>
+	
 	
 	<!-- 게시글 개수 가져오기 페이징에 필요한 듯 -->
 	<select id="getBoardCount" resultType="int">
@@ -31,35 +33,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		             ) 	WHERE NUM BETWEEN 1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
 	</select>
 	
-	
 
-	<!-- 그냥 전체 가져오기 -->
-	<select id ="getBoardList" resultType="com.otree.douzone.dto.Board">
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	<!-- 해당 워크스페이스의 BoardList 가져오기 -->
+	<select id ="getBoardList" parameterType="int" resultType="com.otree.douzone.dto.Board">
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt, readcount
 	FROM board
+	WHERE workspaceId = #{workspaceId}
 	ORDER BY boardId DESC
 	
 	</select>
 
 
-	<select id ="getBoardByBoardTitle" parameterType="String" resultType="com.otree.douzone.dto.Board">
-	
+	<!-- 제목으로 검색하기 -->
+	<select id ="getBoardListByBoardTitle" parameterType="String" resultType="com.otree.douzone.dto.Board">
 	 <![CDATA[
-	 SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	 SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt, readcount
 		FROM board 
 		WHERE boardTitle LIKE '%'||#{boardTitle}||'%'
-	 
 	 ]]>
 	
 	</select>
 	
-	<!-- 상세 조회 -->
+	<!-- 게시글 클릭시 board객체 뿌리기 -->
 	<select id ="getBoardByBoardId" parameterType="int" resultType="com.otree.douzone.dto.Board">
-	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt 
+	SELECT boardId, userId, workspaceId, boardTitle, boardContent, createdAt, readcount
 	FROM board
 	WHERE boardId = #{boardId}
 	</select>
-
+	
+	<!-- 게시글 클릭시 readcount +1 -->
+	<update id="updateBoardReadCountByBoardId" parameterType="int" >
+	UPDATE board
+	SET readCount = readCount+1
+	WHERE boardId=#{boardId}	
+	</update>
 	
 	
 	<!-- 제목과 컨텐츠 업데이트가능. -->
@@ -69,13 +76,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE boardId = #{boardId}
 	</update>
 	
-	<!--  
-	<delete id="deleteBoard" parameterType="int">
-	DELETE FROM board
-	WHERE boardId = #{boardId}
-	</delete>
-	-->
 	
+	<!-- 자식테이블 부터 지우기. -->
 	<delete id="deleteBoard" parameterType="int">
     BEGIN
     	DELETE FROM boardcomment WHERE boardId = #{boardId};
