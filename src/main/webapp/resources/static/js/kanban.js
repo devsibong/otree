@@ -13,7 +13,7 @@ $(document).ready(function () {
 			sortedElements.each(function (index, element) {
 				let taskId = $(element).find('[name="taskId"]').text();
 				let taskSeq = index + 1;
-				let statusId = 5;
+				let statusId = 1;
 				updateTask(taskId, taskSeq, statusId);
 			});
 		}
@@ -29,7 +29,7 @@ $(document).ready(function () {
 			sortedElements.each(function (index, element) {
 				let taskId = $(element).find('[name="taskId"]').text();
 				let taskSeq = index + 1;
-				let statusId = 6;
+				let statusId = 2;
 				updateTask(taskId, taskSeq, statusId);
 			});
 		}
@@ -45,7 +45,7 @@ $(document).ready(function () {
 			sortedElements.each(function (index, element) {
 				let taskId = $(element).find('[name="taskId"]').text();
 				let taskSeq = index + 1;
-				let statusId = 7;
+				let statusId = 3;
 				updateTask(taskId, taskSeq, statusId);
 			});
 		}
@@ -75,7 +75,7 @@ $(document).ready(function () {
 			startDate: $('#startDate').val(),
 			endDate: $('#endDate').val(),
 			taskContent: $('#taskContent').val(),
-			statusId: 5
+			statusId: 1
 		};
 
 		$.ajax({
@@ -123,11 +123,11 @@ function getTaskList() {
                     toggleTaskDetail($card);
                 });
 
-				if (task.statusId === 5) {
+				if (task.statusId === 1) {
 					$('#generated').append($card);
-				} else if (task.statusId === 6) {
+				} else if (task.statusId === 2) {
 					$('#processing').append($card);
-				} else if (task.statusId === 7) {
+				} else if (task.statusId === 3) {
 					$('#complete').append($card);
 				}
 			});
