@@ -31,7 +31,9 @@
 				</tr>
 				<tr>
 					<td width="20%" align="center"><b>제목</b></td>
-					<td colspan="3"><c:out value="${boardDetail.boardTitle}" /></td>
+					<td colspan="1"><c:out value="${boardDetail.boardTitle}" /></td>
+					<td width="20%" align="center"><b>조회수</b></td>
+					<td colspan="1" align="center"><c:out value="${boardDetail.readcount}" /></td>
 				</tr>
 				<tr height="100">
 					<td width="20%" align="center"><b>글내용</b></td>
@@ -77,7 +79,7 @@
 					<th colspan="2">댓글 쓰기</th>
 				</tr>
 				<tr>
-					<td align="center">내용: <textarea name="reply_content"
+					<td id = "comment2" align="center">내용: <textarea name="reply_content"
 							id="comment" rows="2" cols="50"></textarea>
 					</td>
 				</tr>
@@ -97,13 +99,14 @@
 $(document).ready(function(){
 <!-- 댓글 작성 눌렀을 때 삽입된 리스트 리턴 -->
 $("#commentCreate").click(function(){
+	
+	
 	let commentCreate = {
 				"boardComment": $("#comment").val(), 
 				"boardId": ${boardDetail.boardId},
 				"userId": ${boardDetail.userId},
 			};
 	let data = JSON.stringify(commentCreate);
-			console.log("aa");
 	$.ajax({
 		type: "post",
 		url: "/douzone/test",
@@ -111,7 +114,7 @@ $("#commentCreate").click(function(){
 		dataType: "json",
 		contentType: "application/json; charset=utf-8",
 		success: function(data){
-			console.log("aa");
+			
 			$(".commentList").empty(); // class tag사용 
 			let html = "";
 			html += '<tr> <th colspan="3">댓글 목록</th> </tr>'; 

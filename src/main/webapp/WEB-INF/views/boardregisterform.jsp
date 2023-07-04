@@ -21,8 +21,8 @@
 				<table width="95%" border="2" align="center">
 					<tr>
 						<td width="20%" align="center">제목</td>
-						<td width="80%" align="left"><input type="text"
-							name="boardTitle" size="40"></td>
+						<td width="80%" align="left"><input type="text" name="boardTitle" size="40"></td>
+						
 					</tr>
 
 
@@ -46,8 +46,8 @@
 			<table>
 			<tr>
 				<td>
-					<button onclick="window.location.href='/douzone/getBoardList'">글쓰기 취소</button>
-					<button onclick="window.location.href='/douzone/createBoard'">다시 쓰기</button>
+					<button onclick="window.location.href='/douzone/workspace/${workspaceId}/board'">글쓰기 취소</button>
+					<button onclick="window.location.href='http://localhost:8090/douzone/workspace/${workspaceId}/createBoard'">다시 쓰기</button>
 				</td>
 			</tr>
 			</table>
