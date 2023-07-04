@@ -18,6 +18,10 @@ public class HomeController {
 	public String home(Locale locale, Model model) {		
 		return "login";
 	}
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String homego(Locale locale, Model model) {		
+		return "login";
+	}
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Locale locale, Model model) {
 		return "register";

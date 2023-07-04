@@ -16,4 +16,6 @@ public interface BoardDao {
 		int updateBoardReadCountByBoardId(int boardId) throws ClassNotFoundException, SQLException; // boardId로 게시물 상세보기
 	    void updateBoard(Board board ) throws ClassNotFoundException, SQLException; // 게시물 업데이트
 	    void deleteBoard(int boardId) throws ClassNotFoundException, SQLException; // 게시물 삭제
+	    
+	    String getUserNameByUserId(int userId) throws ClassNotFoundException, SQLException; //otreeuser에 있는 table 접근
 }

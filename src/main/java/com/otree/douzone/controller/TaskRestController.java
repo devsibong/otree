@@ -88,11 +88,13 @@ public class TaskRestController {
 	
 	// 특정 칸반 업무 삭제 
 	@DeleteMapping("/{taskId}")
-	public ResponseEntity<String> removeTask(@PathVariable("taskId") int taskId) {
+	public ResponseEntity<Map<String,String>> removeTask(@PathVariable("taskId") int taskId) {
 		//System.out.println("taskId : " + taskId);
 		taskService.removeTask(taskId);
 		//System.out.println("delete성공");
-		return ResponseEntity.status(HttpStatus.OK).body("delete success");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "success");
+		return ResponseEntity.ok(response);
 	}
 	
 }

@@ -26,6 +26,7 @@ public class BoardService {
 		this.sqlsession = sqlsession;
 	}
 	
+	
 	//(C)게시글 생성
 	public boolean createBoard(Board board) {
 		boolean result = false;
@@ -163,6 +164,21 @@ public class BoardService {
 		return result;
 	}
 	
+	/////////////////////////
+	// otreeuser table 접근
+	public String getUserNameByUserId(int userId) {
+		String result =null;
+		try {
+			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
+			result = boardDao.getUserNameByUserId(userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 	
 	

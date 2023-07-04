@@ -12,6 +12,7 @@ import com.otree.douzone.dao.BoardFileDao;
 import com.otree.douzone.dao.EmpDao;
 import com.otree.douzone.dto.Board;
 import com.otree.douzone.dto.BoardComment;
+import com.otree.douzone.dto.BoardCommentVO;
 import com.otree.douzone.dto.BoardFile;
 import com.otree.douzone.dto.Emp;
 
@@ -43,11 +44,11 @@ public class BoardCommentService {
 			
 		//R
 		// 게시글 상세조회시 DB에 들어있던 댓글정보 가져오기
-		public List<BoardComment> getCommentList(int boardId) {
-			List<BoardComment> listBoardComment = null;
+		public List<BoardCommentVO> getCommentListVO(int boardId) {
+			List<BoardCommentVO> listBoardComment = null;
 			try {
 				BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-				listBoardComment  = boardCommentDao.getCommentList(boardId);
+				listBoardComment  = boardCommentDao.getCommentListVO(boardId);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e1) {
@@ -58,11 +59,11 @@ public class BoardCommentService {
 		
 		//R
 		//댓글 ID로 댓글가져오기
-		public BoardComment getComment(int commentId) {
-			BoardComment BoardComment = null;
+		public BoardCommentVO getCommentVO(int commentId) {
+			BoardCommentVO BoardComment = null;
 			try {
 				BoardCommentDao boardCommentDao = sqlsession.getMapper(BoardCommentDao.class);
-				BoardComment  = boardCommentDao.getComment(commentId);
+				BoardComment  = boardCommentDao.getCommentVO(commentId);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e1) {

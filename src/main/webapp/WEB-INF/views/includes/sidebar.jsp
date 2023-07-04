@@ -64,7 +64,7 @@
 
 <!-- Modal -->
 <div class="modal fade position-fixed" id="createWorkspaceModal" tabindex="-1" aria-labelledby="createWorkspaceModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header border-bottom-0">
 				<h3 class="modal-title text-center">워크스페이스 생성</h3>
