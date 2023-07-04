@@ -1,6 +1,8 @@
 package com.otree.douzone.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,10 +33,12 @@ public class TaskRestController {
 	
 	// 칸반 업무 생성
 	@PostMapping
-	public ResponseEntity<String> createTask(@RequestBody Task task) {
+	public ResponseEntity<Map<String,String>> createTask(@RequestBody Task task) {
 		//System.out.println("task : " + task);
 		taskService.createTask(task);
-		return ResponseEntity.status(HttpStatus.CREATED).body("insert success");
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "success");
+		return ResponseEntity.ok(response);
 	}
 	
 	// 워크스페이스의 전체 칸반 업무 목록 조회 
@@ -59,11 +63,18 @@ public class TaskRestController {
 	
 	// 특정 칸반 업무 정보 수정
 	@PutMapping("/modify")
-	public ResponseEntity<String> modifyTask(@RequestBody Task task) {
-		System.out.println("TaskId : " + task.getTaskId());
-		taskService.modifyTask(task);
-		System.out.println("update성공");
-		return ResponseEntity.status(HttpStatus.OK).body("update success");
+	public ResponseEntity<Map<String,String>> modifyTask(@RequestBody Map<String, String> requestBody) {
+		int taskId = Integer.parseInt(requestBody.get("taskId"));
+		int taskSeq = Integer.parseInt(requestBody.get("taskSeq"));
+		int statusId = Integer.parseInt(requestBody.get("statusId"));
+		Task task = new Task();
+		task.setTaskId(taskId);
+		task.setTaskSeq(taskSeq);
+		task.setStatusId(statusId);
+		taskService.modifyTaskSeq(task);
+		Map<String, String> response = new HashMap<>();
+		response.put("message", "success");
+		return ResponseEntity.ok(response);
 	}
 	
 	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update) --------------------------------------

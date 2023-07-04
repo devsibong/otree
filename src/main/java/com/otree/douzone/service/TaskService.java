@@ -21,13 +21,20 @@ public class TaskService {
 	
 	// 칸반 업무 생성
 	public int createTask(Task task) {
+		List<TaskWithStatus> taskList = null;
 		int taskId = -1;
+		int maxSeq = -1;
 		try {
-			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
-			// task의 statusSeq를 셋팅
-			int newSeq = taskDao.selectMaxTaskSeq(task.getStatusId(), task.getWorkspaceId());
-			task.setTaskSeq(newSeq+1);
-			// task의 statusSeq 삽입
+			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);	
+			taskList = taskDao.selectTaskList(task.getWorkspaceId());
+			if(taskList != null) {
+				for(TaskWithStatus taskWithStatus : taskList) {
+					if(taskWithStatus.getStatusId() == 5) {
+						maxSeq = taskWithStatus.getTaskSeq() > maxSeq ? taskWithStatus.getTaskSeq() : maxSeq;
+					}
+				}
+			}
+			task.setTaskSeq(maxSeq+1);
 			taskDao.insertTask(task);
 			taskId = task.getTaskId();
 		} catch (SQLException e) {
@@ -59,7 +66,6 @@ public class TaskService {
 		}
 		return taskWithStatus;
 	}
-	
 	// 특정 칸반 업무 정보 수정
 	public void modifyTask (Task task) {
 		try {
@@ -71,12 +77,10 @@ public class TaskService {
 	}
 	
 	// 특정 칸반 순서변경 (Drag&Drop - taskSeq update)
-	public void modifyTaskSeq (List<Task> taskList) {
+	public void modifyTaskSeq (Task task) {
 		try {
 			TaskDao taskDao = sqlsession.getMapper(TaskDao.class);
-			for(Task task : taskList) {
-				taskDao.updateTaskSeq(task);
-			}
+			taskDao.updateTaskSeq(task);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

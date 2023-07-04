@@ -46,11 +46,13 @@
 
 <div class="offcanvas offcanvas-end" tabindex="-1" id="todoOffcanvas" aria-labelledby="offcanvasRightLabel" data-bs-backdrop="false" style="margin-top: 65px;">
 	<div class="offcanvas-header">
-	    <h5 class="offcanvas-title" id="offcanvasRightLabel">나의 할일</h5>
+	    <h5 class="offcanvas-title" id="offcanvasRightLabel">🧩나의 할일🖍️</h5>
 	    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 	</div>
-	<div class="offcanvas-body">
-	  	<div>할일 추가</div>
+	<div class="offcanvas-body" id="offcanvasBody">
+		<input type="text" id="inputToDo" placeholder="할일을 작성해주세요">
+		<input class="btn-primary" id="addToDoBtn" type="button" value="할일추가">
+	  	<div id="toDoBody">here</div>
 	  	<div>알마인드 과제</div>
 	  	<div>알마인드 과제</div>
 	</div>
