@@ -30,6 +30,7 @@ public class BoardService {
 	public boolean createBoard(Board board) {
 		boolean result = false;
 		try {
+			
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
 			boardDao.insertBoard(board);
 			result = true;
@@ -72,12 +73,12 @@ public class BoardService {
 	}
 	
 	
-	//(R) 페이징 안된거 가져오기
-	public List<Board> getBoardList() {
+	//(R) 페이징 안된 BoardList 가져오기
+	public List<Board> getBoardList(int workspaceId) {
 		List<Board> boardList = null;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			boardList = boardDao.getBoardList();
+			boardList = boardDao.getBoardList(workspaceId);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e1) {
@@ -92,7 +93,7 @@ public class BoardService {
 		List<Board> listBoard = null;
 		try {
 			BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
-			listBoard = boardDao.getBoardByBoardTitle(boardTitle);
+			listBoard = boardDao.getBoardListByBoardTitle(boardTitle);
 		} catch(SQLException e) {
 			System.out.println("");
 			System.out.println(e.getMessage());
@@ -102,8 +103,7 @@ public class BoardService {
 		return listBoard;
 		}
 	
-	
-	// (R) boardId로 상세조회 ( 게시글 클릭)
+		//Board 1개 return
 		public Board getBoardByBoardId(int boardId) {
 		Board board = null;
 		try {
@@ -116,6 +116,21 @@ public class BoardService {
 		}
 		return board;
 	}
+		
+	//(U)게시글 눌렀을 때 count+1
+		public int modifyBoardReadCount(int boardId) {
+			int result = 0;
+			try {
+				BoardDao boardDao = sqlsession.getMapper(BoardDao.class);
+				result = boardDao.updateBoardReadCountByBoardId(boardId);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
+			
+			return result;
+		}
 		
 		
 		// (U) 게시글 수정 상세 조회 후 수정버튼 있음.
