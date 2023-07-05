@@ -5,6 +5,8 @@
 <html>
 <head>
 <title>게시판 상세</title>
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 </head>
@@ -64,21 +66,15 @@
 						<input type="hidden" id="userId" value="<c:out value="${comment.userId}" />">
 						<td align="left">작성자: <c:out value="${comment.name}" /></td>
 						<td><c:out value="${comment.boardComment}" /></td>
-
 						<td>
 							<c:if test="${comment.userId eq boardDetail.userId}">
 								
 									<input class="btn btn-primary updateCommentRest" type="button"	value="수정">
-								
-								
 									<input class="btn btn-primary deleteCommentRest" type="button" value="삭제">
-								
 							</c:if>
 						</td>
 					</tr>
 				</c:forEach>
-
-
 			</table>
 		</div>
 
@@ -98,10 +94,8 @@
 		</table>
 	</div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+	
+	
 	<script type="text/javascript">
         $(document).ready(function(){
             // 댓글 작성 눌렀을 때 삽입된 리스트 리턴
@@ -122,21 +116,37 @@
                         $(".commentList").empty();
                         let html = "";
                         html += '<tr><th colspan="5">댓글 목록</th></tr>';
-                        $.each(data, function(){
+                        console.log(data);
+                        	/*
                             html += '<tr>';
                             html += '<td align="left">작성자: ' + this.name + '</td>';
                             html += '<td align="left">댓글내용: ' + this.boardComment + '</td>';
                             html += '<input type ="hidden" class="commentId" value="'+this.commentId+'">';
-                            html += '<td><input class="updateCommentRest btn btn-primary" type="button" value="수정"></td>';
-                            html += '<td><input class="deleteCommentRest btn btn-primary" type="button" value="삭제"></td>';
-                            html += '</tr>';
-                        });
+                            html += '<td><input class="btn btn-primary updateCommentRest" type="button" value="수정"></td>';
+                            html += '<td><input class="btn btn-primary deleteCommentRest" type="button" value="삭제"></td>';
+                            html += '</tr>';*/
+                            $.each(data, function(index, comment) {
+                            	  html += '<tr>';
+                            	  html += '<input type ="hidden" class="commentId" value="'+comment.commentId+'">';
+                            	  html += '<td align="left">작성자:' + comment.name + '</td>';
+                            	  html += '<td>' + comment.boardComment + '</td>';
+                            	  html += '<td>';
+                            	  
+                            	  if (comment.userId === ${boardDetail.userId}) {
+                            	    html += '<button class="btn btn-primary updateCommentRest" type="button" value="수정">';
+                            	    html += '<button class="btn btn-primary deleteCommentRest" type="button" value="삭제">';
+                            	  }
+                            	  
+                            	  html += '</td>';
+                            	  html += '</tr>';
+                            	});
+                   
                         $(".commentList").append(html);
                     }
                 });
             });
 
-            // 동기로 불러온 댓글List 수정 버튼 눌렀을 때
+            // 동기,비동기로 불러온 댓글List 수정 버튼 눌렀을 때
             $(document).on('click', '.updateCommentRest', function() {
                 let a = $(this).closest("tr").find(".commentId").val();
                 console.log(a);
@@ -208,18 +218,28 @@
                         $(".commentList").empty();
                         let html = "";
                         html += '<tr><th colspan="5">댓글 목록</th></tr>';
-                        $.each(data, function(){
-                            html += '<tr>';
-                            html += '<td align="left">작성자: '+this.name+'</td>';
-                            html += '<td align="middle">'+this.boardComment+'</td>';
-                            html += '<input type ="hidden" class="commentId" value="'+this.commentId+'">';
-                            html += '<td><input class="updateCommentRest" type="button" value="수정"></td>';
-                            html += '<td><input class="deleteCommentRest" type="button" value="삭제"></td>';
-                            html += '</tr>';
-                        });
-                        $(".commentList").append(html);
+                       
+                        $.each(data, function(index, comment) {
+                      	  html += '<tr>';
+                      	  html += '<input type ="hidden" class="commentId" value="'+comment.commentId+'">';
+                      	  html += '<td align="left">작성자:' + comment.name + '</td>';
+                      	  html += '<td>' + comment.boardComment + '</td>';
+                      	  html += '<td>';
+                      	  
+                      	  if (comment.userId === ${boardDetail.userId}) {
+                      	    html += '<input class="btn btn-primary updateCommentRest" type="button" value="수정">';
+                      	    html += '<input class="btn btn-primary deleteCommentRest" type="button" value="삭제">';
+                      	  }
+                      	  
+                      	  html += '</td>';
+                      	  html += '</tr>';
+                      	});
+             
+                 	 $(".commentList").append(html);
+                 	 
                     }
                 });
+                 	
             });
 
             // 비동기로 만든 태그에서 댓글목록 눌렀을 경우.
@@ -238,5 +258,7 @@
         });
         
     </script>
+      
+    
 </body>
 </html>
