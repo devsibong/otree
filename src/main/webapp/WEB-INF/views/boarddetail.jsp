@@ -1,107 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>게시판 상세</title>
-<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/static/css/custom.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
+<style>
+.ghost {
+	opacity: 0;
+}
+</style>
 <body>
-	<div class="container py-5">
-		<h2 class="text-center">게시판 글내용</h2>
-		<table class="table">
-			<tr>
-				<th scope="col">글번호</th>
-				<td><c:out value="${boardDetail.boardId}" /></td>
-				<th scope="col">작성일</th>
-				<td><c:out value="${boardDetail.createdAt}" /></td>
-			</tr>
-			<tr>
-				<th scope="col">글쓴이</th>
-				<td><c:out value="${boardDetail.name}" /></td>
-				<th scope="col">조회수</th>
-				<td colspan="3" align="center"><c:out
-						value="${boardDetail.readcount}" /></td>
+	<!-- navbar -->
+	<jsp:include page="./includes/navbar.jsp" />
+	<section class="container-fluid">
+		<div class="row">
+			<jsp:include page="./includes/sidebar.jsp" />
+			<!-- main -->
+			<main class="col">
+				<!-- 여백 -->
+				<div class="p-4"></div>
+				<div class="container mt-5">
+					<h2>
+						<c:out value="${boardDetail.boardTitle}" />
+					</h2>
+					<div class="d-none" id="boardId">
+						<c:out value="${boardDetail.boardId}" />
+					</div>
 
-				</td>
-			</tr>
-			<tr>
-				<th scope="col">제목</th>
-				<td colspan="3"><c:out value="${boardDetail.boardTitle}" /></td>
+					<div class="row">
+						<div class="d-flex justify-content-between">
+							<div class="card border-0 mt-3">
+								<div class="card-body p-1">
+									<div class="row">
+										<div class="col-auto">
+											<i class="bi bi-person-circle text-green-300 fs-1"></i>
+										</div>
+										<div class="col ms-2 pt-2">
+											<div class="d-flex justify-content-between">
+												<h5 class="card-title fw-bold fs-6 mb-0">
+													<c:out value="${boardDetail.name}" />
+												</h5>
+												<c:if test="${boardDetail.userId eq owner.userId}">
+													<p class="badge text-bg-primary mb-0">Owner</p>
+												</c:if>
+											</div>
+											<p class="card-text">
+												<c:out value="${boardDetail.createdAt}" />
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mt-4 text-primary fs-5 fw-bold">
+								<div>
+									<i class="bi bi-chat-dots me-1"></i> <span class="fs-7">댓글</span> <span class="me-1 fs-7">10</span>
+								</div>
+							</div>
+						</div>
+						<hr class="border-green-300 mt-0">
+						<div class="container p-3 mb-5 text-break">
+							<c:out value="${boardDetail.boardContent}" />
+						</div>
+						<div class="col">
+							<div class="p-3 bg-green-100">
+								<div class="fw-bold">댓글</div>
+								<div class="" id="commentList"></div>
+								<div class="mt-4 d-none" id="commentTemplate">
+									<div class="row">
+										<div class="col-10">
+											<div class="row">
+												<div class="col-auto">
+													<i class="bi bi-person-circle fs-2 text-white"></i>
+												</div>
+												<div class="col">
+													<div class="fw-bold" name="name">작성자</div>
+													<div class="fs-7" name="comment">댓글내용</div>
+													<div class="d-none" name="userId"></div>
+													<div class="d-none" name="commentId"></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-2" name="modifyComment" id="modifyComment">
+											<button class="btn btn-outline-primary btn-sm" type="button">수정</button>
+											<button class="btn btn-outline-danger btn-sm" type="button" id="removeComment">삭제</button>
+										</div>
+									</div>
+								</div>
+								<div class="fw-bold mt-4">댓글 쓰기</div>
+								<div class="row mt-4">
+									<div class="col-10">
+										<textarea class="form-control" id="commentInput" rows="3"></textarea>
+									</div>
+									<div class="col-2">
+										<button class="btn btn-primary" id="commentRegister">등록</button>
+									</div>
+								</div>
+							</div>
+						</div>
 
-			</tr>
-			<tr>
-				<th scope="col">글내용</th>
-				<td colspan="3">
-					<p>
-						<c:out value="${boardDetail.boardContent}" />
-					</p>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4" align="center"><a class="btn btn-primary"
-					href="${pageContext.request.contextPath}/workspace/${boardDetail.workspaceId}/board">목록가기</a>
-					<a class="btn btn-primary"
-					href="${pageContext.request.contextPath}/workspace/${boardDetail.workspaceId}/updateBoard?boardId=${boardDetail.boardId}">수정</a>
-					<a class="btn btn-primary"
-					href="${pageContext.request.contextPath}/workspace/${boardDetail.workspaceId}/deleteBoard?boardId=${boardDetail.boardId}">삭제</a>
-				</td>
-			</tr>
-		</table>
-
-		<!-- 댓글 목록 -->
-		<div>
-			<table class="table commentList">
-				<tr>
-					<th colspan="5">댓글 목록</th>
-				</tr>
-
-				<c:forEach var="comment" items="${boardCommentList}">
-					<tr>
-						<input type="hidden" class="commentId" value="<c:out value="${comment.commentId}" />">
-						<input type="hidden" id="userId" value="<c:out value="${comment.userId}" />">
-						<td align="left">작성자: <c:out value="${comment.name}" /></td>
-						<td><c:out value="${comment.boardComment}" /></td>
-						<td>
-							<c:if test="${comment.userId eq boardDetail.userId}">
-								
-									<input class="btn btn-primary updateCommentRest" type="button"	value="수정">
-									<input class="btn btn-primary deleteCommentRest" type="button" value="삭제">
-							</c:if>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
+					</div>
+				</div>
+			</main>
 		</div>
-
-		<!-- 댓글 작성 폼 -->
-		<table class="table">
-			<tr>
-				<th colspan="2">댓글 쓰기</th>
-			</tr>
-			<tr>
-				<td id="comment2" align="center">내용: <textarea
-						name="reply_content" id="comment" rows="2" cols="50"></textarea></td>
-			</tr>
-			<tr>
-				<td align="center"><input type="button" id="commentCreate"
-					class="btn btn-primary" value="댓글 작성" /></td>
-			</tr>
-		</table>
-	</div>
-
-	
-	
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/sidebar.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/todo.js"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
+        	getCommentList();
             // 댓글 작성 눌렀을 때 삽입된 리스트 리턴
-            $("#commentCreate").click(function(){
+            $("#commentRegister").click(function(){
                 let commentCreate = {
-                    "boardComment": $("#comment").val(),
+                    "boardComment": $("#commentInput").val(),
                     "boardId": ${boardDetail.boardId},
                     "userId": ${boardDetail.userId}
                 };
@@ -113,35 +128,8 @@
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: function(data){
-                        $(".commentList").empty();
-                        let html = "";
-                        html += '<tr><th colspan="5">댓글 목록</th></tr>';
-                        console.log(data);
-                        	/*
-                            html += '<tr>';
-                            html += '<td align="left">작성자: ' + this.name + '</td>';
-                            html += '<td align="left">댓글내용: ' + this.boardComment + '</td>';
-                            html += '<input type ="hidden" class="commentId" value="'+this.commentId+'">';
-                            html += '<td><input class="btn btn-primary updateCommentRest" type="button" value="수정"></td>';
-                            html += '<td><input class="btn btn-primary deleteCommentRest" type="button" value="삭제"></td>';
-                            html += '</tr>';*/
-                            $.each(data, function(index, comment) {
-                            	  html += '<tr>';
-                            	  html += '<input type ="hidden" class="commentId" value="'+comment.commentId+'">';
-                            	  html += '<td align="left">작성자:' + comment.name + '</td>';
-                            	  html += '<td>' + comment.boardComment + '</td>';
-                            	  html += '<td>';
-                            	  
-                            	  if (comment.userId === ${boardDetail.userId}) {
-                            	    html += '<button class="btn btn-primary updateCommentRest" type="button" value="수정">';
-                            	    html += '<button class="btn btn-primary deleteCommentRest" type="button" value="삭제">';
-                            	  }
-                            	  
-                            	  html += '</td>';
-                            	  html += '</tr>';
-                            	});
-                   
-                        $(".commentList").append(html);
+                    	getCommentList();
+                    	$("#commentInput").val("");
                     }
                 });
             });
@@ -201,64 +189,72 @@
                 });
             });
 
-            // 댓글 삭제버튼
-            $(document).on('click', '.deleteCommentRest', function() {
-                let a = $(this).closest("tr").find(".commentId").val();
-                console.log(a);
-                let b = ${boardDetail.boardId};
-                console.log(b);
-
+            $(document).on('click', '#removeComment', function() {
+            	let commentId = $(this).closest("#commentTemplate").find("[name='commentId']").text();
+                let boardId = ${boardDetail.boardId};
+                console.log(commentId);
                 $.ajax({
                     type: "delete",
-                    url: "/douzone/test?commentId="+a+"&boardId="+b,
+                    url: "/douzone/test?commentId=" + commentId + "&boardId=" + boardId,
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
-                    success: function(data){
-                        console.log(data);
-                        $(".commentList").empty();
-                        let html = "";
-                        html += '<tr><th colspan="5">댓글 목록</th></tr>';
-                       
-                        $.each(data, function(index, comment) {
-                      	  html += '<tr>';
-                      	  html += '<input type ="hidden" class="commentId" value="'+comment.commentId+'">';
-                      	  html += '<td align="left">작성자:' + comment.name + '</td>';
-                      	  html += '<td>' + comment.boardComment + '</td>';
-                      	  html += '<td>';
-                      	  
-                      	  if (comment.userId === ${boardDetail.userId}) {
-                      	    html += '<input class="btn btn-primary updateCommentRest" type="button" value="수정">';
-                      	    html += '<input class="btn btn-primary deleteCommentRest" type="button" value="삭제">';
-                      	  }
-                      	  
-                      	  html += '</td>';
-                      	  html += '</tr>';
-                      	});
-             
-                 	 $(".commentList").append(html);
-                 	 
+                    success: function(data) {
+                        getCommentList();
                     }
                 });
-                 	
             });
+
+
 
             // 비동기로 만든 태그에서 댓글목록 눌렀을 경우.
             $(document).on('click', '#boardDetail', function(){
                 console.log(${boardDetail.boardId});
                 const newPageURL = '/douzone/workspace/${boardDetail.workspaceId}/getBoardDetail?boardId='+${boardDetail.boardId};
                 window.location.href = newPageURL;
-            });
-            
-            
-            
-            
-            
-            
-            
+            });            
+        
+        
+            function getCommentList() {
+                let data = {
+                    "boardId": ${boardDetail.boardId}
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/douzone/test/comments",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(data),
+                    success: function (data) {
+                    	console.log("hello");
+                        let commentListContainer = $("#commentList");
+                        let commentTemplate = $("#commentTemplate");
+                        commentListContainer.empty();
+                        data.forEach(function (comment) {
+                        	
+                            let newCommentCard = commentTemplate.clone();
+                            newCommentCard.removeClass("d-none");
+                            newCommentCard.find('[name="name"]').text(comment.name);
+                            newCommentCard.find('[name="comment"]').text(comment.boardComment);
+                            newCommentCard.find('[name="userId"]').text(comment.userId);
+                            newCommentCard.find('[name="commentId"]').text(comment.commentId);
+                            commentListContainer.append(newCommentCard);
+                            if (comment.userId === ${boardDetail.userId}) {
+                            } else {
+                            	newCommentCard.find('[name="modifyComment"]').addClass('d-none');
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+
         });
         
     </script>
-      
-    
 </body>
 </html>
+
+

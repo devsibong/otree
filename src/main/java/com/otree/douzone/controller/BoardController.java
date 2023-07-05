@@ -41,10 +41,10 @@ public class BoardController {
 	private final TeamRoleService teamRoleService;
 	private final HttpSession session;
 	
-	//¿ÞÂÊÀÇ °Ô½ÃÆÇ ¹è³Ê Å¬¸¯ÇßÀ»¶§
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/{workspaceId}/board")
 	public String getBoardList(@PathVariable("workspaceId") int workspaceId, Model model) {
-		//Boardlist »Ñ¸®±â À§ÇÑ Á¤º¸µé
+		//Boardlist ï¿½Ñ¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 
 		List<Board> boardList = null;
@@ -54,7 +54,7 @@ public class BoardController {
 		model.addAttribute("workspaceId", workspaceId);
 
 		
-		// Workspace °ü·Ã Á¤º¸µé
+		// Workspace ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
 		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
 		WorkspaceTeamUser owner = null;
@@ -72,38 +72,64 @@ public class BoardController {
 	}
 	
 	
-	//°Ô½Ã±Û ´­·¶À»¶§
+	//ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/{workspaceId}/getBoardDetail")
 	public String getBoardDetail(@RequestParam("boardId") int boardId,Model model, @PathVariable("workspaceId") int workspaceId, HttpServletRequest request) {
 		boardService.modifyBoardReadCount(boardId); //readcount+1
 		HttpSession session = request.getSession();
-		int userId = (int) session.getAttribute("userId"); //userId °¡Á®¿À±â
-		Board board = boardService.getBoardByBoardId(boardId); //board °¡Á®¿À±â
-		board.setUserId(userId); // session¿¡¼­ °¡Á®¿Â userId
+		int userId = (int) session.getAttribute("userId"); //userId ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		Board board = boardService.getBoardByBoardId(boardId); //board ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		board.setUserId(userId); // sessionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ userId
 		List<BoardCommentVO> boardCommentListVO = boardCommentService.getCommentListVO(boardId);
 		List<BoardFile> boardFile = boardFileService.getFile(boardId);
 		model.addAttribute("boardDetail",board);
 		model.addAttribute("boardFileList", boardFile);
 		model.addAttribute("boardCommentList",boardCommentListVO);
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return "boarddetail"; 
 	}
 	
 	
-	//±Û¾²±â ¹öÆ° ´­·¶À»¶§
+	//ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/{workspaceId}/createBoard")
 	public String createBoard(@PathVariable("workspaceId") int workspaceId, Model model) {
 		model.addAttribute("workspaceId", workspaceId);
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return "boardregisterform"; 
 	}
 		
-	// ±Û¾²°í µî·Ï¹öÆ° ´­·¶À»¶§
+	// ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¹ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@PostMapping("/{workspaceId}/createBoard")
-	public String createBoard2( Board board ,@PathVariable("workspaceId")int workspaceId, HttpServletRequest request ) {
+	public String createBoard2( Board board ,@PathVariable("workspaceId")int workspaceId, HttpServletRequest request, Model model) {
 		boolean result = false;
 		String pathResult = null;
-		board.setWorkspaceId(workspaceId); //url parameter·Î ¹ÞÀº workspaceId set
+		board.setWorkspaceId(workspaceId); //url parameterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ workspaceId set
 		HttpSession session = request.getSession(); 
-		int userId = (int) session.getAttribute("userId"); //userId¹Þ±â
+		int userId = (int) session.getAttribute("userId"); //userIdï¿½Þ±ï¿½
 		board.setUserId(userId);
 		result = boardService.createBoard(board);
 		 String path = Integer.toString(workspaceId);
@@ -113,49 +139,101 @@ public class BoardController {
 		else {
 			pathResult = "boardregisterform";
 		}
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return pathResult; 
 		
 	}
 	
-	//board detial ¿¡¼­ update ¹öÆ° ´­·¶À»¶§
+	//board detial ï¿½ï¿½ï¿½ï¿½ update ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/{workspaceId}/updateBoard")
-	public String modifyBoard(Model model, @RequestParam("boardId")int boardId ) {
+	public String modifyBoard(@PathVariable("workspaceId") int workspaceId, Model model, @RequestParam("boardId")int boardId ) {
 		Board board = boardService.getBoardByBoardId(boardId);
 		model.addAttribute("board", board);
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return "boardupdateform"; 
 	}
 	
-	//update form¿¡¼­ ¼öÁ¤ÇÏ±â ´­·¶À»¶§ 
+	//update formï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	@PostMapping("/{workspaceId}/updateBoardOk")
-	public String modifyBoard2(Board board,Model model) {
+	public String modifyBoard2(@PathVariable("workspaceId") int workspaceId, Board board,Model model) {
 		String param = Integer.toString(board.getBoardId());
 		boolean result = false;
 		String pathResult = null;
 		result = boardService.modifyBoard(board);
 		if (result==true) {
-			pathResult = "redirect:getBoardDetail?boardId="+param; //¼º°ø½Ã redirect:boarddetail
+			pathResult = "redirect:getBoardDetail?boardId="+param; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ redirect:boarddetail
 			model.addAttribute("modifyBoard",boardService.getBoardByBoardId(board.getBoardId()));   
 		}
 		else {
-			pathResult = "boardupdateform"; //½ÇÆÐ½Ã
+			pathResult = "boardupdateform"; //ï¿½ï¿½ï¿½Ð½ï¿½
 		}
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return pathResult;
 	}
 	
-	//board detail¿¡¼­ delete ¹öÆ° ´­·¶À»¶§
+	//board detailï¿½ï¿½ï¿½ï¿½ delete ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@GetMapping("/{workspaceId}/deleteBoard")
-	public String removeBoard(@RequestParam("boardId") int boardId, @PathVariable("workspaceId")int workspaceId) {
+	public String removeBoard(@RequestParam("boardId") int boardId, @PathVariable("workspaceId")int workspaceId, Model model) {
 		String param = Integer.toString(boardId); 
 		boolean result = false;
 		String pathResult = null;
 		result = boardService.removeBoard(boardId);
 		String path = Integer.toString(workspaceId);
 		if(result==true) {
-			pathResult = "redirect:/workspace/"+path+"/board"; //¼º°ø½Ã
+			pathResult = "redirect:/workspace/"+path+"/board"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 		else {
-			pathResult = "redirect:getBoardDetail?boardId="+param; //½ÇÆÐ½Ã 
+			pathResult = "redirect:getBoardDetail?boardId="+param; //ï¿½ï¿½ï¿½Ð½ï¿½ 
 		}
+		Workspace selectedWorkspace = workspaceService.getWorkspaceById(workspaceId);
+		List<WorkspaceTeamUser> teamUserList = teamRoleService.getWorkspaceTeamList(workspaceId);
+		WorkspaceTeamUser owner = null;
+		for(WorkspaceTeamUser user : teamUserList) {
+			if(user.getRoleId()==3) {
+				owner = user;
+				break;
+			}
+		}
+		model.addAttribute("selectedWorkspace", selectedWorkspace);
+		model.addAttribute("teamUserList", teamUserList);
+		model.addAttribute("owner", owner);
+		model.addAttribute("pageType", "board");
 		return pathResult; 
 	}
 }

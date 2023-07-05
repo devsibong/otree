@@ -1,6 +1,7 @@
 package com.otree.douzone.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ import com.otree.douzone.dto.BoardCommentVO;
 import com.otree.douzone.service.BoardCommentService;
 import com.otree.douzone.service.BoardService;
 
-// °Ô½ÃÆÇ ´ñ±Û Ã³¸®¸¦ À§ÇÑ ºñµ¿±â ÄÁÆ®·Ñ·¯
+//ê²Œì‹œíŒ ëŒ“ê¸€ ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¹„ë™ê¸° ì»¨íŠ¸ë¡¤ëŸ¬
 @RestController 
-@RequestMapping("test")
+@RequestMapping("/test")
 public class BoardCommentRestController {
 
 	private BoardCommentService boardCommentService;
@@ -33,49 +34,50 @@ public class BoardCommentRestController {
 	public BoardCommentRestController(BoardCommentService boardCommentService) {
 		this.boardCommentService = boardCommentService;
 	}
+	@PostMapping("/comments")
+	public ResponseEntity<List<BoardCommentVO>> getCommentList(@RequestBody Map<String, String> requestBody) {
+	    List<BoardCommentVO> boardCommentList = null;
+	    int boardId = Integer.parseInt(requestBody.get("boardId"));
+	    System.out.println(boardId);
+	    try {
+	        boardCommentList = boardCommentService.getCommentListVO(boardId);
+	        return new ResponseEntity<List<BoardCommentVO>>(boardCommentList, HttpStatus.OK);
+	    } catch (Exception e) {
+	        return new ResponseEntity<List<BoardCommentVO>>(boardCommentList, HttpStatus.BAD_REQUEST);
+	    }
+	}
+
 	
-	//´ñ±Û »ğÀÔ ÈÄ list °¡Á®¿À±â
+	//ëŒ“ê¸€ ì‚½ì… í›„ list ê°€ì ¸ì˜¤ê¸°
 	@PostMapping
 	public ResponseEntity<List<BoardCommentVO>> createBoardComment(@RequestBody BoardComment boardComment) {
 		List<BoardCommentVO> boardCommentList = null;
 		try {
 			boardCommentService.createComment(boardComment);  
-			boardCommentList = boardCommentService.getCommentListVO(boardComment.getBoardId()); // ¼º°ø½Ã boardCommentList return 
+			boardCommentList = boardCommentService.getCommentListVO(boardComment.getBoardId()); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ boardCommentList return 
 			return new ResponseEntity<List<BoardCommentVO>>(boardCommentList, HttpStatus.OK);
 	} catch (Exception e) {
-		return new ResponseEntity<List<BoardCommentVO>>(boardCommentList, HttpStatus.BAD_REQUEST); // ½ÇÆĞ½Ã null ±âÁ¸ ÆäÀÌÁö¿¡ listÀÖÀ»Å×´Ï.
+		return new ResponseEntity<List<BoardCommentVO>>(boardCommentList, HttpStatus.BAD_REQUEST); // ï¿½ï¿½ï¿½Ğ½ï¿½ null ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ listï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½.
 	}
 	}
 	
-//	//´ñ±Û »ğÀÔ ÈÄ obj °¡Á®¿À±â
-//		@PostMapping
-//		public ResponseEntity<BoardCommentVO> createBoardComment(@RequestBody BoardComment boardComment) {
-//			BoardCommentVO boardCommentVO = null;
-//			try {
-//				boardCommentService.createComment(boardComment);  
-//				boardCommentVO = boardCommentService.getCommentVO(boardComment.getBoardId()); 
-//				return new ResponseEntity<BoardCommentVO>(boardCommentVO, HttpStatus.OK);
-//		} catch (Exception e) {
-//			return new ResponseEntity<BoardCommentVO>(boardCommentVO, HttpStatus.BAD_REQUEST); 
-//		}
-//		}
 	
 	
 	
-	//´ñ±Û ¼öÁ¤ ´©¸¥ comment id¸¦ ÅëÇØ ´ñ±Û °¡Á®¿À±â
+	//ëŒ“ê¸€ ìˆ˜ì • ëˆ„ë¥¸ comment idë¥¼ í†µí•´ ëŒ“ê¸€ ê°€ì ¸ì˜¤ê¸°
 	@GetMapping
 	public ResponseEntity<BoardCommentVO> getBoardComment(@RequestParam("param") int commentId) {
 		BoardCommentVO boardCommentVO = null;
 		try {
-			boardCommentVO = boardCommentService.getCommentVO(commentId); // ¼º°ø½Ã boardCommentList return 
+			boardCommentVO = boardCommentService.getCommentVO(commentId); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ boardCommentList return 
 			return new ResponseEntity<BoardCommentVO>(boardCommentVO, HttpStatus.OK);
 	} catch (Exception e) {
-		return new ResponseEntity<BoardCommentVO>(boardCommentVO, HttpStatus.BAD_REQUEST); // ½ÇÆĞ½Ã null ±âÁ¸ ÆäÀÌÁö¿¡ listÀÖÀ»Å×´Ï.
+		return new ResponseEntity<BoardCommentVO>(boardCommentVO, HttpStatus.BAD_REQUEST); // ï¿½ï¿½ï¿½Ğ½ï¿½ null ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ listï¿½ï¿½ï¿½ï¿½ï¿½×´ï¿½.
 	}
 	}
 	
 	
-	// ´ñ±Û ¼öÁ¤ ÈÄ ¼º°ø½Ã ¼öÁ¤µÈ ´ñ±Û  return
+	// ëŒ“ê¸€ ìˆ˜ì • í›„ ì„±ê³µì‹œ ìˆ˜ì •ëœ ëŒ“ê¸€  return
 	@PutMapping
 	public ResponseEntity<BoardCommentVO> modifyBoard(@RequestBody BoardComment boardComment) {
 		BoardCommentVO boardComment1 = null;
@@ -89,7 +91,7 @@ public class BoardCommentRestController {
 	}
 	
 	
-	//´ñ±Û »èÁ¦ÇÏ±â ÈÄ ¼º°ø½Ã »èÁ¦ÇÑ list return
+	//ëŒ“ê¸€ ì‚­ì œí•˜ê¸° í›„ ì„±ê³µì‹œ ì‚­ì œí•œ list return
 	@DeleteMapping
 	public ResponseEntity<List<BoardCommentVO>> deleteBoard(@RequestParam("commentId") int commentId, @RequestParam("boardId")int boardId) {
 		List<BoardCommentVO> boardCommentList = null;
