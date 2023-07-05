@@ -36,10 +36,8 @@
 		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 	</div>
 	<div class="offcanvas-body" id="offcanvasBody">
-		<div class ="text-green-400" id="todoInputShow">
-			<a href="#" style="text-decoration: none;">
-				<span><i class="bi bi-plus-circle"></i></span>
-				<span>할 일 추가</span>
+		<div class="text-green-400" id="todoInputShow">
+			<a href="#" style="text-decoration: none;"> <span><i class="bi bi-plus-circle"></i></span> <span>할 일 추가</span>
 			</a>
 		</div>
 		<div class="d-flex row mt-3 d-none" id="todoInput">
@@ -98,11 +96,15 @@
 <!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-1">
 	<div id="liveToast" class="toast bg-green-100" role="alert" aria-live="assertive" aria-atomic="true">
-		<div class="toast-header border-bottom-0 bg-green-100">
-			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-		</div>
 		<div class="toast-body bg-green-100">
-			<p class="ps-3 fs-6">성공적으로 수정되었습니다.</p>
+			<div class="d-flex justify-content-end">
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div>
+				<span> 
+					<p class="ps-3 fs-6"><i class="bi bi-info-circle me-3"></i>성공적으로 반영되었습니다.</p>
+				</span>
+			</div>
 		</div>
 	</div>
 </div>

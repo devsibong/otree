@@ -107,14 +107,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-function addMemberCard(member) {
+function addMemberCard(member, isOwner) {
 	let card = document.querySelector('#memberTemplate').cloneNode(true);
-
+	console.log(isOwner);
 	card.classList.remove('d-none');
 	card.querySelector('[name="memberName"]').textContent = member.name;
 	card.querySelector('[name="memberEmail"]').textContent = member.email;
 	card.querySelector('[name="memberId"]').textContent = member.userId;
-
+	let ownerBadge = card.querySelector('[name="ownerBadge"]');
+	if (isOwner === true) {
+		ownerBadge.classList.remove('d-none');
+	} else {
+		ownerBadge.classList.add('d-none');
+	}
 	document.querySelector('#memberList').appendChild(card);
 }
 
@@ -127,9 +132,9 @@ function loadMembers() {
         success: function (response) {
             let owner = response.owner;
             let memberList = response.memberList;
-            addMemberCard(owner);
+            addMemberCard(owner, true);
             memberList.forEach(function (member) {
-                addMemberCard(member);
+                addMemberCard(member, false);
             });
             addRemoveMemberListeners();
         },
