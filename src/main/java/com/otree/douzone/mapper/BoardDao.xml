@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 해당 워크스페이스의 BoardList 하지만 join이 첨가된 것 가져오기 -->
 	<select id ="getBoardList" parameterType="int" resultType="com.otree.douzone.dto.Board">
-	SELECT B.boardId, B.userId, B.workspaceId, B.boardTitle, B.boardContent, B.createdAt, B.readcount, U.name
+	SELECT B.boardId, B.userId, B.workspaceId, B.boardTitle, B.boardContent, B.createdAt, U.name,  B.readcount
 	FROM board B
 	JOIN otreeuser U ON B.USERID = U.USERID
 	WHERE workspaceId = #{workspaceId}
