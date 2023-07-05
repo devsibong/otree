@@ -1,15 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
 	let bsOffcanvas = new bootstrap.Offcanvas('#todoOffcanvas');
 	let todoActive = 0;
-	let toDoList = [];
+	
+
+	document.getElementById("todoInputShow").addEventListener("click", function () {
+		let todoInput = document.getElementById("todoInput");
+		const isHidden = todoInput.classList.contains("d-none");
+
+		if (isHidden) {
+			todoInput.classList.remove("d-none");
+			todoInput.classList.add("d-flex");
+		} else {
+			todoInput.classList.remove("d-flex");
+			todoInput.classList.add("d-none");
+		}
+	});
 
 	document.getElementById('todo').addEventListener('click', function (event) {
 		event.preventDefault();
-		document.getElementById('toDoBody').innerHTML = '';
+
 		if (todoActive == 0) {
 			this.classList.add('active');
 			todoActive = 1;
 			getToDoList();
+			displayTodo();
 		} else {
 			this.classList.remove('active');
 			todoActive = 0
@@ -17,100 +31,121 @@ document.addEventListener('DOMContentLoaded', function () {
 		bsOffcanvas.toggle();
 	});
 
-	// To Do List 할일 추가 이벤트함수
 	document.getElementById("addToDoBtn").addEventListener("click", function (e) {
 		e.preventDefault();
-
 		let inputValue = document.getElementById("inputToDo").value;
 		if (inputValue.trim().length < 1) {
 			window.alert("할일을 입력해주세요");
 		} else {
 			let newToDoTxt = document.getElementById("inputToDo").value;
-			makeToDoTag(newToDoTxt, false);
 			let todoObj = {
+				"id": localStorage.getItem("currentId"),
 				"checked": false,
 				"txt": newToDoTxt
-			}
-
-			// toDoList 배열에 추가하고 LocalStorage에 담는다.					
+			};
+			toDoList = JSON.parse(localStorage.getItem("toDoList"));
 			toDoList.push(todoObj);
 			localStorage.setItem("toDoList", JSON.stringify(toDoList));
 			document.getElementById("inputToDo").value = "";
+			localStorage.getItem("toDoList")
+			let newId = localStorage.getItem("currentId")+1;
+			localStorage.setItem("currentId", newId);
+			displayTodo();
 		}
+	});
+
+	document.getElementById('removeCompleteTask').addEventListener('click',function(e) {
+		e.preventDefault();
+		removeCompletedTasks();
+		displayTodo();
+
 
 	})
 
-	// 할일 LocalStorage에서 불러오기
-	function getToDoList() {
-		if (localStorage.getItem("toDoList") == null) {
-			localStorage.setItem("toDoList", JSON.stringify(toDoList));
-		} else {
-			toDoList = JSON.parse(this.localStorage.getItem("toDoList"));
-			toDoList.forEach((v) => { makeToDoTag(v.txt, v.checked) });
-		}
-	}
-
-	document.getElementById("inputToDo").addEventListener("keyup", (e) => {
-		if (e.key == "Enter") {
-			e.preventDefault();
-			document.getElementById("addToDoBtn").click();
-		}
-	})
-
-	document.getElementById("addToDoBtn").addEventListener("keyup", (e) => {
-		if (e.key == "Enter") {
-			e.preventDefault();
-			document.getElementById("addToDoBtn").click();
-		}
-	})
 });
 
-// toDoTag 태그 생성 함수 
-function makeToDoTag(toDoTxt, checked) {
+function makeToDoTag(toDoTxt, checked, id) {
 	let divTag = document.createElement("div");
 	let labelTag = document.createElement("label");
 	let inputTag = document.createElement("input");
 	divTag.setAttribute("class", "form-check");
-	divTag.setAttribute("id", "toDoOne");
+	divTag.setAttribute("id", id);
 
 	inputTag.setAttribute("class", "form-check-input");
 	inputTag.setAttribute("type", "checkbox");
-	inputTag.setAttribute("id", "toDoCheck");
+	inputTag.setAttribute("id", id); // Use the same id for checkbox
 
 	if (checked) {
 		inputTag.setAttribute("checked", "checked");
+		let offcanvasFooter = document.getElementById("offcanvasFooter");
+		divTag.appendChild(inputTag);
+		labelTag.setAttribute("draggable", "true");
+		labelTag.setAttribute("class", "form-check-label");
+		labelTag.setAttribute("for", "toDoCheck");
+		labelTag.innerText = toDoTxt;
+		divTag.appendChild(labelTag);
+		offcanvasFooter.appendChild(divTag);
+	} else {
+		divTag.appendChild(inputTag);
+		labelTag.setAttribute("draggable", "true");
+		labelTag.setAttribute("class", "form-check-label");
+		labelTag.setAttribute("for", "toDoCheck");
+		labelTag.innerText = toDoTxt;
+		divTag.appendChild(labelTag);
+		let offcanvasBody = document.getElementById("toDoBody");
+		offcanvasBody.appendChild(divTag);
 	}
-
-	divTag.appendChild(inputTag);
-
-	labelTag.setAttribute("draggable", "true");
-	labelTag.setAttribute("class", "form-check-label");
-	labelTag.setAttribute("for", "toDoCheck");
-	labelTag.innerText = toDoTxt;
-	divTag.appendChild(labelTag);
-	document.querySelector("#toDoBody").appendChild(divTag);	
-	addEventToCheckBox();
+	
 }
 
-// 이벤트 핸들러 등록
+
 function addEventToCheckBox() {
 	let formCheckElements = document.querySelectorAll(".form-check");
 	formCheckElements.forEach(function (formCheckElement) {
 		formCheckElement.addEventListener("click", function (e) {
-			let checkbox = formCheckElement.querySelector("input[type='checkbox']");
-
-			// 체크 상태 변경
-			if (checkbox.checked) {
-				checkbox.removeAttribute("checked");
-			} else {
-				checkbox.setAttribute("checked", "checked");
-			}
-
-			// 로컬스토리지에서 해당 요소에 접근하여 "checked" 속성 변경
+			e.preventDefault();
+			let id = formCheckElement.getAttribute("id");
 			let toDoList = JSON.parse(localStorage.getItem("toDoList"));
-			let index = Array.from(document.querySelectorAll("#toDoBody .form-check")).indexOf(formCheckElement);
-			toDoList[index].checked = checkbox.checked;
+			toDoList.forEach(function (item) {
+				if (item.id.toString() === id) {
+					item.checked = !item.checked;
+				}
+			});
 			localStorage.setItem("toDoList", JSON.stringify(toDoList));
+			displayTodo();
 		});
 	});
 }
+
+
+function getToDoList() {
+	let toDoList = [];
+	if (localStorage.getItem("toDoList") == null) {
+		localStorage.setItem("toDoList", JSON.stringify(toDoList));
+		localStorage.setItem("currentId", 1);
+	} else {
+		toDoList = JSON.parse(localStorage.getItem("toDoList"));
+	}
+	return toDoList;
+}
+
+function displayTodo() {
+	document.getElementById("toDoBody").innerHTML = "";
+	document.getElementById("offcanvasFooter").innerHTML = "";
+	let toDoList = JSON.parse(localStorage.getItem("toDoList"));
+	toDoList.forEach(function (item) {
+		makeToDoTag(item.txt, item.checked, item.id);
+	});
+	addEventToCheckBox();
+}
+
+function removeCompletedTasks() {
+	let toDoList = getToDoList();
+	if (toDoList) {
+	  toDoList = toDoList.filter(function(task) {
+		return !task.checked;
+	  });
+	  localStorage.setItem('toDoList', JSON.stringify(toDoList));
+	}
+  }
+  
