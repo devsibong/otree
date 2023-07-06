@@ -42,9 +42,6 @@
 												<h5 class="card-title fw-bold fs-6 mb-0">
 													<c:out value="${boardDetail.name}" />
 												</h5>
-												<c:if test="${boardDetail.userId eq owner.userId}">
-													<p class="badge text-bg-primary mb-0">Owner</p>
-												</c:if>
 											</div>
 											<p class="card-text">
 												<c:out value="${boardDetail.createdAt}" />

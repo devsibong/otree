@@ -69,17 +69,6 @@
 				<div class="d-none" name="taskId"></div>
 				<div class="d-none" name="statusId"></div>
 				<div class="d-none" name="taskSeq"></div>
-				<div class="col-3 d-flex justify-content-end align-items-end">
-					<p class="pe-1 mb-0 text-secondary">
-						<i class="bi bi-person-circle"></i>
-					</p>
-					<p class="pe-1 mb-0 text-secondary">
-						<i class="bi bi-person-circle"></i>
-					</p>
-					<p class="pe-1 mb-0 text-secondary">
-						<i class="bi bi-person-circle"></i>
-					</p>
-				</div>
 			</div>
 		</div>
 	</div>

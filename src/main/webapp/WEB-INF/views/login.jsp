@@ -16,7 +16,12 @@
 						<div class="card-body p-5 text-center">
 							<div class="mb-md-3 mt-md-4 ps-5 pe-5">
 								<div class="mb-4">
-									<h2 class="fw-bold mb-5">Otree</h2>
+									<span>
+										<img src="${pageContext.request.contextPath}/resources/static/image/icon/logo.png" alt="logo"  style="width:50px; height: 50px; display: inline;">
+									</span>
+									<span>
+										<h2 class="fw-bold mb-5">tree</h2>
+									</span>
 								</div>
 								<form action="${pageContext.request.contextPath}/member/login" method="post">
 									<!-- 이메일 입력 -->

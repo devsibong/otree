@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/static/css/custom.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 	<!-- navbar -->
@@ -29,10 +30,10 @@
 					</div>
 
 					<!-- 멤버 -->
-					<div class="mt-5">
-						<h2>
+					<div class="mt-4">
+						<h3>
 							멤버 <span><a href="#" id="addMemberIcon"><i class="bi bi-plus-lg fs-4 text-secondary"></i></a></span>
-						</h2>
+						</h3>
 						<div class="row" id="memberList">
 							<c:forEach var="teamUser" items="${teamUserList}">
 								<div class="col-3">
@@ -63,56 +64,58 @@
 					</div>
 
 					<!-- 작업 -->
-					<div class="mt-5">
-						<h2>작업</h2>
+					<div class="mt-4">
+						<h3>작업</h3>
 						<div class="row text-center">
 							<div class="col-3">
-								<div class="card border-green-100">
+								<div class="card border-green-100 vh-20 shadow-sm">
 									<div class="card-body">
-										<h5 class="card-title">배정됨</h5>
-										<h2 class="text-center">9</h2>
+										<h5 class="card-title">생성됨</h5>
+										<h2 class="text-center mt-5">3</h2>
 									</div>
 								</div>
 							</div>
 							<div class="col-3">
-								<div class="card border-green-100">
+								<div class="card border-green-100 vh-20 shadow-sm">
+									<div class="card-body">
+										<h5 class="card-title">진행중</h5>
+										<h2 class="text-center mt-5">3</h2>
+									</div>
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="card border-green-100 vh-20 shadow-sm">
 									<div class="card-body">
 										<h5 class="card-title">완료함</h5>
-										<h2 class="text-center">9</h2>
+										<h2 class="text-center mt-5">2</h2>
 									</div>
 								</div>
 							</div>
 							<div class="col-3">
-								<div class="card border-green-100">
+								<div class="card border-green-100 vh-20 shadow-sm">
 									<div class="card-body">
-										<h5 class="card-title">만료됨</h5>
-										<h2 class="text-center">9</h2>
+										<div class="d-flex justify-content-center">
+											<div class="col-6">
+												<canvas id="pjChart"></canvas>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-3">
-								<div class="card border-green-100">
-									<div class="card-body">
-										<h5 class="card-title">완료율</h5>
-										<h2 class="text-center">9%</h2>
-									</div>
-								</div>
-							</div>
-
 						</div>
 					</div>
 
 					<!-- 마일스톤, 파일 -->
-					<div class="row mt-5">
+					<div class="row mt-4">
 
 						<!-- 마일스톤 -->
 						<div class="col-6">
-							<h2>
+							<h3>
 								마일스톤 <span><a href="#"><i class="bi bi-pencil-square fs-4 text-secondary"></i></a></span>
-							</h2>
+							</h3>
 							<div class="row text-center">
 								<div class="col">
-									<div class="card border-green-100">
+									<div class="card border-green-100 shadow-sm">
 										<div class="card-body">
 											<table class="table">
 												<thead>
@@ -125,18 +128,18 @@
 												<tbody>
 													<tr>
 														<th scope="row">1</th>
-														<td>기획안 확정</td>
+														<td>요구사항 정의</td>
 														<td>2023.06.26</td>
 													</tr>
 													<tr>
-														<th scope="row">1</th>
-														<td>기획안 확정</td>
-														<td>2023.06.26</td>
+														<th scope="row">2</th>
+														<td>논리ERD 설계</td>
+														<td>2023.06.09</td>
 													</tr>
 													<tr>
-														<th scope="row">1</th>
+														<th scope="row">3</th>
 														<td>기획안 확정</td>
-														<td>2023.06.26</td>
+														<td>2023.07.07</td>
 													</tr>
 												</tbody>
 											</table>
@@ -149,34 +152,34 @@
 
 						<!-- 파일 -->
 						<div class="col-6">
-							<h2>파일</h2>
+							<h3>파일</h3>
 							<div class="row text-center">
 								<div class="col">
-									<div class="card border-green-100">
+									<div class="card border-green-100 shadow-sm">
 										<div class="card-body">
 											<table class="table">
 												<thead>
 													<tr>
 														<th scope="col">No</th>
-														<th scope="col">마일스톤</th>
+														<th scope="col">파일명</th>
 														<th scope="col">일자</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr>
 														<th scope="row">1</th>
-														<td>기획안 확정</td>
+														<td>와이어프레임.pdf</td>
 														<td>2023.06.26</td>
 													</tr>
 													<tr>
-														<th scope="row">1</th>
-														<td>기획안 확정</td>
+														<th scope="row">2</th>
+														<td>스토리보드.pdf</td>
 														<td>2023.06.26</td>
 													</tr>
 													<tr>
-														<th scope="row">1</th>
-														<td>기획안 확정</td>
-														<td>2023.06.26</td>
+														<th scope="row">3</th>
+														<td>기획안 ver1.word</td>
+														<td>2023.06.29</td>
 													</tr>
 												</tbody>
 											</table>
@@ -254,8 +257,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/navbar.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/js/ownerSidebar.js"></script>
