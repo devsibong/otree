@@ -3,6 +3,12 @@
 ## 시연 영상
 https://youtu.be/EkAxuu0lvSg](https://youtu.be/qa5hMriqOsA)
 
+## 산출물
+* [와이어프레임](https://drive.google.com/file/d/1OULAIxewAZ9gsKRHYOs7KksbuhVXKrXf/view?usp=sharing)
+* [스토리보드](https://docs.google.com/presentation/d/1ApDaEtFY-24qIxuo5PuPrP4dv_G_vqfk/edit?usp=sharing&ouid=111347850889705719831&rtpof=true&sd=true)
+* [요구사항 정의서](https://docs.google.com/spreadsheets/d/1m8PcG7UUryZ2DudZ9WYFz2yhPN1w5hX3/edit?usp=sharing&ouid=111347850889705719831&rtpof=true&sd=true)
+* [업무 협의](https://docs.google.com/spreadsheets/d/1m8PcG7UUryZ2DudZ9WYFz2yhPN1w5hX3/edit?usp=sharing&ouid=111347850889705719831&rtpof=true&sd=true)
+
 ## 프로젝트 주제 및 목적
 * 칸반 보드 기반의 협업 툴 구현
 * JavaMailSender를 활용한 이메일 전송 구현
