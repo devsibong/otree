@@ -1,6 +1,7 @@
 <img width="100%" src="https://github.com/devsibong/otree/assets/115763000/633cb3ff-8b44-4bad-be89-fdf8a58cd62f"/>
+
 ## 시연 영상
-[https://youtu.be/EkAxuu0lvSg](https://youtu.be/qa5hMriqOsA)
+https://youtu.be/EkAxuu0lvSg](https://youtu.be/qa5hMriqOsA)
 
 ## 프로젝트 주제 및 목적
 * 칸반 보드 기반의 협업 툴 구현
