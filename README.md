@@ -1,7 +1,7 @@
 <img width="100%" src="https://github.com/devsibong/otree/assets/115763000/633cb3ff-8b44-4bad-be89-fdf8a58cd62f"/>
 
 ## 시연 영상
-https://youtu.be/EkAxuu0lvSg](https://youtu.be/qa5hMriqOsA)
+[![Video Label](https://img.youtube.com/vi/qa5hMriqOsA/0.jpg)](https://youtu.be/qa5hMriqOsA)
 
 ## 산출물
 * [와이어프레임](https://drive.google.com/file/d/1OULAIxewAZ9gsKRHYOs7KksbuhVXKrXf/view?usp=sharing)
